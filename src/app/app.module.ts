@@ -13,10 +13,11 @@ import { environment } from '../environments/environment';
 import { HomeModule } from './modules/home/home.module';
 import { HeaderComponent } from './modules/shared/components/header/header.component';
 import { FooterComponent } from './modules/shared/components/footer/footer.component';
-import { SidebarComponent } from './modules/shared/components/sidebar/sidebar.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, SidebarComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,9 +31,10 @@ import { SidebarComponent } from './modules/shared/components/sidebar/sidebar.co
       maxAge: 25,
       logOnly: environment.production,
     }),
+    MatButtonModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [SidebarComponent],
 })
 export class AppModule {}
