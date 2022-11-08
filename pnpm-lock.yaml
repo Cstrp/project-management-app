@@ -27,6 +27,7 @@ specifiers:
   '@ngrx/schematics': ^14.3.2
   '@ngrx/store': ^14.3.2
   '@ngrx/store-devtools': ^14.3.2
+  '@syncfusion/ej2-angular-navigations': 20.3.56-ngcc
   '@types/jasmine': ~4.0.0
   '@typescript-eslint/eslint-plugin': 5.37.0
   '@typescript-eslint/parser': 5.37.0
@@ -70,6 +71,7 @@ dependencies:
   '@ngrx/router-store': 14.3.2_c3kpjuwexdydmg3usdbjdhzdsq
   '@ngrx/store': 14.3.2_7m4pc4sup4phcyoce7cdzdyotq
   '@ngrx/store-devtools': 14.3.2_s4eemevjanth4ljcy2p6xoqaq4
+  '@syncfusion/ej2-angular-navigations': 20.3.56-ngcc
   font-awesome: 4.7.0
   ngx-drag-drop: 14.0.0_vz272vtyycrspkd5voyqdqrghm
   normalize.css: 8.0.1
@@ -2274,6 +2276,92 @@ packages:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: true
 
+  /@syncfusion/ej2-angular-base/20.3.56:
+    resolution: {integrity: sha512-y3MkNEqRmrfLTHjkfBRZCeP+ICDO853mnGsb6oN2iR6bHajtq/v5DdtPlOPx9FoOmw6sXnidMHyMVUMWico+tQ==}
+    requiresBuild: true
+    dependencies:
+      '@syncfusion/ej2-base': 20.3.56
+      '@syncfusion/ej2-icons': 20.3.56
+      core-js: 3.26.0
+      reflect-metadata: 0.1.13
+      rxjs: 6.6.7
+      rxjs-compat: 6.6.7
+      zone.js: 0.10.3
+    dev: false
+
+  /@syncfusion/ej2-angular-navigations/20.3.56-ngcc:
+    resolution: {integrity: sha512-wY1jUXHZQOIjatHytR4Dkuw0Gd9w5W7UY3dL6eJ4wnZ5LwJIoWdzbjAnst+eMIm9P3dDQN7Tb2DCNrjmog4A9w==}
+    dependencies:
+      '@syncfusion/ej2-angular-base': 20.3.56
+      '@syncfusion/ej2-base': 20.3.56
+      '@syncfusion/ej2-navigations': 20.3.56
+    dev: false
+
+  /@syncfusion/ej2-base/20.3.56:
+    resolution: {integrity: sha512-BeXX3XBOs1kv9/rki9f1kPuLbNJU06kJE8o0jLY62fEd/U5k2KkuG5Z/WbWHJIuQVH5dv57ZM2Adl3rG+vkvjg==}
+    hasBin: true
+    dependencies:
+      '@syncfusion/ej2-icons': 20.3.56
+    dev: false
+
+  /@syncfusion/ej2-buttons/20.3.56:
+    resolution: {integrity: sha512-86CdaC4GgqsECeJbbrJt9gKsIT0tJ8EtolskKTarhtptKVfc/ET7Wr/ywV1EMf2/M8biRL9ev6jC8m5k8YbVrA==}
+    dependencies:
+      '@syncfusion/ej2-base': 20.3.56
+    dev: false
+
+  /@syncfusion/ej2-data/20.3.56:
+    resolution: {integrity: sha512-Sb1LBOOkjS1fduHhrhelofIeAbV9TDzPnGwPHs+j0yZLX8Pvw7nBBANDzIX2R9nATVP3EIiGIcEyylYq3mPwtA==}
+    dependencies:
+      '@syncfusion/ej2-base': 20.3.56
+    dev: false
+
+  /@syncfusion/ej2-icons/20.3.56:
+    resolution: {integrity: sha512-sv5y/J85PZU8fmFNG1b5ftLroQHFicTKcfKo0oy72KSKxdLZ3xd1pjMS9/5m5z609doksIbFltlisO0buhzflA==}
+    dev: false
+
+  /@syncfusion/ej2-inputs/20.3.56:
+    resolution: {integrity: sha512-w1kLCHnzDJog2fBZBArKMulifAur1PXSxMsXau1PLFLXLXvpfRpl3Qq4s17ksJIp4qEm74AmlwcUMfmunsa4wQ==}
+    dependencies:
+      '@syncfusion/ej2-base': 20.3.56
+      '@syncfusion/ej2-buttons': 20.3.56
+      '@syncfusion/ej2-popups': 20.3.56
+      '@syncfusion/ej2-splitbuttons': 20.3.56
+    dev: false
+
+  /@syncfusion/ej2-lists/20.3.56:
+    resolution: {integrity: sha512-I7BizR/RANyxzwSV+tuJMwN5sK2GHi7tOZpiaIGE8b5sm6ygffR9cIniomDvt4lz4JhmBeBrTpzJbpj4XjbCFQ==}
+    dependencies:
+      '@syncfusion/ej2-base': 20.3.56
+      '@syncfusion/ej2-buttons': 20.3.56
+      '@syncfusion/ej2-data': 20.3.56
+    dev: false
+
+  /@syncfusion/ej2-navigations/20.3.56:
+    resolution: {integrity: sha512-RKD9SOBNpDmBIxFLNN6n34MsUfBN57QD2roKvyEJ5OCgEdZL2JTZ1wSOcvclrmmmskupbmfq8i7lEUtBPCW2VQ==}
+    dependencies:
+      '@syncfusion/ej2-base': 20.3.56
+      '@syncfusion/ej2-buttons': 20.3.56
+      '@syncfusion/ej2-data': 20.3.56
+      '@syncfusion/ej2-inputs': 20.3.56
+      '@syncfusion/ej2-lists': 20.3.56
+      '@syncfusion/ej2-popups': 20.3.56
+    dev: false
+
+  /@syncfusion/ej2-popups/20.3.56:
+    resolution: {integrity: sha512-67fDJG3rMTDCfnvGaSfTciFAnhxpnPY0vfgOPe1FBdG7C+3AHhugYh4cOffdgenvNSCV6aBK8CIOtBJb/SSTEw==}
+    dependencies:
+      '@syncfusion/ej2-base': 20.3.56
+      '@syncfusion/ej2-buttons': 20.3.56
+    dev: false
+
+  /@syncfusion/ej2-splitbuttons/20.3.56:
+    resolution: {integrity: sha512-z0/j4CAaKu4YM3ggtcWm6ZDQjuE+wKp7sbC8iAXp1OM0WWrOYpB//SB5qV4jVuXajcsrImBlmrYsKR/XPt4Cuw==}
+    dependencies:
+      '@syncfusion/ej2-base': 20.3.56
+      '@syncfusion/ej2-popups': 20.3.56
+    dev: false
+
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
@@ -3546,6 +3634,11 @@ packages:
     dependencies:
       browserslist: 4.21.4
     dev: true
+
+  /core-js/3.26.0:
+    resolution: {integrity: sha512-+DkDrhoR4Y0PxDz6rurahuB+I45OsEUv8E1maPTB6OuHRohMMcznBq9TMpdpDMm/hUPob/mJJS3PqgbHpMTQgw==}
+    requiresBuild: true
+    dev: false
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -7243,7 +7336,6 @@ packages:
 
   /reflect-metadata/0.1.13:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
-    dev: true
 
   /regenerate-unicode-properties/10.1.0:
     resolution: {integrity: sha512-d1VudCLoIGitcU/hEg2QqvyGZQmdC0Lf8BqdOMXGFSvJP4bNV1+XqbPQeHHLD51Jh4QJJ225dlIFvY4Ly6MXmQ==}
@@ -7396,12 +7488,15 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
+  /rxjs-compat/6.6.7:
+    resolution: {integrity: sha512-szN4fK+TqBPOFBcBcsR0g2cmTTUF/vaFEOZNuSdfU8/pGFnNmmn2u8SystYXG1QMrjOPBc6XTKHMVfENDf6hHw==}
+    dev: false
+
   /rxjs/6.6.7:
     resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
     engines: {npm: '>=2.0.0'}
     dependencies:
       tslib: 1.14.1
-    dev: true
 
   /rxjs/7.5.7:
     resolution: {integrity: sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==}
@@ -8091,7 +8186,6 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-    dev: true
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
@@ -8599,6 +8693,10 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zone.js/0.10.3:
+    resolution: {integrity: sha512-LXVLVEq0NNOqK/fLJo3d0kfzd4sxwn2/h67/02pjCjfKDxgx1i9QqpvtHD8CrBnSSwMw5+dy11O7FRX5mkO7Cg==}
+    dev: false
 
   /zone.js/0.11.8:
     resolution: {integrity: sha512-82bctBg2hKcEJ21humWIkXRlLBBmrc3nN7DFh5LGGhcyycO2S7FN8NmdvlcKaGFDNVL4/9kFLmwmInTavdJERA==}

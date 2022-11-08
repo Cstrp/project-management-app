@@ -10,14 +10,19 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { HomeModule } from './modules/home/home.module';
+import { HeaderComponent } from './modules/shared/components/header/header.component';
+import { FooterComponent } from './modules/shared/components/footer/footer.component';
+import { SidebarComponent } from './modules/shared/components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, SidebarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DragDropModule,
+    HomeModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
@@ -28,5 +33,6 @@ import { environment } from '../environments/environment';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [SidebarComponent],
 })
 export class AppModule {}
