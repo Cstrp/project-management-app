@@ -1,0 +1,5 @@
+<h3 class="board-list__title">{{title}}</h3>
+<div class="board-list" *ngIf="boards$ | async as boards">
+        <app-board *ngFor="let board of boards" [board]="board"></app-board>
+        <app-add-board (click)="openPopup()"></app-add-board>
+</div>
