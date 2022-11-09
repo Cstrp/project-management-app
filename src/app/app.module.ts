@@ -10,6 +10,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { MaterialModule } from './modules';
+import { FormsModule } from '@angular/forms';
+import { appReducer } from './store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +20,10 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
     DragDropModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
