@@ -1,0 +1,47 @@
+<div class="form__container" [ngClass]="statusForm">
+    <button color="warn" class="modal-button edit-board-modal-close-btn" mat-raised-button
+        (click)="closeModal()">Cancel</button>
+    <form class="modal-container" [formGroup]="editBoardForm" (submit)="onSubmit()">
+        <h1 class="modal-title" mat-dialog-title>Edit board</h1>
+        <div class="modal-content" mat-dialog-content>
+            <div class="form-field">
+                <mat-form-field class="modal-field" appearance="fill">
+                    <mat-label class="modal-label">Title:</mat-label>
+                    <input class="modal-input" matInput type="text" formControlName="boardTitle">
+                </mat-form-field>
+                <div class="errors-container"
+                    *ngIf="editBoardForm.get('boardTitle')?.errors && (editBoardForm.dirty || editBoardForm.touched)">
+                    <span class="alert-danger" *ngIf="editBoardForm.get('boardTitle')?.errors?.['required']">Please
+                        enter
+                        a
+                        title</span>
+                    <span class="alert-danger" *ngIf="editBoardForm.get('boardTitle')?.errors?.['minlength']">Name must
+                        be at
+                        least 4 characters long.</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <mat-form-field class="modal-field" appearance="fill">
+                    <mat-label class="modal-label">Description:</mat-label>
+                    <input class="modal-input" matInput type="text" formControlName="boardDescription">
+                </mat-form-field>
+                <div class="errors-container"
+                    *ngIf="editBoardForm.get('boardDescription')?.errors && (editBoardForm.dirty || editBoardForm.touched)">
+                    <span class="alert-danger"
+                        *ngIf="editBoardForm.get('boardDescription')?.errors?.['required']">Please
+                        enter a
+                        description</span>
+                    <span *ngIf="editBoardForm.get('boardDescription')?.errors?.['minlength']" class="alert-danger">Name
+                        must
+                        be at
+                        least 4 characters long.</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-buttons" mat-dialog-actions>
+            <button [disabled]="!editBoardForm.valid" type="submit" color="primary"
+                class="modal-button edit-board-modal-edit-btn" mat-raised-button>Edit</button>
+        </div>
+    </form>
+</div>

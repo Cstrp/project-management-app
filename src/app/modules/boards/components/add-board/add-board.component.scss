@@ -1,0 +1,38 @@
+:host {
+  padding: 15px;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.374, 0.019, 0.035, 1.861);
+  /* From https://css.glass */
+  background: rgba(0, 219, 153, 0.48);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.7px);
+  -webkit-backdrop-filter: blur(5.7px);
+  border: 1px solid rgba(0, 219, 153, 0.38);
+  width: 100%;
+  transition: 0.7s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.add-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.add-board-text {
+  font-size: 20px;
+}
+
+.add-board-icon {
+  color: #000000;
+  display: block;
+  font-size: 25px;
+  width: 100%;
+}
