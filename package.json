@@ -28,6 +28,7 @@
     "@ngrx/router-store": "^14.3.2",
     "@ngrx/store": "^14.3.2",
     "@ngrx/store-devtools": "^14.3.2",
+    "@syncfusion/ej2-angular-navigations": "20.3.56-ngcc",
     "font-awesome": "^4.7.0",
     "ngx-drag-drop": "^14.0.0",
     "normalize.css": "^8.0.1",
