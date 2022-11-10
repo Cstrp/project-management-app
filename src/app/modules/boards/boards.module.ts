@@ -15,6 +15,7 @@ import {
 } from './components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteBoardModalComponent } from './components/delete-board-modal';
+import { BoardsNavigateComponent } from './components/boards-navigate';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DeleteBoardModalComponent } from './components/delete-board-modal';
     AddBoardModalComponent,
     EditBoardModalComponent,
     DeleteBoardModalComponent,
+    BoardsNavigateComponent,
   ],
   exports: [
     BoardListComponent,
@@ -38,13 +40,9 @@ import { DeleteBoardModalComponent } from './components/delete-board-modal';
     AddBoardComponent,
     AddBoardModalComponent,
     EditBoardModalComponent,
+    DeleteBoardModalComponent,
+    BoardsNavigateComponent,
   ],
-  imports: [
-    CommonModule,
-    BoardsRoutingModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, BoardsRoutingModule, MaterialModule, FormsModule, ReactiveFormsModule],
 })
 export class BoardsModule {}
