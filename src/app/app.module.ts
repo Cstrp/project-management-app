@@ -10,7 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { MaterialModule } from './modules';
+import { BoardsModule, MaterialModule } from './modules';
 import { FormsModule } from '@angular/forms';
 import { appReducer } from './store';
 
@@ -30,6 +30,7 @@ import { appReducer } from './store';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    BoardsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
