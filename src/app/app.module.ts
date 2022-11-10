@@ -15,6 +15,7 @@ import { HeaderComponent } from './modules/shared/components/header/header.compo
 import { FooterComponent } from './modules/shared/components/footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from './modules/material/material.module';
+import { AuthPageModule } from './modules/auth-page/auth-page.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -24,6 +25,7 @@ import { MaterialModule } from './modules/material/material.module';
     BrowserAnimationsModule,
     DragDropModule,
     HomeModule,
+    AuthPageModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
