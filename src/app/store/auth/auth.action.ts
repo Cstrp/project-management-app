@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Usr } from '../../modules/auth-page/models/usr';
 import { SignUp } from '../../modules/auth-page/models/signUp';
+import { SignIn } from '../../modules/auth-page/models/signIn';
 
 const LOGIN_START: string = '[auth page] login start';
 const LOGIN_SUCCESS: string = '[auth page] login Success';
@@ -11,7 +12,7 @@ const SIGNUP_SUCCESS = '[auth page] signup success';
 const AUTO_LOGIN_ACTION = '[auth page] auto login';
 const LOGOUT_ACTION = '[auth page] logout';
 
-const loginStart = createAction(LOGIN_START, props<{ name: string; login: string; password: string }>());
+const loginStart = createAction(LOGIN_START, props<{ user: SignIn }>());
 
 const loginSuccess = createAction(LOGIN_SUCCESS, props<{ user: Usr; redirect: boolean }>());
 

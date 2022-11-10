@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../../store/app/app.state';
 import { signUpStart } from '../../../../store/auth/auth.action';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
   form: FormGroup = new FormGroup({
@@ -27,7 +25,7 @@ export class SignUpComponent implements OnInit {
 
   isLoginFailed: boolean = false;
 
-  constructor(private authService: AuthenticationService, private fb: FormBuilder, private store: Store<AppState>) {}
+  constructor(private authService: AuthenticationService, private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -51,7 +49,6 @@ export class SignUpComponent implements OnInit {
     this.authService.signUp(this.form.value).subscribe({
       next: (value) => {
         console.log(value);
-        // this.store.dispatch(setLoadSpinner({ status: true }));
         this.store.dispatch(signUpStart({ user: this.form.value }));
       },
       error: (err) => {
