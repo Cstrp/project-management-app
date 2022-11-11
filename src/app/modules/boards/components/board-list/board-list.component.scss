@@ -7,11 +7,61 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   margin: 0 auto;
   max-width: 1140px;
-  padding: 30px 28px;
-  grid-gap: 35px;
+  padding: 35px;
+  grid-gap: 15px;
   align-items: stretch;
+  background: rgba(239, 243, 253, 0.68);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(239, 243, 253, 0.3);
 }
 
 .board-list__title {
   text-align: center;
+}
+
+.eleven {
+  position: relative;
+}
+
+.eleven .board-list__title {
+  font-size: 30px;
+  text-align: center;
+  line-height: 1.5em;
+  padding-bottom: 45px;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #111;
+}
+
+.eleven .board-list__title:before {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  width: 60%;
+  left: 50%;
+  margin-left: -30%;
+  height: 1px;
+  content: '';
+  background-color: #777;
+  z-index: 4;
+}
+.eleven .board-list__title:after {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  margin-left: -20px;
+  bottom: 0px;
+  content: '\00a7';
+  font-size: 30px;
+  line-height: 40px;
+  color: #c50000;
+  font-weight: 400;
+  z-index: 5;
+  display: block;
+  background-color: #eff3fd;
 }
