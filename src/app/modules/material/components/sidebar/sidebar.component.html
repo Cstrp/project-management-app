@@ -1,0 +1,20 @@
+<mat-sidenav-container class="w-1/6 fixed z-10">
+  <mat-sidenav *ngIf="!visible" opened="true" mode="push" class="max-w-sm" [fixedInViewport]="true">
+    <mat-nav-list>
+        <a mat-list-item routerLink="/">
+          <mat-icon> home</mat-icon>
+          <span>Home</span>
+        </a>
+        <a mat-list-item routerLink="/signup">
+          <mat-icon>supervised_user_circle</mat-icon>
+          <span>Sign up</span>
+        </a>
+
+        <a mat-list-item routerLink="/signin">
+          <mat-icon>login</mat-icon>
+          <span>Sign in</span>
+        </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>

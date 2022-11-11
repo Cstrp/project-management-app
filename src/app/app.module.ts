@@ -13,6 +13,10 @@ import { environment } from '../environments/environment';
 import { BoardsModule, MaterialModule } from './modules';
 import { FormsModule } from '@angular/forms';
 import { appReducer } from './store';
+import { HomeModule } from './modules/home/home.module';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthPageModule } from './modules/auth-page/auth-page.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,10 +24,12 @@ import { appReducer } from './store';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FormsModule,
     DragDropModule,
     StoreModule.forRoot(appReducer),
+    HomeModule,
+    AuthPageModule,
+    SharedModule,
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
@@ -31,6 +37,8 @@ import { appReducer } from './store';
       logOnly: environment.production,
     }),
     BoardsModule,
+    MatButtonModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

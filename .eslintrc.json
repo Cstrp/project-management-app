@@ -55,6 +55,7 @@
         "operator-linebreak": 0,
         "no-new": "off",
         "@typescript-eslint/no-unused-vars": 2,
+        "@ngrx/avoid-dispatching-multiple-actions-sequentially": 0,
         "@typescript-eslint/object-curly-spacing": 0,
         "@typescript-eslint/no-implied-eval": 0,
         "@typescript-eslint/no-use-before-define": 0,
