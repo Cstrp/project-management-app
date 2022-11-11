@@ -33,6 +33,7 @@
               "./node_modules/normalize.css",
               "src/styles.scss"
             ],
+            "allowedCommonJsDependencies": ["crypto-js"],
             "scripts": []
           },
           "configurations": {

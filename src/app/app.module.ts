@@ -11,19 +11,21 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HomeModule } from './modules/home/home.module';
-import { HeaderComponent } from './modules/shared/components/header/header.component';
-import { FooterComponent } from './modules/shared/components/footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from './modules/material/material.module';
+import { AuthPageModule } from './modules/auth-page/auth-page.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DragDropModule,
     HomeModule,
+    AuthPageModule,
+    SharedModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
