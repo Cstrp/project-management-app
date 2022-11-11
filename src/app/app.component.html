@@ -1,2 +1,8 @@
-<app-boards-navigate></app-boards-navigate>
-<router-outlet></router-outlet>
+<app-header (menuState)="burgerClicked($event)"></app-header>
+
+<main>
+  <app-sidebar [menuState]="subMenuState"></app-sidebar>
+  <router-outlet></router-outlet>
+</main>
+
+<app-footer></app-footer>

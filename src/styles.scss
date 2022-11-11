@@ -2,12 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '~@syncfusion/ej2-angular-navigations/styles/material.css';
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  flex: 1;
   background-color: #eff3fd;
 }
+
+main {
+  flex: 1 0 auto;
+}
+
+//footer { position: absolute; bottom: 0; left: 0; right:0 }
