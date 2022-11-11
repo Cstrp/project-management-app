@@ -38,7 +38,7 @@ export class SignInComponent implements OnInit {
       password: ['', [Validators.required]],
     });
 
-    this.str = this.localService.getData('user');
+    this.str = this.localService.getData('token');
   }
 
   onSubmit() {
@@ -49,7 +49,7 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(this.form.value).subscribe({
       next: (value) => {
         console.log(value);
-        this.localService.saveData('user', JSON.stringify(value));
+        this.localService.saveData('token', JSON.stringify(value));
         this.store.dispatch(loginStart({ user: this.form.value }));
       },
       error: (err) => {
