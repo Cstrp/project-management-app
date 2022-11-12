@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { IAppState } from 'src/app/store';
 import { getBoards } from 'src/app/store/boards/boards.selector';
 import { IBoard } from '../board/models';
@@ -20,11 +20,16 @@ export class BoardListComponent implements OnInit {
   constructor(private store: Store<IAppState>, public matDialog: MatDialog) {}
 
   public ngOnInit(): void {
-    this.boards$ = this.store.select(getBoards);
+    this.boards$ = this.store
+      .select(getBoards)
+      .pipe(
+        map((value) =>
+          [...value].sort((a, b) => (<string>a['id']).localeCompare(<string>b['id'], undefined, { numeric: false })),
+        ),
+      );
     this.title = 'Boards';
     this.store.dispatch(loadBoards());
   }
-
   public openPopup(): void {
     this.matDialog.open(AddBoardModalComponent, {
       width: '30%',
