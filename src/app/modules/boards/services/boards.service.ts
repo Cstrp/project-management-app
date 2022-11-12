@@ -8,9 +8,7 @@ import { _httpOptions } from '../../../constants';
   providedIn: 'root',
 })
 export class BoardsService {
-  constructor(private http: HttpClient, private localService: LocalStorageService) {
-    this.getBoards();
-  }
+  constructor(private http: HttpClient, private localService: LocalStorageService) {}
 
   public getBoards() {
     return this.http.get(GET_BOARDS, _httpOptions);
