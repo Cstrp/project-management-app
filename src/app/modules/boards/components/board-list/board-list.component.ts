@@ -6,6 +6,7 @@ import { getBoards } from 'src/app/store/boards/boards.selector';
 import { IBoard } from '../board/models';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBoardModalComponent } from '../add-board-modal';
+import { loadBoards } from 'src/app/store/boards/boards.actions';
 
 @Component({
   selector: 'app-board-list',
@@ -21,6 +22,7 @@ export class BoardListComponent implements OnInit {
   public ngOnInit(): void {
     this.boards$ = this.store.select(getBoards);
     this.title = 'Boards';
+    this.store.dispatch(loadBoards());
   }
 
   public openPopup(): void {
