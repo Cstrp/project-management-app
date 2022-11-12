@@ -17,7 +17,7 @@ import { HomeModule } from './modules/home/home.module';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthPageModule } from './modules/auth-page/auth-page.module';
 import { SharedModule } from './modules/shared/shared.module';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -39,6 +39,7 @@ import { SharedModule } from './modules/shared/shared.module';
     BoardsModule,
     MatButtonModule,
     MaterialModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
