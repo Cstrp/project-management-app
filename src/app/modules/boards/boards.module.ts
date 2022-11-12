@@ -18,6 +18,10 @@ import { DeleteBoardModalComponent } from './components/delete-board-modal';
 import { BoardsNavigateComponent } from './components/boards-navigate';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects } from 'src/app/store';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequestInterceptor } from 'src/app/utils/http.interceptor';
+import { _httpInterceptorProvider } from 'src/app/constants';
+import { _errInterceptorProvider } from 'src/app/constants/_errInterceptorProvider';
 @NgModule({
   declarations: [
     BoardListComponent,
@@ -52,6 +56,6 @@ import { BoardsEffects } from 'src/app/store';
     ReactiveFormsModule,
     EffectsModule.forFeature([BoardsEffects]),
   ],
-  
+  providers: [_httpInterceptorProvider],
 })
 export class BoardsModule {}
