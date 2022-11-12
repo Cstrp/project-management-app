@@ -34,7 +34,6 @@ import { HomeModule } from './modules/home/home.module';
       logOnly: environment.production,
     }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
