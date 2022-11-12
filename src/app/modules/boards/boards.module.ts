@@ -3,25 +3,23 @@ import { CommonModule } from '@angular/common';
 import { BoardsRoutingModule } from './boards-routing.module';
 import { MaterialModule } from '../material';
 import {
+  AddBoardComponent,
+  AddBoardModalComponent,
   BoardAdvancedComponent,
   BoardComponent,
   BoardListComponent,
-  ColumnComponent,
   BoardsPageComponent,
-  TaskComponent,
-  AddBoardComponent,
-  AddBoardModalComponent,
+  ColumnComponent,
   EditBoardModalComponent,
+  TaskComponent,
 } from './components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteBoardModalComponent } from './components/delete-board-modal';
 import { BoardsNavigateComponent } from './components/boards-navigate';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects } from 'src/app/store';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpRequestInterceptor } from 'src/app/utils/http.interceptor';
-import { _httpInterceptorProvider } from 'src/app/constants';
-import { _errInterceptorProvider } from 'src/app/constants/_errInterceptorProvider';
+import { _httpInterceptorProvider } from '../../constants';
+
 @NgModule({
   declarations: [
     BoardListComponent,
