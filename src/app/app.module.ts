@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthPageModule } from './modules/auth-page/auth-page.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NetworkInterceptor } from './modules/shared/interceptors/network.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -42,5 +44,12 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NetworkInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class AppModule {}

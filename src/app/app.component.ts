@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'project-management-app';
+  public loading$ = this.loader.loading$;
 
-  subMenuState: boolean = false;
+  public title = 'project-management-app';
 
-  burgerClicked(evt: boolean): void {
+  public subMenuState: boolean = false;
+
+  constructor(public loader: LoadingService) {}
+
+  public burgerClicked(evt: boolean): void {
     this.subMenuState = evt;
     console.log('inside burgerClicked: pls. change showMenu to be:', this.subMenuState);
   }

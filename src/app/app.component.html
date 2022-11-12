@@ -6,3 +6,5 @@
 </main>
 
 <app-footer></app-footer>
+
+<mat-progress-spinner [mode]="'indeterminate'" *ngIf="loading$ | async"></mat-progress-spinner>
