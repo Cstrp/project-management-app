@@ -10,7 +10,7 @@ import { _httpOptions } from 'src/app/constants';
 export class BoardsService {
   constructor(private http: HttpClient) {}
 
-  public getBoards() {
+  public getBoards$() {
     return this.http.get(`${GET_BOARDS}`);
   }
 }
