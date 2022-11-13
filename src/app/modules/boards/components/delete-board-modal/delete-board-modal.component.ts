@@ -14,13 +14,14 @@ import { IBoard } from '../board';
 })
 export class DeleteBoardModalComponent implements OnInit {
   public userId: string;
+
   public board: IBoard;
 
   constructor(
     private store: Store<IAppState>,
     private router: Router,
     private ref: MatDialogRef<DeleteBoardModalComponent>,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
   ) {}
 
   public ngOnInit(): void {
@@ -36,6 +37,7 @@ export class DeleteBoardModalComponent implements OnInit {
 
   public deleteModal(): void {
     const id: string = this.userId;
+
     this.store.dispatch(deleteBoard({ id }));
     this.closeModal();
   }

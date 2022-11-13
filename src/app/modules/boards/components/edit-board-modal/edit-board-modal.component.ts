@@ -15,37 +15,37 @@ import { IBoard } from '../board';
 })
 export class EditBoardModalComponent implements OnInit {
   public editBoardForm: FormGroup;
+
   public statusForm: string = 'VALID';
+
   public title: string;
+
   public description: string;
+
   public userId: string;
+
   public board: IBoard;
 
   constructor(
     private store: Store<IAppState>,
     private router: Router,
     private ref: MatDialogRef<EditBoardModalComponent>,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
   ) {}
 
   public ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.userId = params['edit'];
       const id: string = this.userId;
+
       this.store.select(getBoardById, { id }).subscribe((data) => {
         this.board = data;
       });
     });
 
     this.editBoardForm = new FormGroup({
-      boardTitle: new FormControl(this.board.title, [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      boardDescription: new FormControl(this.board.description, [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
+      boardTitle: new FormControl(this.board.title, [Validators.required, Validators.minLength(3)]),
+      boardDescription: new FormControl(this.board.description, [Validators.required, Validators.minLength(3)]),
     });
 
     this.editBoardForm.statusChanges.subscribe((value) => {
@@ -74,6 +74,7 @@ export class EditBoardModalComponent implements OnInit {
       title: this.title,
       description: this.description,
     };
+
     this.store.dispatch(updateBoard({ board }));
     this.closeModal();
   }

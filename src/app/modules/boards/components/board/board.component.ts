@@ -19,7 +19,7 @@ export class BoardComponent implements OnInit {
     private store: Store<IAppState>,
     public matDialog: MatDialog,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {}

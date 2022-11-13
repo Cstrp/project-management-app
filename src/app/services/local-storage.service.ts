@@ -12,7 +12,7 @@ export class LocalStorageService {
   }
 
   public getData(key: string): string {
-    const data = localStorage.getItem(key) || '';
+    const data = localStorage.getItem(key) || '[]';
 
     return _decrypt(data);
   }
@@ -23,5 +23,11 @@ export class LocalStorageService {
 
   public removeItem(key: string): void {
     localStorage.removeItem(key);
+  }
+
+  public isSignIn(): boolean {
+    const usr = this.getData('token');
+
+    return !!usr;
   }
 }
