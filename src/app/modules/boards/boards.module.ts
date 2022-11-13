@@ -19,6 +19,8 @@ import { BoardsNavigateComponent } from './components/boards-navigate';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from 'src/app/store/app/router/custom-serializer';
 
 @NgModule({
   declarations: [

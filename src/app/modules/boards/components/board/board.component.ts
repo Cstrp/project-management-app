@@ -24,6 +24,10 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  public goToBoard(): void {
+    this.router.navigateByUrl(`boards/${this.board.id}`);
+  }
+
   public openModalEdit(): void {
     this.matDialog.open(EditBoardModalComponent, {
       width: '30%',

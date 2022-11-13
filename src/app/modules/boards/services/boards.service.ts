@@ -36,4 +36,8 @@ export class BoardsService {
   public deleteBoard(id: string): Observable<IBoard> {
     return this.http.delete<IBoard>(`${GET_BOARDS}/${id}`);
   }
+
+  public getBoardById(id: string): Observable<IBoard> {
+    return this.http.get<IBoard>(`${GET_BOARDS}/${id}`);
+  }
 }

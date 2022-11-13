@@ -1,1 +1,4 @@
-<p>board-advanced works!</p>
+<div class="bord-details__container" *ngIf="(board | async) as boardData">
+  <p class="bord-details__title">{{boardData.title}}</p>
+  <p class="bord-details__title">{{boardData.description}}</p>
+</div>
