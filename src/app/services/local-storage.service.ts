@@ -12,7 +12,7 @@ export class LocalStorageService {
   }
 
   public getData(key: string): string {
-    const data = localStorage.getItem(key) || '';
+    const data = localStorage.getItem(key) || '[]';
 
     return _decrypt(data);
   }
