@@ -19,8 +19,4 @@ export class BoardAdvancedComponent implements OnInit {
   public ngOnInit(): void {
     this.board = this.store.select(getAdvancedBoardById);
   }
-
-  public ngOnDestroy(): void {
-    this.boardSubscription.unsubscribe();
-  }
 }

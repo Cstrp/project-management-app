@@ -1,0 +1,99 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.column__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.column__about {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.column__title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.column__title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.column-edit-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(182, 182, 182, 0.097) 0%, rgba(243, 243, 243, 0.097) 100%);
+  box-shadow: inset 0.76px -0.76px 0.76px rgba(170, 170, 170, 0.394),
+    inset 1.52px -1.52px 1.52px rgba(255, 255, 255, 0.394), inset -0.76px 0.76px 0.76px rgba(255, 255, 255, 0.394),
+    inset -1.52px 1.52px 1.52px rgba(170, 170, 170, 0.394);
+  backdrop-filter: blur(7.714px);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.column-tool-icon {
+  font-size: 18px;
+  text-align: center;
+}
+
+.column-delete-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(182, 182, 182, 0.097) 0%, rgba(243, 243, 243, 0.097) 100%);
+  box-shadow: inset 0.76px -0.76px 0.76px rgba(170, 170, 170, 0.394),
+    inset 1.52px -1.52px 1.52px rgba(255, 255, 255, 0.394), inset -0.76px 0.76px 0.76px rgba(255, 255, 255, 0.394),
+    inset -1.52px 1.52px 1.52px rgba(170, 170, 170, 0.394);
+  backdrop-filter: blur(7.714px);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.tasks__container {
+  border: 1px solid #683ab748;
+  height: 50vh;
+  width: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.create-task-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.create-task-btn-icon {
+  width: 31px;
+  height: 31px;
+}
