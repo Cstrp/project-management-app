@@ -1,4 +1,25 @@
 <div class="bord-details__container" *ngIf="(board | async) as boardData">
-  <p class="bord-details__title">{{boardData.title}}</p>
-  <p class="bord-details__title">{{boardData.description}}</p>
+  <div class="board-details__top">
+    <div class="board-details__buttons">
+      <button mat-raised-button color="primary" class="add-column-btn">Add column
+        <mat-icon class="add-column-btn-icon">view_column</mat-icon>
+      </button>
+    </div>
+
+    <div class="board-details__about">
+      <p class="bord-details__title board-text">{{boardData.title}}</p>
+      <p class="bord-details__description board-text">{{boardData.description}}</p>
+    </div>
+  </div>
+
+  <div class="columns__container">
+    <app-column></app-column>
+    <app-column></app-column>
+    <app-column></app-column>
+    <app-column></app-column>
+    <app-column></app-column>
+    <app-column></app-column>
+    <app-column></app-column>
+    <app-column></app-column>
+  </div>
 </div>
