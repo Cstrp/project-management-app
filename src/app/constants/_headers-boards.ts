@@ -1,5 +1,5 @@
-import { HttpHeaders } from "@angular/common/http";
-import { LocalStorageService } from "../services/local-storage.service";
+import { HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from '../services/local-storage.service';
 const localStorageService = new LocalStorageService();
 
 export const _headersBoards = {

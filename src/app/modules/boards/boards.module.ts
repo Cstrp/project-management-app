@@ -71,8 +71,6 @@ import { MaterialModule } from '../material/material.module';
     ReactiveFormsModule,
     EffectsModule.forFeature([BoardsEffects, ColumnsEffects, TasksEffects]),
   ],
-  providers: [
-    _httpInterceptorProvider,
-  ],
+  providers: [_httpInterceptorProvider],
 })
 export class BoardsModule {}
