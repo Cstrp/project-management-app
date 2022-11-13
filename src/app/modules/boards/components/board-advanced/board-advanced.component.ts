@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-board-advanced',
   templateUrl: './board-advanced.component.html',
-  styleUrls: ['./board-advanced.component.scss']
+  styleUrls: ['./board-advanced.component.scss'],
 })
 export class BoardAdvancedComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
