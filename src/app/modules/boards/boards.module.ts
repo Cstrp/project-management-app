@@ -54,8 +54,6 @@ import { _httpInterceptorProvider } from '../../constants';
     ReactiveFormsModule,
     EffectsModule.forFeature([BoardsEffects]),
   ],
-  providers: [
-    _httpInterceptorProvider,
-  ],
+  providers: [_httpInterceptorProvider],
 })
 export class BoardsModule {}
