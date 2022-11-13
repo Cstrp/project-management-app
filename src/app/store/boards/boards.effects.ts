@@ -2,7 +2,16 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { mergeMap, map, switchMap } from 'rxjs';
 import { BoardsService, IBoard } from 'src/app/modules';
-import { addBoard, addBoardSuccess, deleteBoard, deleteBoardSuccess, loadBoards, loadBoardsSuccess, updateBoard, updateBoardSuccess } from './boards.actions';
+import {
+  addBoard,
+  addBoardSuccess,
+  deleteBoard,
+  deleteBoardSuccess,
+  loadBoards,
+  loadBoardsSuccess,
+  updateBoard,
+  updateBoardSuccess,
+} from './boards.actions';
 
 @Injectable()
 export class BoardsEffects {
@@ -28,6 +37,7 @@ export class BoardsEffects {
         return this.boardsService.addBoard(action.board).pipe(
           map((data: IBoard) => {
             const board = data;
+
             return addBoardSuccess({ board });
           }),
         );

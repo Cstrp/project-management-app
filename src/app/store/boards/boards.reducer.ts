@@ -2,10 +2,8 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { IBoard } from 'src/app/modules';
 import {
   addBoardSuccess,
-  deleteBoard,
   deleteBoardSuccess,
   loadBoardsSuccess,
-  updateBoard,
   updateBoardSuccess,
 } from './boards.actions';
 import { boardsInitialState } from './boards.state';
@@ -25,6 +23,7 @@ const reducer = createReducer(
     const updatedBoards: IBoard[] = state.boards.map((board: IBoard) => {
       return action.board.id === board.id ? action.board : board;
     });
+
     return {
       ...state,
       boards: updatedBoards,
@@ -34,6 +33,7 @@ const reducer = createReducer(
     const updatedBoards: IBoard[] = state.boards.filter((board) => {
       return board.id !== action.id;
     });
+
     return {
       ...state,
       boards: updatedBoards,

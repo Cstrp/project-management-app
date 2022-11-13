@@ -14,7 +14,8 @@ import { loadBoards } from 'src/app/store/boards/boards.actions';
   styleUrls: ['./board-list.component.scss'],
 })
 export class BoardListComponent implements OnInit {
-  boards$: Observable<Array<IBoard>>;
+  public boards$: Observable<Array<IBoard>>;
+
   public title: string;
 
   constructor(private store: Store<IAppState>, public matDialog: MatDialog) {}
@@ -24,12 +25,13 @@ export class BoardListComponent implements OnInit {
       .select(getBoards)
       .pipe(
         map((value) =>
-          [...value].sort((a, b) => (<string>a['id']).localeCompare(<string>b['id'], undefined, { numeric: false })),
+          [...value].sort((a, b) => (<string>a.id).localeCompare(<string>b.id, undefined, { numeric: false })),
         ),
       );
     this.title = 'Boards';
     this.store.dispatch(loadBoards());
   }
+
   public openPopup(): void {
     this.matDialog.open(AddBoardModalComponent, {
       width: '30%',

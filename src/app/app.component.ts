@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { LoadingService } from './services';
 
 @Component({
@@ -6,14 +7,22 @@ import { LoadingService } from './services';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  public loading$ = this.loader.loading$;
+export class AppComponent implements OnInit {
+  public loading$: Observable<boolean>;
 
   public title = 'project-management-app';
 
   public subMenuState: boolean = false;
 
-  constructor(public loader: LoadingService) {}
+  constructor(public loader: LoadingService, private ref: ChangeDetectorRef) {}
+
+  public ngOnInit(): void {
+    this.loading$ = this.loader.loading$;
+  }
+
+  public ngAfterContentChecked(): void {
+    this.ref.detectChanges();
+  }
 
   public burgerClicked(evt: boolean): void {
     this.subMenuState = evt;

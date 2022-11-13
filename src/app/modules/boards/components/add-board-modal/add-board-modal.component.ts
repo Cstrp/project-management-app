@@ -14,26 +14,23 @@ import { IBoard } from '../board';
 })
 export class AddBoardModalComponent implements OnInit {
   public addBoardForm: FormGroup;
+
   public statusForm: string = 'VALID';
+
   public title: string;
+
   public description: string;
 
   constructor(
     private store: Store<IAppState>,
     private route: Router,
-    private ref: MatDialogRef<AddBoardModalComponent>
+    private ref: MatDialogRef<AddBoardModalComponent>,
   ) {}
 
   public ngOnInit(): void {
     this.addBoardForm = new FormGroup({
-      boardTitle: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      boardDescription: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
+      boardTitle: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      boardDescription: new FormControl('', [Validators.required, Validators.minLength(3)]),
     });
 
     this.addBoardForm.statusChanges.subscribe((value) => {
@@ -61,6 +58,7 @@ export class AddBoardModalComponent implements OnInit {
       title: this.title,
       description: this.description,
     };
+
     this.store.dispatch(addBoard({ board }));
     this.closeModal();
   }

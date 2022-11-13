@@ -17,6 +17,7 @@ export class BoardsService {
     return this.http.get<Array<IBoard>>(GET_BOARDS, _httpOptions).pipe(
       map((data) => {
         const boards: Array<IBoard> = data;
+
         return boards;
       }),
     );
@@ -28,6 +29,7 @@ export class BoardsService {
 
   public updateBoard(board: IBoard): Observable<IBoard> {
     const requestUpdateBoard: IRequestUpdateBoard = { title: board.title, description: board.description };
+
     return this.http.put<IBoard>(`${GET_BOARDS}/${board.id}`, requestUpdateBoard);
   }
 
