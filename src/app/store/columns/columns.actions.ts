@@ -10,3 +10,16 @@ export const ADD_COLUMN_ACTION = '[board page] add column';
 export const ADD_COLUMN_SUCCESS = '[board page] add column success';
 export const addColumn = createAction(ADD_COLUMN_ACTION, props<{ id: string; column: IColumn }>());
 export const addColumnSuccess = createAction(ADD_COLUMN_SUCCESS, props<{ column: IColumn }>());
+
+export const UPDATE_COLUMN_ACTION = '[board page] update column';
+export const UPDATE_COLUMN_SUCCESS = '[board page] update column success';
+export const updateColumn = createAction(
+  UPDATE_COLUMN_ACTION,
+  props<{ id: string; column: IColumn; columnId: string }>(),
+);
+export const updateColumnSuccess = createAction(UPDATE_COLUMN_SUCCESS, props<{ column: IColumn }>());
+
+export const DELETE_COLUMN_ACTION = '[board page] delete column';
+export const DELETE_COLUMN_SUCCESS = '[board page] delete column success';
+export const deleteColumn = createAction(DELETE_COLUMN_ACTION, props<{ boardId: string; columnId: string }>());
+export const deleteColumnSuccess = createAction(DELETE_COLUMN_SUCCESS, props<{ id: string }>());

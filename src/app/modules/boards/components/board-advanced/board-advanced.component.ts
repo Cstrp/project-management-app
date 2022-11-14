@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { getAdvancedBoardById, IAppState } from 'src/app/store';
 import { getColumns, loadColumns } from 'src/app/store/columns';
 import { AddColumnModalComponent } from '../add-column-modal/add-column-modal.component';
@@ -32,12 +32,13 @@ export class BoardAdvancedComponent implements OnInit {
         this.store.dispatch(loadColumns({ id }));
       }
     });
-    this.columns$ = this.store.select(getColumns);
-    this.columnsSubscription = this.store.select(getColumns).subscribe((data) => {
-      if (data.length) {
-        console.log(data);
-      }
-    });
+    this.columns$ = this.store
+      .select(getColumns)
+      .pipe(
+        map((value) =>
+          [...value].sort((a, b) => (<string>a.id).localeCompare(<string>b.id, undefined, { numeric: false })),
+        ),
+      );
   }
 
   public goToBoards(): void {

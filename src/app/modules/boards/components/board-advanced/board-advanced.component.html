@@ -16,7 +16,7 @@
 
   <div class="columns__container">
     <ng-container *ngIf="(columns$ | async) as columns">
-      <app-column *ngFor="let column of columns" [column]="column"></app-column>
+      <app-column *ngFor="let column of columns" [column]="column" [boardId]="boardData.id"></app-column>
     </ng-container>
   </div>
 </div>

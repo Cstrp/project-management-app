@@ -6,6 +6,7 @@ import { _httpOptions } from '../../../constants';
 import { Observable, map } from 'rxjs';
 import { IBoard, IColumn } from '../components';
 import { IRequestUpdateBoard } from 'src/app/store';
+import { IRequestUpdateColumn } from 'src/app/store/columns';
 
 @Injectable({
   providedIn: 'root',
@@ -53,5 +54,14 @@ export class BoardsService {
   public addColumn(boardId: string, column: IColumn): Observable<IColumn> {
     console.log(boardId);
     return this.http.post<IColumn>(`${GET_BOARDS}/${boardId}/columns`, column);
+  }
+
+  public updateColumn(boardId: string, column: IColumn, columnId: string): Observable<IColumn> {
+    const requestUpdateColumn: IRequestUpdateColumn = { title: column.title, order: column.order };
+    return this.http.put<IColumn>(`${GET_BOARDS}/${boardId}/columns/${columnId}`, requestUpdateColumn);
+  }
+
+  public deleteColumn(boardId: string, columnId: string): Observable<IColumn> {
+    return this.http.delete<IColumn>(`${GET_BOARDS}/${boardId}/columns/${columnId}`);
   }
 }
