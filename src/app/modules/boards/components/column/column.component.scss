@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   width: 100%;
 }
 
@@ -22,11 +22,47 @@
   width: 100%;
 }
 
-.column__title-container {
+.edit-column-form {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.mat-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-edit-btn-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.form-cancel-btn-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.column__title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .column__title {
@@ -76,7 +112,7 @@
 
 .tasks__container {
   border: 1px solid #683ab748;
-  height: 50vh;
+  height: 40vh;
   width: 300px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -88,12 +124,66 @@
   align-items: center;
 }
 
-.mat-icon {
-  width: 20px;
-  height: 20px;
-}
-
 .create-task-btn-icon {
   width: 31px;
   height: 31px;
+}
+
+.modal-field {
+  width: 100%;
+}
+
+.modal-label {
+  width: 100%;
+}
+
+.modal-input {
+  width: 100%;
+}
+
+.errors-container {
+  border-radius: 4px;
+  color: #aa2323;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.modal-label {
+  font-size: 14px;
+}
+
+.mat-form-field.mat-warn .mat-input-element,
+.mat-form-field-invalid .mat-input-element {
+  font-size: 16px;
+}
+
+::ng-deep.mat-dialog-container {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-field {
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.form-column-container {
+  width: 100%;
+}
+
+mat-label {
+  color: black;
+  font-size: 19px;
+}
+
+::ng-deep.mat-form-field-appearance-fill ::ng-deep.mat-form-field-flex {
+  border-radius: 4px 4px 0 0;
+  padding: 0 !important;
+  margin: 0 !important;
 }

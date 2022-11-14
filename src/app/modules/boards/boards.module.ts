@@ -19,9 +19,8 @@ import { BoardsNavigateComponent } from './components/boards-navigate';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { CustomSerializer } from 'src/app/store/app/router/custom-serializer';
-
+import { DeleteColumnModalComponent } from './components/delete-column-modal';
+import { AddColumnModalComponent } from './components/add-column-modal';
 @NgModule({
   declarations: [
     BoardListComponent,
@@ -35,6 +34,8 @@ import { CustomSerializer } from 'src/app/store/app/router/custom-serializer';
     EditBoardModalComponent,
     DeleteBoardModalComponent,
     BoardsNavigateComponent,
+    AddColumnModalComponent,
+    DeleteColumnModalComponent,
   ],
   exports: [
     BoardListComponent,
