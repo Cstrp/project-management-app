@@ -4,7 +4,7 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 import { GET_BOARDS } from '../../../constants/_boards';
 import { _httpOptions } from '../../../constants';
 import { Observable, map } from 'rxjs';
-import { IBoard } from '../components';
+import { IBoard, IColumn } from '../components';
 import { IRequestUpdateBoard } from 'src/app/store';
 
 @Injectable({
@@ -39,5 +39,19 @@ export class BoardsService {
 
   public getBoardById(id: string): Observable<IBoard> {
     return this.http.get<IBoard>(`${GET_BOARDS}/${id}`);
+  }
+
+  public getColumns(boardId: string): Observable<Array<IColumn>> {
+    return this.http.get<Array<IColumn>>(`${GET_BOARDS}/${boardId}/columns`, _httpOptions).pipe(
+      map((data) => {
+        const columns: Array<IColumn> = data;
+        return columns;
+      }),
+    );
+  }
+
+  public addColumn(boardId: string, column: IColumn): Observable<IColumn> {
+    console.log(boardId);
+    return this.http.post<IColumn>(`${GET_BOARDS}/${boardId}/columns`, column);
   }
 }

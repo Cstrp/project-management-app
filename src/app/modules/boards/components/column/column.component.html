@@ -30,7 +30,7 @@
 
   <div class="column__about">
     <div class="column__title-container">
-      <p *ngIf="!isEditMode" class="column__title">Column</p>
+      <p *ngIf="!isEditMode" class="column__title">{{column.title}}</p>
       <button *ngIf="!isEditMode" (click)="toggleEditMode()" class="column-edit-btn">
         <mat-icon class="column-tool-icon">mode_edit</mat-icon>
       </button>
