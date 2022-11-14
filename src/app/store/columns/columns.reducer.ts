@@ -1,8 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import {
-  loadColumnsSuccess,
-  addColumnSuccess
-} from './columns.actions';
+import { IColumn } from 'src/app/modules';
+import { loadColumnsSuccess, addColumnSuccess, updateColumnSuccess, deleteColumnSuccess } from './columns.actions';
 import { columnsInitialState } from './columns.state';
 import { IColumnsState } from './models';
 
@@ -20,6 +18,26 @@ const reducer = createReducer(
     return {
       ...state,
       columns: action.columns,
+    };
+  }),
+  on(updateColumnSuccess, (state, action) => {
+    const updatedColumns: IColumn[] = state.columns.map((column: IColumn) => {
+      return action.column.id === column.id ? action.column : column;
+    });
+
+    return {
+      ...state,
+      columns: updatedColumns,
+    };
+  }),
+  on(deleteColumnSuccess, (state, action) => {
+    const updatedColumns: IColumn[] = state.columns.filter((column) => {
+      return column.id !== action.id;
+    });
+
+    return {
+      ...state,
+      columns: updatedColumns,
     };
   }),
 );
