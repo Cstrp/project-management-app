@@ -21,6 +21,7 @@ import { BoardsEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
 import { DeleteColumnModalComponent } from './components/delete-column-modal';
 import { AddColumnModalComponent } from './components/add-column-modal';
+import { ColumnsEffects } from 'src/app/store/columns';
 @NgModule({
   declarations: [
     BoardListComponent,
@@ -48,6 +49,8 @@ import { AddColumnModalComponent } from './components/add-column-modal';
     EditBoardModalComponent,
     DeleteBoardModalComponent,
     BoardsNavigateComponent,
+    AddColumnModalComponent,
+    DeleteColumnModalComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +58,7 @@ import { AddColumnModalComponent } from './components/add-column-modal';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    EffectsModule.forFeature([BoardsEffects]),
+    EffectsModule.forFeature([BoardsEffects, ColumnsEffects]),
   ],
   providers: [_httpInterceptorProvider],
 })

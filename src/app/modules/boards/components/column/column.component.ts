@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteColumnModalComponent } from '../delete-column-modal';
+import { IColumn } from './models';
 
 @Component({
   selector: 'app-column',
@@ -13,6 +14,7 @@ export class ColumnComponent implements OnInit {
   public editColumnForm: FormGroup;
   public statusForm: string = 'VALID';
   public columnTitle: string = '';
+  @Input() public column: IColumn;
 
   constructor(public matDialog: MatDialog) {}
 

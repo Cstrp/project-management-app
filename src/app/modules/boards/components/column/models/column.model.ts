@@ -1,5 +1,8 @@
 import { ITask } from '../../task';
 
 export interface IColumn {
-  tasks: Array<ITask>;
+  title: string;
+  id?: string;
+  tasks?: Array<ITask>;
+  order?: 1;
 }
