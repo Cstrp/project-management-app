@@ -27,8 +27,9 @@
 .board-details__buttons {
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
+  padding: 10px;
 }
 
 .add-column-btn {

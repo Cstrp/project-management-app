@@ -1,0 +1,28 @@
+<div class="form__container" [ngClass]="statusForm">
+  <button color="warn" class="modal-button add-column-modal-close-btn" mat-raised-button
+    (click)="closeModal()">Cancel</button>
+  <form class="modal-container" [formGroup]="addColumnForm" (submit)="onSubmit()">
+    <h1 class="modal-title" mat-dialog-title>Add column</h1>
+    <div class="modal-content" mat-dialog-content>
+      <div class="form-field">
+        <mat-form-field class="modal-field" appearance="fill">
+          <mat-label class="modal-label">Title:</mat-label>
+          <input class="modal-input" required matInput type="text" formControlName="columnTitle">
+        </mat-form-field>
+        <div class="errors-container"
+          *ngIf="addColumnForm.get('columnTitle')?.errors && (addColumnForm.dirty || addColumnForm.touched)">
+          <span class="alert-danger" *ngIf="addColumnForm.get('columnTitle')?.errors?.['required']">Please enter
+            a
+            title</span>
+          <span class="alert-danger" *ngIf="addColumnForm.get('columnTitle')?.errors?.['minlength']">Name must
+            be at
+            least 4 characters long.</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-buttons" mat-dialog-actions>
+      <button [disabled]="!addColumnForm.valid" type="submit" color="primary"
+        class="modal-button add-column-modal-btn" mat-raised-button>Add</button>
+    </div>
+  </form>
+</div>
