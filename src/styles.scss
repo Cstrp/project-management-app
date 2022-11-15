@@ -6,22 +6,82 @@
 
 html,
 body {
+  box-sizing: border-box;
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-  position: relative;
+}
+
+.wrapper {
+  box-sizing: border-box;
+  height: 100%;
   display: flex;
-  flex-flow: column wrap;
-  flex: 1;
-  background-color: #eff3fd;
+  flex-direction: column;
+}
+
+header,
+footer {
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 main {
-  flex: 1 0 auto;
-  background-color: #e4e9f5;
+  flex-grow: 1;
 }
 
-footer { position: absolute; bottom: 0; left: 0; right:0 }
+// scroll firefox
+html,
+body {
+  scrollbar-color: #673ab7 #ffd740;
+  scrollbar-width: thin;
+}
+
+// scroll webkit
+::-webkit-scrollbar {
+  width: 15px;
+  height: 10px;
+  background-color: #ffd740;
+}
+
+/* scrollbar slider */
+::-webkit-scrollbar-thumb {
+  background-color: #d3bff6;
+  border-radius: 9em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #673ab7;
+}
+
+/* Arrows */
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+  background: linear-gradient(120deg, #02141a 40%, rgba(80, 34, 219, 0) 41%),
+    linear-gradient(240deg, #02141a 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(0deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #ffd740;
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+  background: linear-gradient(300deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(60deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(180deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #ffd740;
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
+  background: linear-gradient(30deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(150deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(270deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #ffd740;
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+  background: linear-gradient(210deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(330deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(90deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background-color: #ffd740;
+}
