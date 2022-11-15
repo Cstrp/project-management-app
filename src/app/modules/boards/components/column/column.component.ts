@@ -58,10 +58,10 @@ export class ColumnComponent implements OnInit {
       order: this.column.order,
     };
     if (this.boardId) {
-      const id: string = this.boardId;
+      const boardId: string = this.boardId;
       if (this.column.id) {
         const columnId: string = this.column.id;
-        this.store.dispatch(updateColumn({ id, column, columnId }));
+        this.store.dispatch(updateColumn({ boardId, column, columnId }));
       }
     }
     this.toggleEditMode();

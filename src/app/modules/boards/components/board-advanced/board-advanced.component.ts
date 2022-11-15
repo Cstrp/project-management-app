@@ -1,10 +1,11 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription, map } from 'rxjs';
 import { getAdvancedBoardById, IAppState } from 'src/app/store';
-import { getColumns, loadColumns } from 'src/app/store/columns';
+import { getColumns, loadColumns, updateColumn } from 'src/app/store/columns';
 import { AddColumnModalComponent } from '../add-column-modal/add-column-modal.component';
 import { IBoard } from '../board/models';
 import { IColumn } from '../column';
@@ -20,6 +21,7 @@ export class BoardAdvancedComponent implements OnInit {
   public boardSubscription: Subscription;
   public columns$: Observable<Array<IColumn>>;
   public columnsSubscription: Subscription;
+  public columnsArray: Array<IColumn>;
 
   constructor(private store: Store<IAppState>, private router: Router, public matDialog: MatDialog) {}
 
@@ -32,13 +34,45 @@ export class BoardAdvancedComponent implements OnInit {
         this.store.dispatch(loadColumns({ id }));
       }
     });
-    this.columns$ = this.store
-      .select(getColumns)
-      .pipe(
-        map((value) =>
-          [...value].sort((a, b) => (<string>a.id).localeCompare(<string>b.id, undefined, { numeric: false })),
-        ),
-      );
+    this.columns$ = this.store.select(getColumns).pipe(
+      map((value) =>
+        [...value].sort((a: IColumn, b: IColumn) => {
+          return (a.order as number) - (b.order as number);
+        }),
+      ),
+    );
+    this.columnsSubscription = this.columns$.subscribe((data) => {
+      this.columnsArray = data;
+    });
+  }
+
+  public dropColumns(event: CdkDragDrop<Array<IColumn>>): void {
+    if (event.previousIndex !== event.currentIndex) {
+      const tmpColumns: Array<IColumn> = this.columnsArray.map((a) => Object.assign({}, a));
+      tmpColumns[event.previousIndex].order = event.currentIndex + 1;
+      tmpColumns[event.currentIndex].order = event.previousIndex + 1;
+      const column1: IColumn = tmpColumns[event.previousIndex];
+      const column2: IColumn = tmpColumns[event.currentIndex];
+      moveItemInArray(tmpColumns, event.previousIndex, event.currentIndex);
+
+      if (column1 && column2) {
+        this.editOrderColumn(column1.title, column1.order as number, column1.id as string);
+        this.editOrderColumn(column2.title, column2.order as number, column2.id as string);
+      }
+    }
+  }
+
+  public editOrderColumn(columnTitle: string, columnOrder: number, columnId: string) {
+    const column: IColumn = {
+      title: columnTitle,
+      order: columnOrder,
+    };
+    const boardId: string = this.boardId;
+    this.store.dispatch(updateColumn({ boardId, column, columnId }));
+  }
+
+  public trackById(index: number, item: IColumn): string | undefined {
+    return item.id;
   }
 
   public goToBoards(): void {
