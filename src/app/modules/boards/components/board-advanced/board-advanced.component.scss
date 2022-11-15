@@ -2,17 +2,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
   width: 100%;
+  height: 100%;
 }
 
 .bord-details__container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: stretch;
   flex-direction: column;
   width: 100%;
   border-bottom: 1px solid #683ab78a;
+  height: 100%;
+  background: rgba(239, 243, 253, 0.68);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(239, 243, 253, 0.3);
+  padding: 20px;
 }
 
 .board-details__top {
@@ -69,7 +77,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 95vw;
+  width: 90vw;
   overflow-x: auto;
   overflow-y: hidden;
+  padding: 25px 20px;
 }
