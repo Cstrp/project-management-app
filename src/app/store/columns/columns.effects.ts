@@ -49,8 +49,8 @@ export class ColumnsEffects {
   updateColumn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(updateColumn),
-      switchMap((action) => {
-        return this.boardsService.updateColumn(action.id, action.column, action.columnId).pipe(
+      mergeMap((action) => {
+        return this.boardsService.updateColumn(action.boardId, action.column, action.columnId).pipe(
           map((data) => {
             return updateColumnSuccess({ column: data });
           }),

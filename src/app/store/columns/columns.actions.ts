@@ -15,7 +15,7 @@ export const UPDATE_COLUMN_ACTION = '[board page] update column';
 export const UPDATE_COLUMN_SUCCESS = '[board page] update column success';
 export const updateColumn = createAction(
   UPDATE_COLUMN_ACTION,
-  props<{ id: string; column: IColumn; columnId: string }>(),
+  props<{ boardId: string; column: IColumn; columnId: string }>(),
 );
 export const updateColumnSuccess = createAction(UPDATE_COLUMN_SUCCESS, props<{ column: IColumn }>());
 
