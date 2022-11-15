@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { _httpOptions, SIGN_IN, SIGN_UP } from '../../../constants';
-import { SignIn } from '../models/signIn';
-import { SignUp } from '../models/signUp';
+import { SignIn } from '../../../store/auth/models/signIn';
+import { SignUp } from '../../../store/auth/models/signUp';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({

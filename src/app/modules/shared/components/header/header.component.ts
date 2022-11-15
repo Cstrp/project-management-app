@@ -1,21 +1,19 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Output() menuState: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public active: boolean = false;
 
-  visible: boolean;
-
-  constructor() {}
+  constructor(public sidenavService: SidenavService) {}
 
   ngOnInit(): void {}
 
-  showSidebar(): void {
-    this.visible = !this.visible;
-    this.menuState.emit(this.visible);
+  toggleSidenav() {
+    this.active = !this.active;
+    this.sidenavService.toggle();
   }
 }

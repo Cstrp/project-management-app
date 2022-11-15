@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { Usr } from '../../modules/auth-page/models/usr';
-import { SignUp } from '../../modules/auth-page/models/signUp';
-import { SignIn } from '../../modules/auth-page/models/signIn';
+import { Usr } from './models/usr';
+import { SignUp } from './models/signUp';
+import { SignIn } from './models/signIn';
 
 const LOGIN_START: string = '[auth page] login start';
 const LOGIN_SUCCESS: string = '[auth page] login Success';

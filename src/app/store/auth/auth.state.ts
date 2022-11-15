@@ -1,4 +1,4 @@
-import { Usr } from '../../modules/auth-page/models/usr';
+import { Usr } from './models/usr';
 
 interface AuthState {
   user: Usr | null;

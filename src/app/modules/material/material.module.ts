@@ -47,10 +47,11 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { A11yModule } from '@angular/cdk/a11y';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
-import { RouterLinkWithHref } from '@angular/router';
+import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { RandomPositionDirective } from './directives/random-position.directive';
 
 @NgModule({
-  declarations: [SidebarComponent],
+  declarations: [SidebarComponent, RandomPositionDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -101,6 +102,7 @@ import { RouterLinkWithHref } from '@angular/router';
     PortalModule,
     ScrollingModule,
     RouterLinkWithHref,
+    RouterOutlet,
   ],
   exports: [
     A11yModule,
@@ -150,6 +152,7 @@ import { RouterLinkWithHref } from '@angular/router';
     PortalModule,
     ScrollingModule,
     SidebarComponent,
+    RandomPositionDirective,
   ],
 })
 export class MaterialModule {}

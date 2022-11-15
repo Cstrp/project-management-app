@@ -1,8 +1,8 @@
-<app-header (menuState)="burgerClicked($event)"></app-header>
-
-<main >
-  <app-sidebar [menuState]="subMenuState"></app-sidebar>
-  <router-outlet></router-outlet>
-</main>
-
-<app-footer></app-footer>
+<div class=" h-full flex flex-col">
+  <app-header></app-header>
+  <main class="flex-grow">
+    <app-sidebar></app-sidebar>
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer class="z-10"></app-footer>
+</div>

@@ -1,7 +1,9 @@
-  <header class="pt-7">
+<header class="flex-grow-0 flex-shrink-0">
+  <mat-toolbar>
     <div class="container mx-auto flex flex-row justify-between">
-      <button mat-icon-button (click)="showSidebar()">
-        <mat-icon>menu </mat-icon>
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon *ngIf="!active">menu</mat-icon>
+        <mat-icon *ngIf="active">close</mat-icon>
       </button>
       <div>
         <p>Что-то будет здесь...</p>
@@ -13,5 +15,6 @@
         Информация о пользователе
       </div>
     </div>
-  </header>
+  </mat-toolbar>
+</header>
 
