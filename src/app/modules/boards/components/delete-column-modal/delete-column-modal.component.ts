@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store';
 import { deleteColumn } from 'src/app/store/columns';
-import { IColumn } from '../column';
 
 @Component({
   selector: 'app-delete-column-modal',
@@ -18,7 +17,6 @@ export class DeleteColumnModalComponent implements OnInit {
   constructor(
     private store: Store<IAppState>,
     private ref: MatDialogRef<DeleteColumnModalComponent>,
-    public activatedRoute: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) data: { boardId: string; columnId: string },
   ) {
     this.boardId = data.boardId;

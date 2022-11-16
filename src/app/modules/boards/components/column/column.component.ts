@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store';
 import { updateColumn } from 'src/app/store/columns';
+import { AddTaskModalComponent } from '../add-task-modal';
 import { DeleteColumnModalComponent } from '../delete-column-modal';
 import { IColumn } from './models';
 
@@ -37,6 +38,19 @@ export class ColumnComponent implements OnInit {
   public openDeleteColumnModal(): void {
     this.matDialog.open(DeleteColumnModalComponent, {
       width: '15%',
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '1000ms',
+
+      data: {
+        boardId: this.boardId,
+        columnId: this.column.id,
+      },
+    });
+  }
+
+  public openCreateTask(): void {
+    this.matDialog.open(AddTaskModalComponent, {
+      width: '30%',
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '1000ms',
 

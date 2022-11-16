@@ -13,9 +13,7 @@ import { IBoard } from '../board';
   styleUrls: ['./delete-board-modal.component.scss'],
 })
 export class DeleteBoardModalComponent implements OnInit {
-  public userId: string;
-
-  public board: IBoard;
+  public boardId: string;
 
   constructor(
     private store: Store<IAppState>,
@@ -26,7 +24,7 @@ export class DeleteBoardModalComponent implements OnInit {
 
   public ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.userId = params['delete'];
+      this.boardId = params['delete'];
     });
   }
 
@@ -36,7 +34,7 @@ export class DeleteBoardModalComponent implements OnInit {
   }
 
   public deleteModal(): void {
-    const id: string = this.userId;
+    const id: string = this.boardId;
 
     this.store.dispatch(deleteBoard({ id }));
     this.closeModal();
