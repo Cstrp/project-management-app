@@ -16,7 +16,7 @@ import { IColumn } from '../column';
   styleUrls: ['./board-advanced.component.scss'],
 })
 export class BoardAdvancedComponent implements OnInit {
-  public board: Observable<IBoard | undefined>;
+  public board: IBoard;
   public boardId: string;
   public boardSubscription: Subscription;
   public columns$: Observable<Array<IColumn>>;
@@ -26,23 +26,21 @@ export class BoardAdvancedComponent implements OnInit {
   constructor(private store: Store<IAppState>, private router: Router, public matDialog: MatDialog) {}
 
   public ngOnInit(): void {
-    this.board = this.store.select(getAdvancedBoardById);
-    this.boardSubscription = this.store.select(getAdvancedBoardById).subscribe((data) => {
-      if (data?.id) {
-        this.boardId = data?.id;
+    this.boardSubscription = this.store.select(getAdvancedBoardById).subscribe((data: undefined | IBoard) => {
+      if (data !== undefined) {
+        this.board = data as IBoard;
+        this.boardId = data?.id as string;
         const id: string = this.boardId;
         this.store.dispatch(loadColumns({ id }));
+        this.columns$ = this.store.select(getColumns).pipe(
+          map((value) => {
+            this.columnsArray = [...value].sort((a: IColumn, b: IColumn) => {
+              return (a.order as number) - (b.order as number);
+            });
+            return this.columnsArray;
+          }),
+        );
       }
-    });
-    this.columns$ = this.store.select(getColumns).pipe(
-      map((value) =>
-        [...value].sort((a: IColumn, b: IColumn) => {
-          return (a.order as number) - (b.order as number);
-        }),
-      ),
-    );
-    this.columnsSubscription = this.columns$.subscribe((data) => {
-      this.columnsArray = data;
     });
   }
 
@@ -92,5 +90,10 @@ export class BoardAdvancedComponent implements OnInit {
         boardId: this.boardId,
       },
     });
+  }
+
+  ngOnDestroy() {
+    this.boardSubscription.unsubscribe();
+    // this.columnsSubscription.unsubscribe();
   }
 }

@@ -2,7 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/store';
+import { BoardsService, IUser } from '../../services';
 import { ITask } from '../task';
 
 @Component({
@@ -23,9 +25,12 @@ export class EditTaskModalComponent implements OnInit {
 
   public task: ITask;
 
+  public users$: Observable<Array<IUser>>;
+
   constructor(
     private store: Store<IAppState>,
     private ref: MatDialogRef<EditTaskModalComponent>,
+    private boardService: BoardsService,
     @Inject(MAT_DIALOG_DATA) data: { task: ITask },
   ) {
     this.task = data.task;
@@ -45,6 +50,8 @@ export class EditTaskModalComponent implements OnInit {
     });
 
     this.title = this.editTaskForm.controls['taskTitle'].value;
+
+    this.users$ = this.boardService.getTasksUsers();
   }
 
   public closeModal(): void {
@@ -61,11 +68,12 @@ export class EditTaskModalComponent implements OnInit {
       title: this.title,
       description: this.description,
       userId: this.userId,
+      order: this.task.order,
+      boardId: this.task.boardId,
+      columnId: this.task.columnId,
     };
-    const boardId: string = this.task.boardId as string;
-    const columnId: string = this.task.columnId as string;
     const taskId: string = this.task.id as string;
-    // this.store.dispatch(editTask({ boardId, columnId, taskId, task }));
+    // this.store.dispatch(editTask({ taskId, task }));
     this.closeModal();
   }
 }

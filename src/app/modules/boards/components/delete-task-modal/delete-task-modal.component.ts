@@ -26,7 +26,8 @@ export class DeleteTaskModalComponent implements OnInit {
   }
 
   public deleteModal(): void {
-    // this.store.dispatch(deleteTask({ this.task }));
+    const task: ITask = this.task;
+    // this.store.dispatch(deleteTask({ task }));
     this.closeModal();
   }
 }

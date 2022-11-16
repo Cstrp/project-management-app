@@ -25,6 +25,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
 import { ColumnsEffects } from 'src/app/store/columns';
+import { TasksEffects } from 'src/app/store/tasks/tasks.effects';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { ColumnsEffects } from 'src/app/store/columns';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    EffectsModule.forFeature([BoardsEffects, ColumnsEffects]),
+    EffectsModule.forFeature([BoardsEffects, ColumnsEffects, TasksEffects]),
   ],
   providers: [_httpInterceptorProvider],
 })

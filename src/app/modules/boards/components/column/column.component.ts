@@ -2,10 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/store';
+import { Observable, Subscription, map } from 'rxjs';
+import { getTasks, IAppState, loadTasks } from 'src/app/store';
 import { updateColumn } from 'src/app/store/columns';
 import { AddTaskModalComponent } from '../add-task-modal';
 import { DeleteColumnModalComponent } from '../delete-column-modal';
+import { ITask } from '../task';
 import { IColumn } from './models';
 
 @Component({
@@ -20,6 +22,8 @@ export class ColumnComponent implements OnInit {
   public columnTitle: string = '';
   @Input() public column: IColumn;
   @Input() public boardId: string | undefined;
+  public tasks$: Observable<Array<ITask>>;
+  public tasksArray: Array<ITask>;
 
   constructor(public matDialog: MatDialog, public store: Store<IAppState>) {}
 
@@ -33,6 +37,18 @@ export class ColumnComponent implements OnInit {
         this.statusForm = value;
       }
     });
+
+    const boardId: string = this.boardId as string;
+    const columnId: string = this.column.id as string;
+    this.store.dispatch(loadTasks({ boardId, columnId }));
+
+    this.tasks$ = this.store.select(getTasks).pipe(
+      map((value) =>
+        [...value].sort((a: ITask, b: ITask) => {
+          return (a.order as number) - (b.order as number);
+        }),
+      ),
+    );
   }
 
   public openDeleteColumnModal(): void {
@@ -49,6 +65,7 @@ export class ColumnComponent implements OnInit {
   }
 
   public openCreateTask(): void {
+    console.log(this.column.id);
     this.matDialog.open(AddTaskModalComponent, {
       width: '30%',
       enterAnimationDuration: '1000ms',

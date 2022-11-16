@@ -17,11 +17,20 @@ export class AppComponent implements OnInit {
   constructor(public loader: LoadingService, private ref: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
+    this.ref.detectChanges();
     this.loading$ = this.loader.loading$;
   }
 
   public ngAfterContentChecked(): void {
     this.ref.detectChanges();
+  }
+
+  public ngAfterViewInit() {
+    this.ref.detectChanges();
+  }
+
+  public ngOnChages() {
+    this.loading$ = this.loader.loading$;
   }
 
   public burgerClicked(evt: boolean): void {

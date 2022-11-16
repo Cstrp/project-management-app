@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { GET_BOARDS } from '../../../constants/_boards';
-import { _httpOptions } from '../../../constants';
+import { BASE_URL, _httpOptions } from '../../../constants';
 import { Observable, map } from 'rxjs';
-import { IBoard, IColumn } from '../components';
+import { IBoard, IColumn, ITask } from '../components';
 import { IRequestUpdateBoard } from 'src/app/store';
 import { IRequestUpdateColumn } from 'src/app/store/columns';
+import { IUser } from './models';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +53,6 @@ export class BoardsService {
   }
 
   public addColumn(boardId: string, column: IColumn): Observable<IColumn> {
-    console.log(boardId);
     return this.http.post<IColumn>(`${GET_BOARDS}/${boardId}/columns`, column);
   }
 
@@ -63,5 +63,26 @@ export class BoardsService {
 
   public deleteColumn(boardId: string, columnId: string): Observable<IColumn> {
     return this.http.delete<IColumn>(`${GET_BOARDS}/${boardId}/columns/${columnId}`);
+  }
+
+  public getTasksUsers(): Observable<Array<IUser>> {
+    return this.http.get<Array<IUser>>(`${BASE_URL}/users`);
+  }
+
+  public getTaskUserInfo(id: string): Observable<IUser> {
+    return this.http.get<IUser>(`${BASE_URL}/users/${id}`);
+  }
+
+  public getTasks(boardId: string, columnId: string): Observable<Array<ITask>> {
+    return this.http.get<Array<ITask>>(`${GET_BOARDS}/${boardId}/columns/${columnId}/tasks`, _httpOptions).pipe(
+      map((data) => {
+        const tasks: Array<ITask> = data;
+        return tasks;
+      }),
+    );
+  }
+
+  public addTask(boardId: string, columnId: string, task: ITask): Observable<ITask> {
+    return this.http.post<ITask>(`${GET_BOARDS}/${boardId}/columns/${columnId}/tasks`, task);
   }
 }

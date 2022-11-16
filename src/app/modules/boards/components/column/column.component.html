@@ -42,7 +42,9 @@
   </div>
 
   <div class="tasks__container">
-    <app-task></app-task>
+    <div *ngIf="(tasks$ | async) as tasks">
+      <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+    </div>
   </div>
 
   <button (click)="openCreateTask()" mat-raised-button color="accent" class="create-task-btn">Create task

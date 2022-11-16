@@ -1,4 +1,4 @@
-<div class="bord-details__container" *ngIf="(board | async) as boardData">
+<div class="bord-details__container" *ngIf="board">
   <div class="board-details__top">
     <div class="board-details__buttons">
       <button (click)="goToBoards()" mat-raised-button color="primary" class="boards-page-btn">Back to boards</button>
@@ -9,14 +9,14 @@
     </div>
 
     <div class="board-details__about">
-      <p class="bord-details__title board-text">{{boardData.title}}</p>
-      <p class="bord-details__description board-text">{{boardData.description}}</p>
+      <p class="bord-details__title board-text">{{board.title}}</p>
+      <p class="bord-details__description board-text">{{board.description}}</p>
     </div>
   </div>
 
   <div *ngIf="(columns$ | async) as columns" cdkDropList cdkDropListOrientation="horizontal" class="columns__container"
     (cdkDropListDropped)="dropColumns($event)">
-    <app-column cdkDrag *ngFor="let column of columns;" [column]="column" [boardId]="boardData.id">
+    <app-column cdkDrag *ngFor="let column of columns;" [column]="column" [boardId]="board.id">
       <div class="example-handle" cdkDragHandle>
         <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
           <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>

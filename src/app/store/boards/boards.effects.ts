@@ -87,14 +87,16 @@ export class BoardsEffects {
         return r.payload.routerState['params']['id'];
       }),
       withLatestFrom(this.store.select(getBoards)),
-      switchMap(([id, posts]) => {
-        if (!posts.length) {
-          return this.boardsService.getBoardById(id).pipe(
-            map((board) => {
-              const boardData = [{ ...board }];
-              return loadBoardsSuccess({ boards: boardData });
-            }),
-          );
+      switchMap(([id, boards]) => {
+        if (!boards.length) {
+          if (id) {
+            return this.boardsService.getBoardById(id).pipe(
+              map((board) => {
+                const boardData = [{ ...board }];
+                return loadBoardsSuccess({ boards: boardData });
+              }),
+            );
+          }
         }
         return of(dummyAction());
       }),

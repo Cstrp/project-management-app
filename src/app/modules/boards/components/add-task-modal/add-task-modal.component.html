@@ -36,9 +36,11 @@
         <mat-form-field class="modal-field" appearance="fill">
           <mat-label class="modal-label">User:</mat-label>
           <mat-select placeholder="Select user" formControlName="taskUser" required>
-            <!-- <mat-option *ngFor="let animal of animals" [value]="animal">
-              {{animal.name}}
-            </mat-option> -->
+            <ng-container *ngIf="(users$ | async) as users">
+              <mat-option *ngFor="let user of users" [value]="user.id">
+                {{user.name}}
+              </mat-option>
+            </ng-container>
           </mat-select>
         </mat-form-field>
         <div class="errors-container"
