@@ -52,6 +52,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  gap: 20px;
 }
 
 .bord-details__title {
@@ -67,6 +68,7 @@
 .bord-details__description {
   font-size: 16px;
   font-weight: 400;
+  margin-bottom: 15px;
 }
 
 .board-text {
@@ -81,7 +83,7 @@
   width: 90vw;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 25px 20px;
+  padding: 30px 20px;
 }
 
 .example-handle {

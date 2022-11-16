@@ -2,7 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/store';
+import { Observable } from 'rxjs';
+import { addTask, IAppState } from 'src/app/store';
+import { BoardsService, IUser } from '../../services';
 import { ITask } from '../task';
 
 @Component({
@@ -25,8 +27,11 @@ export class AddTaskModalComponent implements OnInit {
 
   public userId: string;
 
+  public users$: Observable<Array<IUser>>;
+
   constructor(
     private store: Store<IAppState>,
+    private boardService: BoardsService,
     private ref: MatDialogRef<AddTaskModalComponent>,
     @Inject(MAT_DIALOG_DATA) data: { boardId: string; columnId: string },
   ) {
@@ -48,6 +53,7 @@ export class AddTaskModalComponent implements OnInit {
     });
 
     this.title = this.addTaskForm.controls['taskTitle'].value;
+    this.users$ = this.boardService.getTasksUsers();
   }
 
   public closeModal(): void {
@@ -60,6 +66,8 @@ export class AddTaskModalComponent implements OnInit {
   public onSubmit(): void {
     this.title = this.addTaskForm.controls['taskTitle'].value;
     this.description = this.addTaskForm.controls['taskDescription'].value;
+    this.userId = this.addTaskForm.controls['taskUser'].value;
+
     const task: ITask = {
       title: this.title,
       description: this.description,
@@ -67,7 +75,7 @@ export class AddTaskModalComponent implements OnInit {
     };
     const boardId: string = this.boardId;
     const columnId: string = this.columnId;
-    // this.store.dispatch(addTask({ boardId, columnId, task }));
+    this.store.dispatch(addTask({ boardId, columnId, task }));
     this.closeModal();
   }
 }
