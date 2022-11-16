@@ -1,0 +1,7 @@
+[build]
+  publish = "dist/project-management-app"
+  command = "pnpm run build"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
