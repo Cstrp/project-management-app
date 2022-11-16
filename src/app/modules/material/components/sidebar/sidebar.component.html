@@ -1,4 +1,4 @@
-<mat-sidenav-container class="h-full z-0" #xyi>
+<mat-sidenav-container class="h-full z-0">
   <mat-sidenav #sidenav opened="true" mode="side"
                class="m-2 w-60 border-r-0 bg-gray-400 text-white p-4 rounded-md text-center">
 
@@ -9,12 +9,12 @@
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </a>
-      <a mat-list-item routerLink="/signup" class="w-full flex align-middle justify-start text-sm">
+      <a mat-list-item routerLink="/user/signup" class="w-full flex align-middle justify-start text-sm">
         <mat-icon>supervised_user_circle</mat-icon>
         <span>Sign Up</span>
       </a>
-      <a mat-list-item routerLink="/signin" class="w-full flex align-middle justify-start text-sm">
-        <mat-icon>person</mat-icon>
+      <a mat-list-item routerLink="/user/signin" class="w-full flex align-middle justify-start text-sm">
+        <mat-icon>account_circle</mat-icon>
         <span>Sign In</span>
       </a>
     </mat-nav-list>

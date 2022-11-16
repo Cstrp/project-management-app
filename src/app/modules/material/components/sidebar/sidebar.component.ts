@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
       .pipe(delay(1))
       .subscribe((res) => {
         if (res.matches) {
-          this.sidenav.mode = 'side';
+          this.sidenav.mode = 'over';
           this.sidenav.close();
         } else {
           this.sidenav.mode = 'side';
