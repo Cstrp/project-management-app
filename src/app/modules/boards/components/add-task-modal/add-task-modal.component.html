@@ -1,0 +1,57 @@
+<div class="form__container" [ngClass]="statusForm">
+  <button color="warn" class="modal-button add-task-modal-close-btn" mat-raised-button
+    (click)="closeModal()">Cancel</button>
+  <form class="modal-container" [formGroup]="addTaskForm" (submit)="onSubmit()">
+    <h1 class="modal-title" mat-dialog-title>Add task</h1>
+    <div class="modal-content" mat-dialog-content>
+      <div class="form-field">
+        <mat-form-field class="modal-field" appearance="fill">
+          <mat-label class="modal-label">Title:</mat-label>
+          <input class="modal-input" required matInput type="text" formControlName="taskTitle">
+        </mat-form-field>
+        <div class="errors-container"
+          *ngIf="addTaskForm.get('taskTitle')?.errors && (addTaskForm.dirty || addTaskForm.touched)">
+          <span class="alert-danger" *ngIf="addTaskForm.get('taskTitle')?.errors?.['required']">Please enter
+            a
+            title</span>
+          <span class="alert-danger" *ngIf="addTaskForm.get('taskTitle')?.errors?.['minlength']">Name must
+            be at
+            least 4 characters long.</span>
+        </div>
+
+        <mat-form-field class="modal-field" appearance="fill">
+          <mat-label class="modal-label">Description:</mat-label>
+          <input class="modal-input" required matInput type="text" formControlName="taskDescription">
+        </mat-form-field>
+        <div class="errors-container"
+          *ngIf="addTaskForm.get('taskDescription')?.errors && (addTaskForm.dirty || addTaskForm.touched)">
+          <span class="alert-danger" *ngIf="addTaskForm.get('taskDescription')?.errors?.['required']">Please enter
+            a
+            description</span>
+          <span class="alert-danger" *ngIf="addTaskForm.get('taskDescription')?.errors?.['minlength']">Name must
+            be at
+            least 4 characters long.</span>
+        </div>
+
+        <mat-form-field class="modal-field" appearance="fill">
+          <mat-label class="modal-label">User:</mat-label>
+          <mat-select placeholder="Select user" formControlName="taskUser" required>
+            <!-- <mat-option *ngFor="let animal of animals" [value]="animal">
+              {{animal.name}}
+            </mat-option> -->
+          </mat-select>
+        </mat-form-field>
+        <div class="errors-container"
+          *ngIf="addTaskForm.get('taskUser')?.errors && (addTaskForm.dirty || addTaskForm.touched)">
+          <span class="alert-danger" *ngIf="addTaskForm.get('taskUser')?.errors?.['required']">Please select
+            a
+            user</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-buttons" mat-dialog-actions>
+      <button [disabled]="!addTaskForm.valid" type="submit" color="primary" class="modal-button add-task-modal-btn"
+        mat-raised-button>Add</button>
+    </div>
+  </form>
+</div>

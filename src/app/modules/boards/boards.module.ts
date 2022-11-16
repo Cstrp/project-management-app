@@ -5,23 +5,27 @@ import { MaterialModule } from '../material';
 import {
   AddBoardComponent,
   AddBoardModalComponent,
+  AddColumnModalComponent,
+  AddTaskModalComponent,
   BoardAdvancedComponent,
   BoardComponent,
   BoardListComponent,
+  BoardsNavigateComponent,
   BoardsPageComponent,
   ColumnComponent,
+  DeleteBoardModalComponent,
+  DeleteColumnModalComponent,
+  DeleteTaskModalComponent,
   EditBoardModalComponent,
+  EditTaskModalComponent,
   TaskComponent,
 } from './components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DeleteBoardModalComponent } from './components/delete-board-modal';
-import { BoardsNavigateComponent } from './components/boards-navigate';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
-import { DeleteColumnModalComponent } from './components/delete-column-modal';
-import { AddColumnModalComponent } from './components/add-column-modal';
 import { ColumnsEffects } from 'src/app/store/columns';
+
 @NgModule({
   declarations: [
     BoardListComponent,
@@ -37,6 +41,9 @@ import { ColumnsEffects } from 'src/app/store/columns';
     BoardsNavigateComponent,
     AddColumnModalComponent,
     DeleteColumnModalComponent,
+    AddTaskModalComponent,
+    DeleteTaskModalComponent,
+    EditTaskModalComponent,
   ],
   exports: [
     BoardListComponent,
@@ -51,6 +58,9 @@ import { ColumnsEffects } from 'src/app/store/columns';
     BoardsNavigateComponent,
     AddColumnModalComponent,
     DeleteColumnModalComponent,
+    AddTaskModalComponent,
+    DeleteTaskModalComponent,
+    EditTaskModalComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,79 @@
+:host {
+  background-color: rgb(247, 243, 255);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid #683ab75b;
+  cursor: pointer;
+}
+
+.task__info-container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.task__top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task__title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.column-delete-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(182, 182, 182, 0.097) 0%, rgba(243, 243, 243, 0.097) 100%);
+  box-shadow: inset 0.76px -0.76px 0.76px rgba(170, 170, 170, 0.394),
+    inset 1.52px -1.52px 1.52px rgba(255, 255, 255, 0.394), inset -0.76px 0.76px 0.76px rgba(255, 255, 255, 0.394),
+    inset -1.52px 1.52px 1.52px rgba(170, 170, 170, 0.394);
+  backdrop-filter: blur(7.714px);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.column-tool-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+}
+
+::ng-deep.mat-body ::ng-deep p,
+::ng-deep.mat-body-1 ::ng-deep p,
+::ng-deep.mat-typography ::ng-deep.mat-body p,
+::ng-deep.mat-typography ::ng-deep.mat-body-1 p,
+::ng-deep.mat-typography ::ng-deep p {
+  margin: 0;
+}
+
+.task__user-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+.task__desc {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.task__user {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
+}
