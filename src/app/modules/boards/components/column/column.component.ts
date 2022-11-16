@@ -44,9 +44,11 @@ export class ColumnComponent implements OnInit {
 
     this.tasks$ = this.store.select(getTasks).pipe(
       map((value) =>
-        [...value].sort((a: ITask, b: ITask) => {
-          return (a.order as number) - (b.order as number);
-        }),
+        [...value]
+          .filter((task) => task.columnId === this.column.id)
+          .sort((a: ITask, b: ITask) => {
+            return (a.order as number) - (b.order as number);
+          }),
       ),
     );
   }
