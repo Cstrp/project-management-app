@@ -99,6 +99,19 @@ export class ColumnComponent implements OnInit {
     });
   }
 
+  public openCreateTask(): void {
+    this.matDialog.open(AddTaskModalComponent, {
+      width: '30%',
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '1000ms',
+
+      data: {
+        boardId: this.boardId,
+        columnId: this.column.id,
+      },
+    });
+  }
+
   public toggleEditMode(): void {
     this.isEditMode = !this.isEditMode;
   }
