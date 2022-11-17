@@ -17,7 +17,7 @@ const reducer = createReducer(
   on(loadTasksSuccess, (state, action) => {
     return {
       ...state,
-      tasks: action.tasks,
+      tasks: [...state.tasks, ...action.tasks],
     };
   }),
 );
