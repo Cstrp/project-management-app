@@ -1,9 +1,9 @@
-<div class="w-full  overflow-scroll">
-  <ul class="circles">
-    <li *ngFor="let circle of circles" appRandPos>{{circle}}</li>
+<div class="w-full overflow-y-scroll overflow-hidden">
+  <ul class="circles overflow-hidden">
+    <li *ngFor="let circle of circles" appRandomPosition appRandomColor>{{circle}}</li>
   </ul>
 
-  <div class="z-10 overflow-y-scroll">
+  <div class="z-10 flex flex-col gap-10 overflow-y-scroll">
     <app-top-section></app-top-section>
     <app-middle-section></app-middle-section>
     <app-bot-section></app-bot-section>

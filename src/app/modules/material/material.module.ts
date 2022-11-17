@@ -48,10 +48,9 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
-import { RandomPositionDirective } from './directives/random-position.directive';
 
 @NgModule({
-  declarations: [SidebarComponent, RandomPositionDirective],
+  declarations: [SidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -152,7 +151,6 @@ import { RandomPositionDirective } from './directives/random-position.directive'
     PortalModule,
     ScrollingModule,
     SidebarComponent,
-    RandomPositionDirective,
   ],
 })
 export class MaterialModule {}

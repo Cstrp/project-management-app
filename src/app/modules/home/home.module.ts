@@ -6,10 +6,11 @@ import { HomeRoutingModule } from './home-routing.module';
 import { TopSectionComponent } from './components/top-section/top-section.component';
 import { MiddleSectionComponent } from './components/middle-section/middle-section.component';
 import { BotSectionComponent } from './components/bot-section/bot-section.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HomePageComponent, TopSectionComponent, MiddleSectionComponent, BotSectionComponent],
-  imports: [CommonModule, MaterialModule, HomeRoutingModule],
+  imports: [CommonModule, MaterialModule, HomeRoutingModule, SharedModule],
   exports: [HomePageComponent],
 })
 export class HomeModule {}
