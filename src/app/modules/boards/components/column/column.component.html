@@ -42,7 +42,7 @@
   </div>
 
   <ng-container *ngIf="(tasks$ | async) as tasks">
-    <div class="tasks__container" cdkDropList [cdkDropListData]="tasks"
+    <div id="{{ column.id }}" class="tasks__container" cdkDropList [cdkDropListData]="tasks" [cdkDropListConnectedTo]="columnsIds"
       (cdkDropListDropped)="dropTasks($event)">
       <app-task *ngFor="let task of tasks" [task]="task" cdkDrag>
         <div class="example-handle" cdkDragHandle>
