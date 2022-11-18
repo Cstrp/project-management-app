@@ -35,7 +35,7 @@
 
         <mat-form-field class="modal-field" appearance="fill">
           <mat-label class="modal-label">User:</mat-label>
-          <mat-select placeholder="Select user" formControlName="taskUser" required>
+          <mat-select formControlName="taskUser" placeholder="Select user" required>
             <ng-container *ngIf="(users$ | async) as users">
               <mat-option *ngFor="let user of users" [value]="user.id">
                 {{user.name}}

@@ -59,7 +59,7 @@ export class ColumnComponent implements OnInit {
 
   public openDeleteColumnModal(): void {
     this.matDialog.open(DeleteColumnModalComponent, {
-      width: '15%',
+      width: '20%',
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '1000ms',
 

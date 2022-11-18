@@ -25,7 +25,7 @@ export class TaskComponent implements OnInit {
 
   public openDeleteTaskModal(): void {
     this.matDialog.open(DeleteTaskModalComponent, {
-      width: '15%',
+      width: '20%',
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '1000ms',
 
