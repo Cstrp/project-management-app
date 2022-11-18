@@ -1,4 +1,4 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,10 +21,15 @@ export class ColumnComponent implements OnInit {
   public editColumnForm: FormGroup;
   public statusForm: string = 'VALID';
   public columnTitle: string = '';
-  @Input() public column: IColumn;
-  @Input() public boardId: string | undefined;
   public tasks$: Observable<Array<ITask>>;
   public tasksArray: Array<ITask>;
+  public columnsIds: string[];
+
+  @Input() public column: IColumn;
+  @Input() public boardId: string | undefined;
+  @Input() public set columns(value: IColumn[]) {
+    this.setColumnsIds(value);
+  };
 
   constructor(public matDialog: MatDialog, public store: Store<IAppState>) {}
 
@@ -55,8 +60,17 @@ export class ColumnComponent implements OnInit {
     this.store.dispatch(loadTasks({ boardId, columnId }));
   }
 
-  public dropTasks(event: CdkDragDrop<Array<ITask>>): void {
-    console.log(event.previousContainer, event.container);
+  public dropTasks(event: CdkDragDrop<any>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 
   public openDeleteColumnModal(): void {
@@ -104,5 +118,9 @@ export class ColumnComponent implements OnInit {
       }
     }
     this.toggleEditMode();
+  }
+
+  private setColumnsIds(value: IColumn[]): void {
+    this.columnsIds = value.map(item => item.id as string);
   }
 }
