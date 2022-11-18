@@ -11,8 +11,9 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  padding: 35px;
+  padding: 20px;
   grid-gap: 5px;
+  margin-top: 20px;
   align-items: flex-start;
   justify-content: center;
   background: rgba(239, 243, 253, 0.68);
