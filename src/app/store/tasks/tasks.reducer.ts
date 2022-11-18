@@ -3,6 +3,7 @@ import { ITask } from 'src/app/modules';
 import { loadTasksSuccess, addTaskSuccess } from './tasks.actions';
 import { tasksInitialState } from './tasks.state';
 import { ITasksState } from './models';
+import { ActionSettings } from '@syncfusion/ej2-angular-navigations';
 
 const reducer = createReducer(
   tasksInitialState,
@@ -15,9 +16,16 @@ const reducer = createReducer(
     };
   }),
   on(loadTasksSuccess, (state, action) => {
+    let columns: Array<ITask> = [];
+
+    action.tasks.forEach((task: ITask) => {
+      if (!state.tasks.find((elem: ITask) => elem.id === task.id)) {
+        columns = [...columns, task];
+      }
+    });
     return {
       ...state,
-      tasks: [...state.tasks, ...action.tasks],
+      tasks: [...state.tasks, ...columns],
     };
   }),
 );
