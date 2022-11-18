@@ -47,6 +47,26 @@ const reducer = createReducer(
       tasks: updatedTasks,
     };
   }),
+  on(updateTaskSuccess, (state, action) => {
+    const updatedTasks: ITask[] = state.tasks.map((task: ITask) => {
+      return action.task.id === task.id ? action.task : task;
+    });
+
+    return {
+      ...state,
+      tasks: updatedTasks,
+    };
+  }),
+  on(deleteTaskSuccess, (state, action) => {
+    const updatedTasks: ITask[] = state.tasks.filter((task) => {
+      return task.id !== action.id;
+    });
+
+    return {
+      ...state,
+      tasks: updatedTasks,
+    };
+  }),
 );
 
 export function tasksReducer(state: ITasksState | undefined, action: Action) {

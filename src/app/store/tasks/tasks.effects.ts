@@ -108,4 +108,30 @@ export class TasksEffects {
       }),
     );
   });
+
+  updateTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(updateTask),
+      mergeMap((action) => {
+        return this.boardsService.updateTask(action.taskId, action.task).pipe(
+          map((data: ITask) => {
+            return updateTaskSuccess({ task: data });
+          }),
+        );
+      }),
+    );
+  });
+
+  deleteColumn$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(deleteTask),
+      switchMap((action) => {
+        return this.boardsService.deleteTask(action.task).pipe(
+          map((data) => {
+            return deleteTaskSuccess({ id: action.task.id as string });
+          }),
+        );
+      }),
+    );
+  });
 }
