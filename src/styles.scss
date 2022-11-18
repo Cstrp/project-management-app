@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "~@syncfusion/ej2-angular-navigations/styles/material.css";
+@import '~@syncfusion/ej2-angular-navigations/styles/material.css';
+@import '~@angular/material/theming';
+
+@include mat-core();
 
 html,
 body {
   box-sizing: border-box;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
   height: 100%;
   padding: 0;
   margin: 0;
 }
-
-

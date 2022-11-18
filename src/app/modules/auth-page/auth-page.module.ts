@@ -6,12 +6,11 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { _httpInterceptorProvider } from '../../constants';
-import { _errInterceptorProvider } from '../../constants/_errInterceptorProvider';
 
 @NgModule({
   declarations: [SignInComponent, SignUpComponent],
   imports: [CommonModule, AuthRoutingModule, HttpClientModule, ReactiveFormsModule],
-  providers: [_httpInterceptorProvider, _errInterceptorProvider],
+  providers: [_httpInterceptorProvider],
   exports: [AuthRoutingModule],
 })
 export class AuthPageModule {}

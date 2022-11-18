@@ -34,8 +34,8 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      login: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
+      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
     });
 
     this.str = this.localService.getData('token');
@@ -51,6 +51,7 @@ export class SignInComponent implements OnInit {
         console.log(value);
         this.localService.saveData('token', JSON.stringify(value));
         this.store.dispatch(loginStart({ user: this.form.value }));
+        this.form.reset();
       },
       error: (err) => {
         this.errorMessage = err.error.message;
