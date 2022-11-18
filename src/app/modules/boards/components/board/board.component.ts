@@ -39,7 +39,7 @@ export class BoardComponent implements OnInit {
 
   public openModalDelete(): void {
     this.matDialog.open(DeleteBoardModalComponent, {
-      width: '15%',
+      width: '20%',
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '1000ms',
     });

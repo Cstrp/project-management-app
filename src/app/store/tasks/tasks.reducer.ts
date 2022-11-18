@@ -1,9 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { ITask } from 'src/app/modules';
-import { loadTasksSuccess, addTaskSuccess } from './tasks.actions';
+import { loadTasksSuccess, addTaskSuccess, updateTaskSuccess, deleteTaskSuccess } from './tasks.actions';
 import { tasksInitialState } from './tasks.state';
 import { ITasksState } from './models';
-import { ActionSettings } from '@syncfusion/ej2-angular-navigations';
 
 const reducer = createReducer(
   tasksInitialState,
@@ -26,6 +25,26 @@ const reducer = createReducer(
     return {
       ...state,
       tasks: [...state.tasks, ...columns],
+    };
+  }),
+  on(updateTaskSuccess, (state, action) => {
+    const updatedTasks: ITask[] = state.tasks.map((task: ITask) => {
+      return action.task.id === task.id ? action.task : task;
+    });
+
+    return {
+      ...state,
+      tasks: updatedTasks,
+    };
+  }),
+  on(deleteTaskSuccess, (state, action) => {
+    const updatedTasks: ITask[] = state.tasks.filter((task) => {
+      return task.id !== action.id;
+    });
+
+    return {
+      ...state,
+      tasks: updatedTasks,
     };
   }),
 );

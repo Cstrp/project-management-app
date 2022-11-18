@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IAppState } from 'src/app/store';
+import { IAppState, updateTask } from 'src/app/store';
 import { BoardsService, IUser } from '../../services';
 import { ITask } from '../task';
 
@@ -23,6 +23,10 @@ export class EditTaskModalComponent implements OnInit {
 
   public userId: string;
 
+  public userInfo$: Observable<IUser>;
+
+  public userInfo: IUser;
+
   public task: ITask;
 
   public users$: Observable<Array<IUser>>;
@@ -37,9 +41,15 @@ export class EditTaskModalComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.users$ = this.boardService.getTasksUsers();
+    this.userInfo$ = this.boardService.getTaskUserInfo(this.task.userId);
+    this.userInfo$.subscribe((info) => {
+      this.userInfo = info;
+    });
+
     this.editTaskForm = new FormGroup({
-      taskTitle: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      taskDescription: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      taskTitle: new FormControl(this.task.title, [Validators.required, Validators.minLength(3)]),
+      taskDescription: new FormControl(this.task.description, [Validators.required, Validators.minLength(3)]),
       taskUser: new FormControl('', [Validators.required]),
     });
 
@@ -48,10 +58,6 @@ export class EditTaskModalComponent implements OnInit {
         this.statusForm = value;
       }
     });
-
-    this.title = this.editTaskForm.controls['taskTitle'].value;
-
-    this.users$ = this.boardService.getTasksUsers();
   }
 
   public closeModal(): void {
@@ -64,6 +70,8 @@ export class EditTaskModalComponent implements OnInit {
   public onSubmit(): void {
     this.title = this.editTaskForm.controls['taskTitle'].value;
     this.description = this.editTaskForm.controls['taskDescription'].value;
+    this.userId = this.editTaskForm.controls['taskUser'].value;
+
     const task: ITask = {
       title: this.title,
       description: this.description,
@@ -73,7 +81,7 @@ export class EditTaskModalComponent implements OnInit {
       columnId: this.task.columnId,
     };
     const taskId: string = this.task.id as string;
-    // this.store.dispatch(editTask({ taskId, task }));
+    this.store.dispatch(updateTask({ taskId, task }));
     this.closeModal();
   }
 }

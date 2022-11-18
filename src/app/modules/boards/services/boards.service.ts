@@ -5,7 +5,7 @@ import { GET_BOARDS } from '../../../constants/_boards';
 import { BASE_URL, _httpOptions } from '../../../constants';
 import { Observable, map } from 'rxjs';
 import { IBoard, IColumn, ITask } from '../components';
-import { IRequestUpdateBoard } from 'src/app/store';
+import { IRequestUpdateBoard, IRequestUpdateTask } from 'src/app/store';
 import { IRequestUpdateColumn } from 'src/app/store/columns';
 import { IUser } from './models';
 
@@ -84,5 +84,24 @@ export class BoardsService {
 
   public addTask(boardId: string, columnId: string, task: ITask): Observable<ITask> {
     return this.http.post<ITask>(`${GET_BOARDS}/${boardId}/columns/${columnId}/tasks`, task);
+  }
+
+  public updateTask(taskId: string, task: ITask): Observable<ITask> {
+    const requestUpdateTask: IRequestUpdateTask = {
+      title: task.title,
+      order: task.order as number,
+      description: task.description,
+      userId: task.userId as string,
+      boardId: task.boardId as string,
+      columnId: task.columnId as string,
+    };
+    return this.http.put<ITask>(
+      `${GET_BOARDS}/${task.boardId}/columns/${task.columnId}/tasks/${taskId}`,
+      requestUpdateTask,
+    );
+  }
+
+  public deleteTask(task: ITask): Observable<ITask> {
+    return this.http.delete<ITask>(`${GET_BOARDS}/${task.boardId}/columns/${task.columnId}/tasks/${task.id}`);
   }
 }
