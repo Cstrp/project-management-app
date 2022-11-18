@@ -9,4 +9,8 @@ export class AppComponent {
   title = 'project-management-app';
 
   constructor() {}
+
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('dark-theme');
+  }
 }
