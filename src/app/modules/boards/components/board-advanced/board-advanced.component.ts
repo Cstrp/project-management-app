@@ -94,6 +94,5 @@ export class BoardAdvancedComponent implements OnInit {
 
   ngOnDestroy() {
     this.boardSubscription.unsubscribe();
-    // this.columnsSubscription.unsubscribe();
   }
 }

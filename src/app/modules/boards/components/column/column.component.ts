@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,7 +23,7 @@ export class ColumnComponent implements OnInit {
   public columnTitle: string = '';
   @Input() public column: IColumn;
   @Input() public boardId: string | undefined;
-  public tasks$: Observable<Array<ITask>> | null;
+  public tasks$: Observable<Array<ITask>>;
   public tasksArray: Array<ITask>;
 
   constructor(public matDialog: MatDialog, public store: Store<IAppState>) {}
@@ -41,20 +42,21 @@ export class ColumnComponent implements OnInit {
     const boardId: string = this.boardId as string;
     const columnId: string = this.column.id as string;
 
-    if(!this.tasks$){
-      this.tasks$ = this.store.select(getTasks).pipe(
-        map((value) =>
-          [...value]
-            .filter((task) => task.columnId === this.column.id)
-            .sort((a: ITask, b: ITask) => {
-              return (a.order as number) - (b.order as number);
-            }),
-        ),
-      );
+    this.tasks$ = this.store.select(getTasks).pipe(
+      map((value) =>
+        [...value]
+          .filter((task) => task.columnId === this.column.id)
+          .sort((a: ITask, b: ITask) => {
+            return (a.order as number) - (b.order as number);
+          }),
+      ),
+    );
 
-      this.store.dispatch(loadTasks({ boardId, columnId }));
-    }
+    this.store.dispatch(loadTasks({ boardId, columnId }));
+  }
 
+  public dropTasks(event: CdkDragDrop<Array<ITask>>): void {
+    console.log(event.previousContainer, event.container);
   }
 
   public openDeleteColumnModal(): void {
