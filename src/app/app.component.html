@@ -1,9 +1,8 @@
 <div class="h-full flex flex-col">
-  <app-header class="z-10"></app-header>
-  <button (click)="toggleDarkTheme()" class="z-50">Toggle dark theme</button>
-  <main class="flex-grow">
-    <app-sidebar></app-sidebar>
-    <router-outlet></router-outlet>
+  <app-header class="z-10 mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></app-header>
+  <main class="flex-grow mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }">
+    <app-sidebar class="mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></app-sidebar>
+    <router-outlet class="mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></router-outlet>
   </main>
-  <app-footer class="z-10"></app-footer>
+  <app-footer class="z-10 mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></app-footer>
 </div>
