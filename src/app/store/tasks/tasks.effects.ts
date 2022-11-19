@@ -58,6 +58,8 @@ export class TasksEffects {
       tap(() => {
         if (newTaskOrder) {
           const taskId: string = newTask.id as string;
+          const boardId: string = newTask.boardId as string;
+          const columnId: string = newTask.columnId as string;
           const task: ITask = {
             title: newTask.title,
             description: newTask.description,
