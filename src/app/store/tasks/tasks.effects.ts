@@ -37,7 +37,7 @@ export class TasksEffects {
     let newTaskOrder: number;
     return this.actions$.pipe(
       ofType(addTask),
-      mergeMap((action) => {
+      switchMap((action) => {
         return this.boardsService.addTask(action.boardId, action.columnId, action.task).pipe(
           map((data: ITask) => {
             const task = data;
