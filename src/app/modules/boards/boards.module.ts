@@ -17,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteBoardModalComponent } from './components/delete-board-modal';
 import { BoardsNavigateComponent } from './components/boards-navigate';
 import { EffectsModule } from '@ngrx/effects';
-import { BoardsEffects } from 'src/app/store';
+import { BoardsEffects, ColumnsEffects, TasksEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
 
 @NgModule({
@@ -52,7 +52,7 @@ import { _httpInterceptorProvider } from '../../constants';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    EffectsModule.forFeature([BoardsEffects]),
+    EffectsModule.forFeature([BoardsEffects, ColumnsEffects, TasksEffects]),
   ],
   providers: [_httpInterceptorProvider],
 })

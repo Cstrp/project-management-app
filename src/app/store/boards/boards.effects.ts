@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { mergeMap, map, switchMap } from 'rxjs';
+import { RouterNavigatedAction, ROUTER_NAVIGATION } from '@ngrx/router-store';
+import { Store } from '@ngrx/store';
+import { mergeMap, map, switchMap, withLatestFrom, filter, of } from 'rxjs';
 import { BoardsService, IBoard } from 'src/app/modules';
+import { IAppState } from '../app.state';
+import { RouterStateUrl } from '../app/router/custom-serializer';
+import { dummyAction } from '../auth/auth.action';
 import {
   addBoard,
   addBoardSuccess,
@@ -12,10 +17,11 @@ import {
   updateBoard,
   updateBoardSuccess,
 } from './boards.actions';
+import { getBoards } from './boards.selector';
 
 @Injectable()
 export class BoardsEffects {
-  constructor(private actions$: Actions, private boardsService: BoardsService) {}
+  constructor(private actions$: Actions, private boardsService: BoardsService, private store: Store<IAppState>) {}
 
   loadBoards$ = createEffect(() => {
     return this.actions$.pipe(
@@ -30,7 +36,7 @@ export class BoardsEffects {
     );
   });
 
-  addPost$ = createEffect(() => {
+  addBoard$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(addBoard),
       mergeMap((action) => {
@@ -67,6 +73,32 @@ export class BoardsEffects {
             return deleteBoardSuccess({ id: action.id });
           }),
         );
+      }),
+    );
+  });
+
+  getBoard$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ROUTER_NAVIGATION),
+      filter((r: RouterNavigatedAction<RouterStateUrl>) => {
+        return r.payload.routerState.url.startsWith('/boards');
+      }),
+      map((r: RouterNavigatedAction<RouterStateUrl>) => {
+        return r.payload.routerState['params']['id'];
+      }),
+      withLatestFrom(this.store.select(getBoards)),
+      switchMap(([id, boards]) => {
+        if (!boards.length) {
+          if (id) {
+            return this.boardsService.getBoardById(id).pipe(
+              map((board) => {
+                const boardData = [{ ...board }];
+                return loadBoardsSuccess({ boards: boardData });
+              }),
+            );
+          }
+        }
+        return of(dummyAction());
       }),
     );
   });

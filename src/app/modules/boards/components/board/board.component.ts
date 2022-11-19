@@ -24,6 +24,10 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  public goToBoard(): void {
+    this.router.navigateByUrl(`boards/${this.board.id}`);
+  }
+
   public openModalEdit(): void {
     this.matDialog.open(EditBoardModalComponent, {
       width: '30%',
@@ -35,7 +39,7 @@ export class BoardComponent implements OnInit {
 
   public openModalDelete(): void {
     this.matDialog.open(DeleteBoardModalComponent, {
-      width: '15%',
+      width: '20%',
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '1000ms',
     });
