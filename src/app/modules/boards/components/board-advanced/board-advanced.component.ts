@@ -46,17 +46,11 @@ export class BoardAdvancedComponent implements OnInit {
 
   public dropColumns(event: CdkDragDrop<Array<IColumn>>): void {
     if (event.previousIndex !== event.currentIndex) {
-      const tmpColumns: Array<IColumn> = this.columnsArray.map((a) => Object.assign({}, a));
-      tmpColumns[event.previousIndex].order = event.currentIndex + 1;
-      tmpColumns[event.currentIndex].order = event.previousIndex + 1;
-      const column1: IColumn = tmpColumns[event.previousIndex];
-      const column2: IColumn = tmpColumns[event.currentIndex];
-      moveItemInArray(this.columnsArray, event.previousIndex, event.currentIndex);
-
-      if (column1 && column2) {
-        this.editOrderColumn(column1.title, column1.order as number, column1.id as string);
-        this.editOrderColumn(column2.title, column2.order as number, column2.id as string);
-      }
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      let column1 = event.container.data[event.currentIndex];
+      let column2 = event.container.data[event.previousIndex];
+      this.editOrderColumn(column1.title, event.currentIndex + 1, column1.id as string);
+      this.editOrderColumn(column2.title, event.previousIndex + 1, column2.id as string);
     }
   }
 
@@ -67,10 +61,6 @@ export class BoardAdvancedComponent implements OnInit {
     };
     const boardId: string = this.boardId;
     this.store.dispatch(updateColumn({ boardId, column, columnId }));
-  }
-
-  public trackById(index: number, item: IColumn): string | undefined {
-    return item.id;
   }
 
   public goToBoards(): void {

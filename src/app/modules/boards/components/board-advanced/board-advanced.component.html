@@ -15,7 +15,7 @@
   </div>
 
   <div *ngIf="(columns$ | async) as columns" cdkDropList cdkDropListOrientation="horizontal" class="columns__container"
-    (cdkDropListDropped)="dropColumns($event)" cdkDropListGroup>
+    (cdkDropListDropped)="dropColumns($event)" cdkDropListGroup [cdkDropListData]="columns">
     <app-column cdkDropList cdkDrag *ngFor="let column of columns;" [column]="column" [boardId]="board.id"
       [columns]="columns">
       <div class="example-handle" cdkDragHandle>
