@@ -51,7 +51,7 @@ export class BoardAdvancedComponent implements OnInit {
       tmpColumns[event.currentIndex].order = event.previousIndex + 1;
       const column1: IColumn = tmpColumns[event.previousIndex];
       const column2: IColumn = tmpColumns[event.currentIndex];
-      moveItemInArray(tmpColumns, event.previousIndex, event.currentIndex);
+      moveItemInArray(this.columnsArray, event.previousIndex, event.currentIndex);
 
       if (column1 && column2) {
         this.editOrderColumn(column1.title, column1.order as number, column1.id as string);
