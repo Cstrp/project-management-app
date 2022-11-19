@@ -8,7 +8,10 @@ export const loadTasksSuccess = createAction(LOAD_TASKS_SUCCESS, props<{ tasks: 
 
 export const ADD_TASK_ACTION = '[board page] add task';
 export const ADD_TASK_SUCCESS = '[board page] add task success';
-export const addTask = createAction(ADD_TASK_ACTION, props<{ boardId: string; columnId: string; task: ITask }>());
+export const addTask = createAction(
+  ADD_TASK_ACTION,
+  props<{ boardId: string; columnId: string; task: ITask; taskOrder?: number }>(),
+);
 export const addTaskSuccess = createAction(ADD_TASK_SUCCESS, props<{ task: ITask }>());
 
 export const UPDATE_TASK_ACTION = '[board page] update task';

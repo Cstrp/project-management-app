@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { mergeMap, map, switchMap } from 'rxjs';
+import { mergeMap, map, switchMap, tap } from 'rxjs';
 import { BoardsService, ITask } from 'src/app/modules';
 import { IAppState } from '../app.state';
 import {
@@ -33,15 +33,35 @@ export class TasksEffects {
   });
 
   addTask$ = createEffect(() => {
+    let newTask: ITask;
+    let newTaskOrder: number;
     return this.actions$.pipe(
       ofType(addTask),
       mergeMap((action) => {
         return this.boardsService.addTask(action.boardId, action.columnId, action.task).pipe(
           map((data: ITask) => {
             const task = data;
+            newTask = task;
+            if (action.taskOrder) {
+              newTaskOrder = action.taskOrder;
+            }
             return addTaskSuccess({ task });
           }),
         );
+      }),
+      tap(() => {
+        if (newTaskOrder) {
+          const taskId: string = newTask.id as string;
+          const task: ITask = {
+            title: newTask.title,
+            description: newTask.description,
+            userId: newTask.userId,
+            order: newTaskOrder,
+            boardId: newTask.boardId,
+            columnId: newTask.columnId,
+          };
+          this.store.dispatch(updateTask({ taskId, task }));
+        }
       }),
     );
   });
@@ -59,7 +79,7 @@ export class TasksEffects {
     );
   });
 
-  deleteColumn$ = createEffect(() => {
+  deleteTask$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(deleteTask),
       switchMap((action) => {
