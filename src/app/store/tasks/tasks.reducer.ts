@@ -16,15 +16,15 @@ const reducer = createReducer(
   }),
   on(loadTasksSuccess, (state, action) => {
     let columns: Array<ITask> = [];
-
     action.tasks.forEach((task: ITask) => {
       if (!state.tasks.find((elem: ITask) => elem.id === task.id)) {
         columns = [...columns, task];
       }
     });
+    let result = [...new Set([...state.tasks, ...columns])];
     return {
       ...state,
-      tasks: [...state.tasks, ...columns],
+      tasks: result,
     };
   }),
   on(updateTaskSuccess, (state, action) => {

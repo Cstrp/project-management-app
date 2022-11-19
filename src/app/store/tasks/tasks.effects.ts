@@ -37,7 +37,7 @@ export class TasksEffects {
     let newTaskOrder: number;
     return this.actions$.pipe(
       ofType(addTask),
-      switchMap((action) => {
+      mergeMap((action) => {
         return this.boardsService.addTask(action.boardId, action.columnId, action.task).pipe(
           map((data: ITask) => {
             const task = data;
@@ -52,6 +52,8 @@ export class TasksEffects {
       tap(() => {
         if (newTaskOrder) {
           const taskId: string = newTask.id as string;
+          const boardId: string = newTask.boardId as string;
+          const columnId: string = newTask.columnId as string;
           const task: ITask = {
             title: newTask.title,
             description: newTask.description,
