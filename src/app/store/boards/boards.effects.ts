@@ -36,7 +36,7 @@ export class BoardsEffects {
     );
   });
 
-  addPost$ = createEffect(() => {
+  addBoard$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(addBoard),
       mergeMap((action) => {
