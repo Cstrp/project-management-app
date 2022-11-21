@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-  public darkTheme: Observable<boolean>;
+  public darkTheme: Observable<boolean> = new Observable<boolean>();
 
   constructor(public sidenavService: SidenavService, private themeService: ThemeService) {}
 

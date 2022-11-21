@@ -2,7 +2,7 @@
   <app-header class="z-10 mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></app-header>
   <main class="flex-grow mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }">
     <app-sidebar class="mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></app-sidebar>
-    <router-outlet class="mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></router-outlet>
+    <router-outlet></router-outlet>
   </main>
   <app-footer class="z-10 mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></app-footer>
 </div>

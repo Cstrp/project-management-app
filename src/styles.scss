@@ -1,35 +1,9 @@
-@use '@angular/material/theming' as mat;
-
-$primary: mat.mat-palette(mat.$mat-indigo);
-$accent: mat.mat-palette(mat.$mat-pink, A200, A100, A400);
-$warn: mat.mat-palette(mat.$mat-red);
-$theme: mat.mat-light-theme($primary, $accent, $warn);
-
-@include mat.angular-material-theme($theme);
-
-// Our dark theme
-.dark-theme {
-  color: mat.$light-primary-text;
-  $dark-primary: mat.mat-palette(mat.$mat-yellow);
-  $dark-accent: mat.mat-palette(mat.$mat-amber, A200, A100, A400);
-  $dark-warn: mat.mat-palette(mat.$mat-red);
-  $dark-theme: mat.mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-  p,
-  a,
-  span,
-  div {
-    color: white;
-  }
-
-  @include mat.angular-material-theme($dark-theme);
-}
-
+@import '@syncfusion/ej2-angular-navigations/styles/material.css';
+@import '@angular/material/theming';
+@import 'index';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import '@syncfusion/ej2-angular-navigations/styles/material.css';
-@import '@angular/material/theming';
 
 html,
 body {
