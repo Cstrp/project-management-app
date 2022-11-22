@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { mergeMap, map, switchMap, tap } from 'rxjs';
+import { mergeMap, map, switchMap, tap, catchError, of } from 'rxjs';
 import { BoardsService, ITask } from 'src/app/modules';
 import { IAppState } from '../app.state';
 import {
@@ -27,6 +27,10 @@ export class TasksEffects {
           map((tasks: Array<ITask>) => {
             return loadTasksSuccess({ tasks });
           }),
+          catchError((errResp) => {
+            console.log(errResp.error.error.message);
+            return of();
+          }),
         );
       }),
     );
@@ -47,13 +51,15 @@ export class TasksEffects {
             }
             return addTaskSuccess({ task });
           }),
+          catchError((errResp) => {
+            console.log(errResp.error.error.message);
+            return of();
+          }),
         );
       }),
       tap(() => {
         if (newTaskOrder) {
           const taskId: string = newTask.id as string;
-          const boardId: string = newTask.boardId as string;
-          const columnId: string = newTask.columnId as string;
           const task: ITask = {
             title: newTask.title,
             description: newTask.description,
@@ -76,6 +82,10 @@ export class TasksEffects {
           map((data: ITask) => {
             return updateTaskSuccess({ task: data });
           }),
+          catchError((errResp) => {
+            console.log(errResp.error.error.message);
+            return of();
+          }),
         );
       }),
     );
@@ -88,6 +98,10 @@ export class TasksEffects {
         return this.boardsService.deleteTask(action.task).pipe(
           map((data) => {
             return deleteTaskSuccess({ id: action.task.id as string });
+          }),
+          catchError((errResp) => {
+            console.log(errResp.error.error.message);
+            return of();
           }),
         );
       }),

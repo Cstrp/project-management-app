@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { GET_BOARDS } from '../../../constants/_boards';
 import { BASE_URL, _httpOptions } from '../../../constants';
-import { Observable, map } from 'rxjs';
+import { Observable, map, catchError, of } from 'rxjs';
 import { IBoard, IColumn, ITask } from '../components';
 import { IRequestUpdateBoard, IRequestUpdateTask } from 'src/app/store';
 import { IRequestUpdateColumn } from 'src/app/store/columns';
@@ -21,6 +21,10 @@ export class BoardsService {
         const boards: Array<IBoard> = data;
 
         return boards;
+      }),
+      catchError((errResp) => {
+        console.log(errResp.error.error.message);
+        return of();
       }),
     );
   }
@@ -48,6 +52,10 @@ export class BoardsService {
       map((data) => {
         const columns: Array<IColumn> = data;
         return columns;
+      }),
+      catchError((errResp) => {
+        console.log(errResp.error.error.message);
+        return of();
       }),
     );
   }
@@ -78,6 +86,10 @@ export class BoardsService {
       map((data) => {
         const tasks: Array<ITask> = data;
         return tasks;
+      }),
+      catchError((errResp) => {
+        console.log(errResp.error.error.message);
+        return of();
       }),
     );
   }

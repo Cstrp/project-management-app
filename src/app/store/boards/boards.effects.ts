@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { RouterNavigatedAction, ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { mergeMap, map, switchMap, withLatestFrom, filter, of } from 'rxjs';
+import { mergeMap, map, switchMap, withLatestFrom, filter, of, catchError } from 'rxjs';
 import { BoardsService, IBoard } from 'src/app/modules';
 import { IAppState } from '../app.state';
 import { RouterStateUrl } from '../app/router/custom-serializer';
@@ -31,6 +31,10 @@ export class BoardsEffects {
           map((boards) => {
             return loadBoardsSuccess({ boards });
           }),
+          catchError((errResp) => {
+            console.log(errResp.error.error.message);
+            return of();
+          }),
         );
       }),
     );
@@ -46,6 +50,10 @@ export class BoardsEffects {
 
             return addBoardSuccess({ board });
           }),
+          catchError((errResp) => {
+            console.log(errResp.error.error.message);
+            return of();
+          }),
         );
       }),
     );
@@ -59,6 +67,10 @@ export class BoardsEffects {
           map((data) => {
             return updateBoardSuccess({ board: data });
           }),
+          catchError((errResp) => {
+            console.log(errResp.error.error.message);
+            return of();
+          }),
         );
       }),
     );
@@ -71,6 +83,10 @@ export class BoardsEffects {
         return this.boardsService.deleteBoard(action.id).pipe(
           map((data) => {
             return deleteBoardSuccess({ id: action.id });
+          }),
+          catchError((errResp) => {
+            console.log(errResp.error.error.message);
+            return of();
           }),
         );
       }),
@@ -99,6 +115,10 @@ export class BoardsEffects {
           }
         }
         return of(dummyAction());
+      }),
+      catchError((errResp) => {
+        console.log(errResp.error.error.message);
+        return of();
       }),
     );
   });
