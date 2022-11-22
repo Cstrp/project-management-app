@@ -87,7 +87,6 @@ export class ColumnComponent implements OnInit {
   }
 
   public openCreateTask(): void {
-    console.log(this.column.id);
     this.matDialog.open(AddTaskModalComponent, {
       width: '30%',
       enterAnimationDuration: '1000ms',
