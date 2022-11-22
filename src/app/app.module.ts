@@ -38,3 +38,8 @@ import { HomeModule } from './modules/home/home.module';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+
+// https://final-task-backend-production-aa14.up.railway.app/api-docs/ 
+
+// this back is work!
