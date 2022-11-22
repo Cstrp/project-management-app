@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { mergeMap, map, switchMap, tap, catchError, of } from 'rxjs';
+import { mergeMap, map, switchMap, tap, catchError, of, throwError } from 'rxjs';
 import { BoardsService, ITask } from 'src/app/modules';
 import { IAppState } from '../app.state';
 import {
@@ -28,8 +28,7 @@ export class TasksEffects {
             return loadTasksSuccess({ tasks });
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }),
@@ -52,8 +51,7 @@ export class TasksEffects {
             return addTaskSuccess({ task });
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }),
@@ -83,8 +81,7 @@ export class TasksEffects {
             return updateTaskSuccess({ task: data });
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }),
@@ -100,8 +97,7 @@ export class TasksEffects {
             return deleteTaskSuccess({ id: action.task.id as string });
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }),

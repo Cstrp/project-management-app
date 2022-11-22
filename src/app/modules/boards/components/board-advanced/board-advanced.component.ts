@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription, map, catchError, of } from 'rxjs';
+import { Observable, Subscription, map, catchError, of, throwError } from 'rxjs';
 import { getAdvancedBoardById, IAppState } from 'src/app/store';
 import { getColumns, loadColumns, updateColumn } from 'src/app/store/columns';
 import { AddColumnModalComponent } from '../add-column-modal/add-column-modal.component';
@@ -40,8 +40,7 @@ export class BoardAdvancedComponent implements OnInit {
             return this.columnsArray;
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }

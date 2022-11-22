@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { RouterNavigatedAction, ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { mergeMap, map, switchMap, withLatestFrom, filter, of, catchError } from 'rxjs';
+import { mergeMap, map, switchMap, withLatestFrom, filter, of, catchError, throwError } from 'rxjs';
 import { BoardsService, IBoard } from 'src/app/modules';
 import { IAppState } from '../app.state';
 import { RouterStateUrl } from '../app/router/custom-serializer';
@@ -32,8 +32,7 @@ export class BoardsEffects {
             return loadBoardsSuccess({ boards });
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }),
@@ -51,8 +50,7 @@ export class BoardsEffects {
             return addBoardSuccess({ board });
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }),
@@ -68,8 +66,7 @@ export class BoardsEffects {
             return updateBoardSuccess({ board: data });
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }),
@@ -85,8 +82,7 @@ export class BoardsEffects {
             return deleteBoardSuccess({ id: action.id });
           }),
           catchError((errResp) => {
-            console.log(errResp.error.error.message);
-            return of();
+            return throwError(errResp);
           }),
         );
       }),
@@ -117,8 +113,7 @@ export class BoardsEffects {
         return of(dummyAction());
       }),
       catchError((errResp) => {
-        console.log(errResp.error.error.message);
-        return of();
+        return throwError(errResp);
       }),
     );
   });
