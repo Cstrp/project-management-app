@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { mergeMap, map, switchMap } from 'rxjs';
+import { mergeMap, map, switchMap, catchError, of, throwError } from 'rxjs';
 import { BoardsService, IColumn } from 'src/app/modules';
 import { IAppState } from '../app.state';
 import {
@@ -27,6 +27,9 @@ export class ColumnsEffects {
           map((columns) => {
             return loadColumnsSuccess({ columns });
           }),
+          catchError((errResp) => {
+            return throwError(errResp);
+          }),
         );
       }),
     );
@@ -41,6 +44,9 @@ export class ColumnsEffects {
             const column = data;
             return addColumnSuccess({ column });
           }),
+          catchError((errResp) => {
+            return throwError(errResp);
+          }),
         );
       }),
     );
@@ -54,6 +60,9 @@ export class ColumnsEffects {
           map((data) => {
             return updateColumnSuccess({ column: data });
           }),
+          catchError((errResp) => {
+            return throwError(errResp);
+          }),
         );
       }),
     );
@@ -66,6 +75,9 @@ export class ColumnsEffects {
         return this.boardsService.deleteColumn(action.boardId, action.columnId).pipe(
           map((data) => {
             return deleteColumnSuccess({ id: action.columnId });
+          }),
+          catchError((errResp) => {
+            return throwError(errResp);
           }),
         );
       }),

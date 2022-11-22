@@ -1,2 +1,2 @@
 export * from './boards.service';
-export * from './user.model';
+export * from './models';
