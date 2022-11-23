@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { mergeMap, map, switchMap, tap, catchError, of, throwError } from 'rxjs';
+import { catchError, map, mergeMap, switchMap, tap, throwError } from 'rxjs';
 import { BoardsService, ITask } from 'src/app/modules';
-import { IAppState } from '../app.state';
 import {
   addTask,
   addTaskSuccess,
@@ -17,7 +16,7 @@ import {
 
 @Injectable()
 export class TasksEffects {
-  constructor(private actions$: Actions, private boardsService: BoardsService, private store: Store<IAppState>) {}
+  constructor(private actions$: Actions, private boardsService: BoardsService, private store: Store) {}
 
   loadTasks$ = createEffect(() => {
     return this.actions$.pipe(
@@ -38,16 +37,19 @@ export class TasksEffects {
   addTask$ = createEffect(() => {
     let newTask: ITask;
     let newTaskOrder: number;
+
     return this.actions$.pipe(
       ofType(addTask),
       mergeMap((action) => {
         return this.boardsService.addTask(action.boardId, action.columnId, action.task).pipe(
           map((data: ITask) => {
             const task = data;
+
             newTask = task;
             if (action.taskOrder) {
               newTaskOrder = action.taskOrder;
             }
+
             return addTaskSuccess({ task });
           }),
           catchError((errResp) => {
@@ -68,6 +70,7 @@ export class TasksEffects {
             boardId: newTask.boardId,
             columnId: newTask.columnId,
           };
+
           this.store.dispatch(updateTask({ taskId, task }));
         }
       }),

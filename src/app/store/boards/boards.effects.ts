@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { RouterNavigatedAction, ROUTER_NAVIGATION } from '@ngrx/router-store';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { ROUTER_NAVIGATION, RouterNavigatedAction } from '@ngrx/router-store';
 import { Store } from '@ngrx/store';
-import { mergeMap, map, switchMap, withLatestFrom, filter, of, catchError, throwError } from 'rxjs';
+import { catchError, filter, map, mergeMap, of, switchMap, throwError } from 'rxjs';
 import { BoardsService, IBoard } from 'src/app/modules';
-import { IAppState } from '../app.state';
 import { RouterStateUrl } from '../app/router/custom-serializer';
 import { dummyAction } from '../auth/auth.action';
 import {
@@ -21,7 +20,7 @@ import { getBoards } from './boards.selector';
 
 @Injectable()
 export class BoardsEffects {
-  constructor(private actions$: Actions, private boardsService: BoardsService, private store: Store<IAppState>) {}
+  constructor(private actions$: Actions, private boardsService: BoardsService, private store: Store) {}
 
   loadBoards$ = createEffect(() => {
     return this.actions$.pipe(
@@ -96,20 +95,22 @@ export class BoardsEffects {
         return r.payload.routerState.url.startsWith('/boards');
       }),
       map((r: RouterNavigatedAction<RouterStateUrl>) => {
-        return r.payload.routerState['params']['id'];
+        return r.payload.routerState.params['id'];
       }),
-      withLatestFrom(this.store.select(getBoards)),
+      concatLatestFrom(() => this.store.select(getBoards)),
       switchMap(([id, boards]) => {
         if (!boards.length) {
           if (id) {
             return this.boardsService.getBoardById(id).pipe(
               map((board) => {
                 const boardData = [{ ...board }];
+
                 return loadBoardsSuccess({ boards: boardData });
               }),
             );
           }
         }
+
         return of(dummyAction());
       }),
       catchError((errResp) => {

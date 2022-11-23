@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IBoard } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/store';
 import { EditBoardModalComponent } from '../edit-board-modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeleteBoardModalComponent } from '../delete-board-modal';
@@ -15,12 +14,7 @@ import { DeleteBoardModalComponent } from '../delete-board-modal';
 export class BoardComponent implements OnInit {
   @Input() public board: IBoard;
 
-  constructor(
-    private store: Store<IAppState>,
-    public matDialog: MatDialog,
-    public router: Router,
-    public route: ActivatedRoute,
-  ) {}
+  constructor(private store: Store, public matDialog: MatDialog, public router: Router, public route: ActivatedRoute) {}
 
   ngOnInit(): void {}
 

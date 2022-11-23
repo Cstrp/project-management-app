@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription, map, catchError, of, throwError } from 'rxjs';
-import { getAdvancedBoardById, IAppState } from 'src/app/store';
+import { catchError, map, Observable, Subscription, throwError } from 'rxjs';
+import { getAdvancedBoardById } from 'src/app/store';
 import { getColumns, loadColumns, updateColumn } from 'src/app/store/columns';
-import { AddColumnModalComponent } from '../add-column-modal/add-column-modal.component';
-import { IBoard } from '../board/models';
+import { IBoard } from '../board';
 import { IColumn } from '../column';
+import { AddColumnModalComponent } from '../add-column-modal';
 
 @Component({
   selector: 'app-board-advanced',
@@ -17,13 +17,18 @@ import { IColumn } from '../column';
 })
 export class BoardAdvancedComponent implements OnInit {
   public board: IBoard;
+
   public boardId: string;
+
   public boardSubscription: Subscription;
+
   public columns$: Observable<Array<IColumn>>;
+
   public columnsSubscription: Subscription;
+
   public columnsArray: Array<IColumn>;
 
-  constructor(private store: Store<IAppState>, private router: Router, public matDialog: MatDialog) {}
+  constructor(private store: Store, private router: Router, public matDialog: MatDialog) {}
 
   public ngOnInit(): void {
     this.boardSubscription = this.store.select(getAdvancedBoardById).subscribe((data: undefined | IBoard) => {
@@ -31,12 +36,14 @@ export class BoardAdvancedComponent implements OnInit {
         this.board = data as IBoard;
         this.boardId = data?.id as string;
         const id: string = this.boardId;
+
         this.store.dispatch(loadColumns({ id }));
         this.columns$ = this.store.select(getColumns).pipe(
           map((value) => {
             this.columnsArray = [...value].sort((a: IColumn, b: IColumn) => {
               return (a.order as number) - (b.order as number);
             });
+
             return this.columnsArray;
           }),
           catchError((errResp) => {
@@ -52,6 +59,7 @@ export class BoardAdvancedComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       let column1 = event.container.data[event.currentIndex];
       let column2 = event.container.data[event.previousIndex];
+
       this.editOrderColumn(column1.title, event.currentIndex + 1, column1.id as string);
       this.editOrderColumn(column2.title, event.previousIndex + 1, column2.id as string);
     }
@@ -63,6 +71,7 @@ export class BoardAdvancedComponent implements OnInit {
       order: columnOrder,
     };
     const boardId: string = this.boardId;
+
     this.store.dispatch(updateColumn({ boardId, column, columnId }));
   }
 

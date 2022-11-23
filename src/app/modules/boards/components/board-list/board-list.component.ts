@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map, catchError, of, throwError } from 'rxjs';
-import { IAppState } from 'src/app/store';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { getBoards } from 'src/app/store/boards/boards.selector';
-import { IBoard } from '../board/models';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBoardModalComponent } from '../add-board-modal';
 import { loadBoards } from 'src/app/store/boards/boards.actions';
+import { IBoard } from '../board';
 
 @Component({
   selector: 'app-board-list',
@@ -18,7 +17,7 @@ export class BoardListComponent implements OnInit {
 
   public title: string;
 
-  constructor(private store: Store<IAppState>, public matDialog: MatDialog) {}
+  constructor(private store: Store, public matDialog: MatDialog) {}
 
   public ngOnInit(): void {
     this.boards$ = this.store.select(getBoards).pipe(
