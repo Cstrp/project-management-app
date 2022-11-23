@@ -14,6 +14,7 @@ import { AuthPageModule } from './modules/auth-page/auth-page.module';
 import { HomeModule } from './modules/home/home.module';
 import { MaterialModule } from './modules/material/material.module';
 import { SharedModule } from './modules/shared/shared.module';
+
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
