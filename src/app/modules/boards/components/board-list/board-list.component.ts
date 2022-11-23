@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { getBoards } from 'src/app/store/boards/boards.selector';
+import { IBoard } from '../board';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBoardModalComponent } from '../add-board-modal';
 import { loadBoards } from 'src/app/store/boards/boards.actions';
-import { IBoard } from '../board';
 
 @Component({
   selector: 'app-board-list',
