@@ -6,3 +6,6 @@
   </main>
   <app-footer class="z-10 mat-app-background" [ngClass]="{ 'dark-theme': darkTheme | async }"></app-footer>
 </div>
+
+
+<mat-progress-spinner [mode]="'indeterminate'" *ngIf="loading$ | async"></mat-progress-spinner>

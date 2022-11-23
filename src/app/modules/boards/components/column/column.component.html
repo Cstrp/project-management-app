@@ -1,0 +1,62 @@
+<div class="column__container">
+  <ng-content></ng-content>
+  <div class="form-column-container">
+    <form class="edit-column-form" *ngIf="isEditMode" [formGroup]="editColumnForm" (submit)="editColumn()">
+      <div class="form-field">
+        <mat-form-field class="modal-field" appearance="fill">
+          <mat-label class="modal-label">Title:</mat-label>
+          <input class="modal-input" autocomplete="off" required matInput type="text" formControlName="columnTitle">
+        </mat-form-field>
+        <div class="errors-container"
+          *ngIf="editColumnForm.get('columnTitle')?.errors && (editColumnForm.dirty || editColumnForm.touched)">
+          <span class="alert-danger" *ngIf="editColumnForm.get('columnTitle')?.errors?.['required']">Please enter
+            a
+            title</span>
+          <span class="alert-danger" *ngIf="editColumnForm.get('columnTitle')?.errors?.['minlength']">Name must
+            be at
+            least 4 characters long.</span>
+        </div>
+      </div>
+
+      <div class="form-buttons">
+        <button [disabled]="!editColumnForm.valid" class="form-button form-edit-btn" type="submit">
+          <mat-icon class="form-button-icon form-edit-btn-icon">done</mat-icon>
+        </button>
+        <button (click)="toggleEditMode()" class="form-button form-cancel-btn" type="button">
+          <mat-icon class="form-button-icon form-cancel-btn-icon">close</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="column__about">
+    <div class="column__title-container">
+      <p *ngIf="!isEditMode" class="column__title">{{column.title}}</p>
+      <button *ngIf="!isEditMode" (click)="toggleEditMode()" class="column-edit-btn">
+        <mat-icon class="column-tool-icon">mode_edit</mat-icon>
+      </button>
+    </div>
+    <button (click)="openDeleteColumnModal()" class="column-delete-btn">
+      <mat-icon class="column-tool-icon">delete</mat-icon>
+    </button>
+  </div>
+
+
+  <div id="{{ column.id }}" class="tasks__container" cdkDropList [cdkDropListData]="tasksArray"
+    [cdkDropListConnectedTo]="columnsIds" (cdkDropListDropped)="dropTasks($event)">
+    <app-task id="{{ task.id }}" *ngFor="let task of tasksArray" [task]="task" cdkDrag>
+      <div class="example-handle" cdkDragHandle>
+        <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+          </path>
+          <path d="M0 0h24v24H0z" fill="none"></path>
+        </svg>
+      </div>
+    </app-task>
+  </div>
+
+  <button (click)="openCreateTask()" mat-raised-button color="accent" class="create-task-btn">Create task
+    <mat-icon class="create-task-btn-icon">add_task</mat-icon>
+  </button>
+</div>

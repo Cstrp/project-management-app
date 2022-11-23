@@ -1,0 +1,211 @@
+:host {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: rgba(239, 243, 253, 0.68);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(239, 243, 253, 0.3);
+}
+
+.column__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.column__about {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.edit-column-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.mat-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-edit-btn-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.form-cancel-btn-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.column__title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.column__title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  border-bottom: 1px solid #6539b4;
+  padding: 5px;
+}
+
+.column-edit-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(182, 182, 182, 0.097) 0%, rgba(243, 243, 243, 0.097) 100%);
+  box-shadow: inset 0.76px -0.76px 0.76px rgba(170, 170, 170, 0.394),
+    inset 1.52px -1.52px 1.52px rgba(255, 255, 255, 0.394), inset -0.76px 0.76px 0.76px rgba(255, 255, 255, 0.394),
+    inset -1.52px 1.52px 1.52px rgba(170, 170, 170, 0.394);
+  backdrop-filter: blur(7.714px);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.column-tool-icon {
+  font-size: 18px;
+  text-align: center;
+}
+
+.column-delete-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(182, 182, 182, 0.097) 0%, rgba(243, 243, 243, 0.097) 100%);
+  box-shadow: inset 0.76px -0.76px 0.76px rgba(170, 170, 170, 0.394),
+    inset 1.52px -1.52px 1.52px rgba(255, 255, 255, 0.394), inset -0.76px 0.76px 0.76px rgba(255, 255, 255, 0.394),
+    inset -1.52px 1.52px 1.52px rgba(170, 170, 170, 0.394);
+  backdrop-filter: blur(7.714px);
+  border-radius: 50%;
+  padding: 5px;
+  color: rgb(185, 16, 16);
+}
+
+.tasks__container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+  border: 1px solid #683ab75b;
+  height: 40vh;
+  width: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 5px;
+  gap: 15px;
+}
+
+.create-task-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-task-btn-icon {
+  width: 31px;
+  height: 31px;
+}
+
+.modal-field {
+  width: 100%;
+}
+
+.modal-label {
+  width: 100%;
+}
+
+.modal-input {
+  width: 100%;
+}
+
+.errors-container {
+  border-radius: 4px;
+  color: #aa2323;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.modal-label {
+  font-size: 14px;
+}
+
+.mat-form-field.mat-warn .mat-input-element,
+.mat-form-field-invalid .mat-input-element {
+  font-size: 16px;
+}
+
+::ng-deep.mat-dialog-container {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-field {
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.form-column-container {
+  width: 100%;
+}
+
+mat-label {
+  color: black;
+  font-size: 19px;
+}
+
+::ng-deep.mat-form-field-appearance-fill ::ng-deep.mat-form-field-flex {
+  border-radius: 4px 4px 0 0;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.example-handle {
+  cursor: move;
+  margin: 0 auto;
+}

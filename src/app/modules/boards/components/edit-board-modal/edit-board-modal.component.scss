@@ -1,0 +1,100 @@
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal-container {
+  width: 100%;
+}
+
+.modal-field {
+  width: 100%;
+}
+
+.modal-label {
+  width: 100%;
+}
+
+.modal-input {
+  width: 100%;
+}
+
+.errors-container {
+  padding: 4px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  color: #aa2323;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.modal-label {
+  font-size: 14px;
+}
+
+.form__container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 30px;
+  padding: 28px 25px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form__container.INVALID {
+  border: 1px solid #bf1815;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+.form__container.PENDING {
+  border: 1px solid #f6de0b;
+  box-shadow: 0 0 5px rgba(255, 235, 0, 0.7);
+}
+
+.form__container.VALID {
+  border: 1px solid #2ee536;
+  box-shadow: 0 0 5px rgba(78, 233, 84, 0.7);
+}
+
+.mat-form-field.mat-warn .mat-input-element,
+.mat-form-field-invalid .mat-input-element {
+  font-size: 16px;
+}
+
+::ng-deep.mat-dialog-container {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-field {
+  width: 100%;
+}
+
+mat-label {
+  color: black;
+  font-size: 19px;
+}

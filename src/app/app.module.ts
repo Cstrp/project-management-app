@@ -29,20 +29,32 @@ import { CustomSerializer } from './store/app/router/custom-serializer';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     DragDropModule,
+    StoreModule.forRoot(appReducer),
     HomeModule,
-    MaterialModule,
     AuthPageModule,
     SharedModule,
-    StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
+    BoardsModule,
+    MatButtonModule,
+    MaterialModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NetworkInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

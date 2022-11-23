@@ -7,6 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { Random_positionDirective } from './directives/random_position.directive';
 import { Random_colorDirective } from './directives/random_color.directive';
 import { ScrollAnimationDirective } from './directives/scroll-animation.directive';
+import { BoardsModule } from '../boards';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { ScrollAnimationDirective } from './directives/scroll-animation.directiv
     Random_colorDirective,
     ScrollAnimationDirective,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, BoardsModule],
   exports: [
     HeaderComponent,
     FooterComponent,

@@ -1,21 +1,20 @@
-import { SHARED_STATE_NAME } from './app/shared/shared.selector';
-import { SharedState } from './app/shared/shared.state';
-import { AUTH_STATE_NAME } from './auth/auth.selector';
-import { AuthState } from './auth/auth.state';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
-import { SharedReducer } from './app/shared/shared.reducer';
-import { AuthReducer } from './auth/auth.reducer';
+import { boardsReducer } from './boards/boards.reducer';
+import { IBoardsState } from './boards/models';
+import { columnsReducer, IColumnsState } from './columns';
+import { ITasksState } from './tasks/models';
+import { tasksReducer } from './tasks/tasks.reducer';
 
-interface AppState {
-  [SHARED_STATE_NAME]: SharedState;
-  [AUTH_STATE_NAME]: AuthState;
+export interface IAppState {
+  boards: IBoardsState;
   router: RouterReducerState;
+  columns: IColumnsState;
+  tasks: ITasksState
 }
 
-const appReducer = {
-  [SHARED_STATE_NAME]: SharedReducer,
-  [AUTH_STATE_NAME]: AuthReducer,
+export const appReducer = {
+  boards: boardsReducer,
   router: routerReducer,
+  columns: columnsReducer,
+  tasks: tasksReducer
 };
-
-export { AppState, appReducer };

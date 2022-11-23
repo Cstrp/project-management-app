@@ -1,0 +1,22 @@
+<div class="board">
+  <div class="board-content">
+    <div class="board-title__container">
+      <p class="board-text board-title">{{(board.title.length>15)? (board.title |
+        slice:0:15)+'...':(board.title)}}</p>
+    </div>
+
+    <p class="board-text board-desc">{{(board.description.length>25)? (board.description |
+      slice:0:25)+'...':(board.description)}}</p>
+  </div>
+  <div class="board-edit-items">
+    <button class="board-tool board-edit" (click)="openModalEdit()">
+      <mat-icon class="board-tool-icon">mode_edit</mat-icon>
+    </button>
+
+    <button mat-raised-button color="primary" (click)="goToBoard()">Details</button>
+
+    <button class="board-tool board-delete" (click)="openModalDelete()">
+      <mat-icon class="board-tool-icon">delete</mat-icon>
+    </button>
+  </div>
+</div>
