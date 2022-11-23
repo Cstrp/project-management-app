@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardsRoutingModule } from './boards-routing.module';
-import { MaterialModule } from '../material';
 import {
   AddBoardComponent,
   AddBoardModalComponent,
@@ -26,6 +25,7 @@ import { BoardsEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
 import { ColumnsEffects } from 'src/app/store/columns';
 import { TasksEffects } from 'src/app/store/tasks/tasks.effects';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
