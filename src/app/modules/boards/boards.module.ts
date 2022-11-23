@@ -23,8 +23,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects, ColumnsEffects, TasksEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
-import { ColumnsEffects } from 'src/app/store/columns';
-import { TasksEffects } from 'src/app/store/tasks/tasks.effects';
 import { MaterialModule } from '../material/material.module';
 
 @NgModule({
