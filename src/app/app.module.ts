@@ -1,9 +1,7 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -12,12 +10,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BoardsModule } from './modules';
 import { AuthPageModule } from './modules/auth-page/auth-page.module';
 import { HomeModule } from './modules/home/home.module';
 import { MaterialModule } from './modules/material/material.module';
-import { NetworkInterceptor } from './modules/shared/interceptors/network.interceptor';
 import { SharedModule } from './modules/shared/shared.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { BoardsModule } from './modules';
+import { NetworkInterceptor } from './modules/shared/interceptors/network.interceptor';
 import { appReducer } from './store';
 import { CustomSerializer } from './store/app/router/custom-serializer';
 
