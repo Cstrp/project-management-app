@@ -1,26 +1,25 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { StoreModule } from '@ngrx/store';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { BoardsModule } from './modules';
-import { FormsModule } from '@angular/forms';
-import { appReducer } from './store';
-import { HomeModule } from './modules/home/home.module';
-import { MatButtonModule } from '@angular/material/button';
 import { AuthPageModule } from './modules/auth-page/auth-page.module';
-import { SharedModule } from './modules/shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CustomSerializer } from './store/app/router/custom-serializer';
+import { HomeModule } from './modules/home/home.module';
 import { MaterialModule } from './modules/material/material.module';
 import { NetworkInterceptor } from './modules/shared/interceptors/network.interceptor';
+import { SharedModule } from './modules/shared/shared.module';
+import { appReducer } from './store';
+import { CustomSerializer } from './store/app/router/custom-serializer';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -55,4 +54,4 @@ import { NetworkInterceptor } from './modules/shared/interceptors/network.interc
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
