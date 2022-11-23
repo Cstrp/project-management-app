@@ -15,6 +15,14 @@ import { HomeModule } from './modules/home/home.module';
 import { MaterialModule } from './modules/material/material.module';
 import { SharedModule } from './modules/shared/shared.module';
 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { BoardsModule } from './modules';
+import { NetworkInterceptor } from './modules/shared/interceptors/network.interceptor';
+import { appReducer } from './store';
+import { CustomSerializer } from './store/app/router/custom-serializer';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -37,8 +45,7 @@ import { SharedModule } from './modules/shared/shared.module';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}
 
 // https://final-task-backend-production-aa14.up.railway.app/api-docs/
 
