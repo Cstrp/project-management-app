@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   toggleTheme(check: boolean): void {
     this.themeService.setTheme(check);
+    console.log(check);
   }
 
   toggleSidenav() {
