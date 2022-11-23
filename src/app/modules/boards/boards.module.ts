@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardsRoutingModule } from './boards-routing.module';
-import { MaterialModule } from '../material';
 import {
   AddBoardComponent,
   AddBoardModalComponent,
@@ -19,6 +18,7 @@ import { BoardsNavigateComponent } from './components/boards-navigate';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects, ColumnsEffects, TasksEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
