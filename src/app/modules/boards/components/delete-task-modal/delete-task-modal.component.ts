@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { deleteTask } from 'src/app/store';
+import { deleteTask, IAppState } from 'src/app/store';
 import { ITask } from '../task';
 
 @Component({
@@ -11,9 +11,8 @@ import { ITask } from '../task';
 })
 export class DeleteTaskModalComponent implements OnInit {
   public task: ITask;
-
   constructor(
-    private store: Store,
+    private store: Store<IAppState>,
     private ref: MatDialogRef<DeleteTaskModalComponent>,
     @Inject(MAT_DIALOG_DATA) data: { task: ITask },
   ) {
@@ -28,7 +27,6 @@ export class DeleteTaskModalComponent implements OnInit {
 
   public deleteModal(): void {
     const task: ITask = this.task;
-
     this.store.dispatch(deleteTask({ task }));
     this.closeModal();
   }

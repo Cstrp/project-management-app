@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store';
 import { addBoard } from 'src/app/store/boards/boards.actions';
 import { IBoard } from '../board';
 
@@ -20,7 +21,11 @@ export class AddBoardModalComponent implements OnInit {
 
   public description: string;
 
-  constructor(private store: Store, private route: Router, private ref: MatDialogRef<AddBoardModalComponent>) {}
+  constructor(
+    private store: Store<IAppState>,
+    private route: Router,
+    private ref: MatDialogRef<AddBoardModalComponent>,
+  ) {}
 
   public ngOnInit(): void {
     this.addBoardForm = new FormGroup({

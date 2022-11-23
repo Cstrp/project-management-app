@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store';
 import { deleteColumn } from 'src/app/store/columns';
 
 @Component({
@@ -10,11 +12,10 @@ import { deleteColumn } from 'src/app/store/columns';
 })
 export class DeleteColumnModalComponent implements OnInit {
   public boardId: string;
-
   public columnId: string;
 
   constructor(
-    private store: Store,
+    private store: Store<IAppState>,
     private ref: MatDialogRef<DeleteColumnModalComponent>,
     @Inject(MAT_DIALOG_DATA) data: { boardId: string; columnId: string },
   ) {
@@ -31,7 +32,6 @@ export class DeleteColumnModalComponent implements OnInit {
   public deleteModal(): void {
     const boardId: string = this.boardId;
     const columnId: string = this.columnId;
-
     this.store.dispatch(deleteColumn({ boardId, columnId }));
     this.closeModal();
   }

@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store';
 import { addColumn } from 'src/app/store/columns';
 import { IColumn } from '../column';
 
@@ -24,7 +25,7 @@ export class AddColumnModalComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store,
+    private store: Store<IAppState>,
     private ref: MatDialogRef<AddColumnModalComponent>,
     @Inject(MAT_DIALOG_DATA) data: { boardId: string },
   ) {
@@ -58,7 +59,6 @@ export class AddColumnModalComponent implements OnInit {
       title: this.title,
     };
     const id: string = this.boardId;
-
     this.store.dispatch(addColumn({ id, column }));
     this.closeModal();
   }

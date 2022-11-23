@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store';
 import { updateBoard } from 'src/app/store/boards/boards.actions';
 import { getBoardById } from 'src/app/store/boards/boards.selector';
 import { IBoard } from '../board';
@@ -26,7 +27,7 @@ export class EditBoardModalComponent implements OnInit {
   public board: IBoard;
 
   constructor(
-    private store: Store,
+    private store: Store<IAppState>,
     private router: Router,
     private ref: MatDialogRef<EditBoardModalComponent>,
     public activatedRoute: ActivatedRoute,

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store';
 import { deleteBoard } from 'src/app/store/boards/boards.actions';
+import { IBoard } from '../board';
 
 @Component({
   selector: 'app-delete-board-modal',
@@ -13,7 +16,7 @@ export class DeleteBoardModalComponent implements OnInit {
   public boardId: string;
 
   constructor(
-    private store: Store,
+    private store: Store<IAppState>,
     private router: Router,
     private ref: MatDialogRef<DeleteBoardModalComponent>,
     public activatedRoute: ActivatedRoute,

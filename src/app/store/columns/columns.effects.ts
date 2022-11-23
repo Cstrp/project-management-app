@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, mergeMap, switchMap, throwError } from 'rxjs';
+import { mergeMap, map, switchMap, catchError, of, throwError } from 'rxjs';
 import { BoardsService, IColumn } from 'src/app/modules';
+import { IAppState } from '../app.state';
 import {
   addColumn,
   addColumnSuccess,
@@ -16,7 +17,7 @@ import {
 
 @Injectable()
 export class ColumnsEffects {
-  constructor(private actions$: Actions, private boardsService: BoardsService, private store: Store) {}
+  constructor(private actions$: Actions, private boardsService: BoardsService, private store: Store<IAppState>) {}
 
   loadColumns$ = createEffect(() => {
     return this.actions$.pipe(
@@ -41,7 +42,6 @@ export class ColumnsEffects {
         return this.boardsService.addColumn(action.id, action.column).pipe(
           map((data: IColumn) => {
             const column = data;
-
             return addColumnSuccess({ column });
           }),
           catchError((errResp) => {

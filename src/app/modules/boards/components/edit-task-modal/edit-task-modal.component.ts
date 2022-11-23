@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { updateTask } from 'src/app/store';
+import { IAppState, updateTask } from 'src/app/store';
 import { BoardsService, IUser } from '../../services';
 import { ITask } from '../task';
 
@@ -32,7 +32,7 @@ export class EditTaskModalComponent implements OnInit {
   public users$: Observable<Array<IUser>>;
 
   constructor(
-    private store: Store,
+    private store: Store<IAppState>,
     private ref: MatDialogRef<EditTaskModalComponent>,
     private boardService: BoardsService,
     @Inject(MAT_DIALOG_DATA) data: { task: ITask },
@@ -81,7 +81,6 @@ export class EditTaskModalComponent implements OnInit {
       columnId: this.task.columnId,
     };
     const taskId: string = this.task.id as string;
-
     this.store.dispatch(updateTask({ taskId, task }));
     this.closeModal();
   }
