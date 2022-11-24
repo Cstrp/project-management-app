@@ -1,27 +1,43 @@
 @use '@angular/material/theming' as mat;
-// Our dark theme
+
 .dark-theme {
   color: mat.$light-primary-text;
-  $dark-primary: mat.mat-palette(mat.$mat-yellow);
-  $dark-accent: mat.mat-palette(mat.$mat-amber, A200, A100, A400);
+  $dark-primary: mat.mat-palette(mat.$mat-teal, 500, 100, 900);
+  $dark-accent: mat.mat-palette(mat.$mat-pink, A200, A100, A400);
   $dark-warn: mat.mat-palette(mat.$mat-red);
   $dark-theme: mat.mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
   p,
   a,
   span,
   div,
-  label,
   h2 {
-    color: white;
+    color: #dfe6e9;
+  }
+
+  input {
+    color: #000;
+  }
+
+  strong {
+    color: rgba(255, 0, 0, 0.65);
+  }
+
+  label,
+  i {
+    color: black;
+  }
+
+  .info {
+    color: black;
   }
 
   .someClass {
     background: rgba(0, 0, 0, 0.25);
     &:hover {
       background: rgba(250, 233, 215, 0.5);
-      color: black;
     }
   }
 
-  @include mat.angular-material-theme($dark-theme);
+  @include mat.all-component-colors($dark-theme);
 }

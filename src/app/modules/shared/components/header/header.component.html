@@ -82,7 +82,11 @@
               </a>
             </ng-template>
           </mat-menu>
-          <mat-slide-toggle [checked]="darkTheme | async" (change)="toggleTheme($event.checked)"></mat-slide-toggle>
+          <mat-slide-toggle
+            [checked]="themeService._darkTheme$$ | async"
+            (change)="toggleTheme($event.checked)"
+          ></mat-slide-toggle>
+          <p>{{ themeService._darkTheme$$ | async }}</p>
         </div>
       </div>
     </nav>

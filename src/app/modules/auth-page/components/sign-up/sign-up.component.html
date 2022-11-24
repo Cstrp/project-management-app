@@ -10,7 +10,7 @@
       <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
         <div class="text-center mb-10">
           <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
-          <p>Enter your information to register</p>
+          <p class="info">Enter your information to register</p>
         </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="flex -mx-3">
@@ -30,9 +30,9 @@
                 />
               </div>
               <div *ngIf="f['name'].touched && f['name'].invalid" class="text-red-600">
-                <div *ngIf="f['name'].errors?.['required']">Username is required</div>
-                <div *ngIf="f['name'].errors?.['minlength']">Username must be at least 3 characters</div>
-                <div *ngIf="f['name'].errors?.['maxlength']">Username must not exceed 16 characters</div>
+                <strong *ngIf="f['name'].errors?.['required']">Username is required</strong>
+                <strong *ngIf="f['name'].errors?.['minlength']">Username must be at least 3 characters</strong>
+                <strong *ngIf="f['name'].errors?.['maxlength']">Username must not exceed 16 characters</strong>
               </div>
             </div>
           </div>
@@ -53,10 +53,10 @@
                   placeholder="Type your login here..."
                 />
               </div>
-              <div *ngIf="f['login'].touched && f['login'].invalid" class="text-red-600">
-                <div *ngIf="f['login'].errors?.['required']">Login is required</div>
-                <div *ngIf="f['login'].errors?.['minlength']">Login must be at least 3 characters</div>
-                <div *ngIf="f['login'].errors?.['maxlength']">Login must not exceed 16 characters</div>
+              <div *ngIf="f['login'].touched && f['login'].invalid" class="text-red-600 err">
+                <strong *ngIf="f['login'].errors?.['required']">Login is required</strong>
+                <strong *ngIf="f['login'].errors?.['minlength']">Login must be at least 3 characters</strong>
+                <strong *ngIf="f['login'].errors?.['maxlength']">Login must not exceed 16 characters</strong>
               </div>
             </div>
           </div>
@@ -91,14 +91,14 @@
                   </span>
                 </div>
               </div>
-              <div *ngIf="f['password'].touched && f['password'].dirty" class="text-red-600">
-                <div *ngIf="f['password'].errors?.['required']">Password is required</div>
-                <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 3 characters</div>
-                <div *ngIf="f['password'].errors?.['maxlength']">Password must not exceed 16 characters</div>
-                <div *ngIf="f['password'].errors?.['pattern']">
+              <div *ngIf="f['password'].touched && f['password'].dirty" class="text-red-600 err">
+                <strong *ngIf="f['password'].errors?.['required']">Password is required</strong>
+                <strong *ngIf="f['password'].errors?.['minlength']">Password must be at least 3 characters</strong>
+                <strong *ngIf="f['password'].errors?.['maxlength']">Password must not exceed 16 characters</strong>
+                <strong *ngIf="f['password'].errors?.['pattern']">
                   Password is not valid. Minimum one uppercase letter, one lowercase letter, one number and one special
                   character.
-                </div>
+                </strong>
               </div>
             </div>
           </div>

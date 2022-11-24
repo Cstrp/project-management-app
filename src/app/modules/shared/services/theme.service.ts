@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectChanges } from '../../../store/app/theme/theme.selector';
+import { changeTheme } from '../../../store/app/theme/theme.action';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private _darkTheme$: Subject<boolean> = new Subject<boolean>();
+  public _darkTheme$$: Observable<boolean>;
 
-  public _darkTheme$$ = this._darkTheme$.asObservable();
+  constructor(private store: Store) {}
 
-  constructor() {}
+  setTheme(theme: boolean) {
+    this.store.dispatch(changeTheme({ change: theme }));
+  }
 
-  setTheme(theme: boolean): void {
-    this._darkTheme$.next(theme);
+  getTheme() {
+    return (this._darkTheme$$ = this.store.select(selectChanges));
   }
 }

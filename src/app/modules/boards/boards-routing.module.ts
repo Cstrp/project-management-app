@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BoardAdvancedComponent } from './components';
-import { BoardsPageComponent } from './components/boards-page';
+import { BoardAdvancedComponent, BoardsPageComponent } from './components';
 
 const routes: Routes = [
   { path: 'boards', component: BoardsPageComponent },

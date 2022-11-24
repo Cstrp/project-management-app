@@ -25,7 +25,7 @@ import { BoardsEffects } from 'src/app/store';
 import { _httpInterceptorProvider } from '../../constants';
 import { ColumnsEffects } from 'src/app/store/columns';
 import { TasksEffects } from 'src/app/store/tasks/tasks.effects';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../shared/material/material.module';
 
 @NgModule({
   declarations: [

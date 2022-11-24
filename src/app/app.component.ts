@@ -1,22 +1,29 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
 import { catchError, delay, mergeMap, Observable, of, throwError } from 'rxjs';
 import { ThemeService } from './modules/shared/services/theme.service';
 import { LoadingService } from './services';
+import { Store } from '@ngrx/store';
+import { selectChanges } from './store/app/theme/theme.selector';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges, AfterContentChecked, AfterViewInit {
   public loading$: Observable<boolean>;
-  title = 'project-management-app';
-  public darkTheme: Observable<boolean>;
 
-  constructor(public loader: LoadingService, private ref: ChangeDetectorRef, private themeService: ThemeService) {}
+  public darkTheme: Observable<boolean> = this.store.select(selectChanges);
+
+  constructor(
+    public loader: LoadingService,
+    private ref: ChangeDetectorRef,
+    private themeService: ThemeService,
+    private store: Store,
+  ) {}
 
   public ngOnInit(): void {
-    this.darkTheme = this.themeService._darkTheme$$;
+    this.darkTheme.subscribe();
     this.ref.detectChanges();
     this.loading$ = this.loader.loading$.pipe(
       mergeMap((event) => of(event).pipe(delay(300))),
@@ -34,7 +41,7 @@ export class AppComponent implements OnInit {
     this.ref.detectChanges();
   }
 
-  public ngOnChages() {
+  ngOnChanges() {
     this.loading$ = this.loader.loading$;
   }
 }
