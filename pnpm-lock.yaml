@@ -34,7 +34,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 5.37.0
   '@typescript-eslint/parser': 5.37.0
   autoprefixer: ^10.4.13
-  crypto-js: ^4.1.1
   eslint: ^8.27.0
   eslint-config-airbnb-typescript: ^17.0.0
   eslint-config-prettier: ^8.5.0
@@ -76,7 +75,6 @@ dependencies:
   '@ngrx/store': 14.3.2_jpa5hf3tomq23hvgj5gpcxooxe
   '@ngrx/store-devtools': 14.3.2_s4eemevjanth4ljcy2p6xoqaq4
   '@syncfusion/ej2-angular-navigations': 20.3.56-ngcc
-  crypto-js: 4.1.1
   font-awesome: 4.7.0
   ngx-drag-drop: 14.0.0_4coduzqdjoyy7ms7kcfwk5fdv4
   normalize.css: 8.0.1
@@ -3703,10 +3701,6 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
-
-  /crypto-js/4.1.1:
-    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
-    dev: false
 
   /css-blank-pseudo/3.0.3_postcss@8.4.16:
     resolution: {integrity: sha512-VS90XWtsHGqoM0t4KpH053c4ehxZ2E6HtGI7x68YFV0pTo/QmkV/YFA+NnlvK8guxZVNWGQhVNJGC39Q8XF4OQ==}
