@@ -6,8 +6,8 @@ export const APP_THEME_FEATURE = 'theme';
 
 export const themeReducer = createReducer(
   initialState,
-  on(changeTheme, (state) => ({
+  on(changeTheme, (state, { change }) => ({
     ...state,
-    change: !state.change,
+    change,
   })),
 );
