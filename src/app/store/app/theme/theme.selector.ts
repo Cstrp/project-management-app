@@ -4,4 +4,4 @@ import { AppTheme } from './models/appTheme';
 
 const selectTheme = createFeatureSelector<AppTheme>(APP_THEME_FEATURE);
 
-export const selectChanges = createSelector(selectTheme, (state) => state.changeTheme);
+export const selectChanges = createSelector(selectTheme, (state) => state.change);

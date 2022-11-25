@@ -1,3 +1,3 @@
 export interface AppTheme {
-  changeTheme: boolean;
+  change: boolean;
 }

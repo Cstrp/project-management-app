@@ -8,10 +8,8 @@ import { Random_positionDirective } from './directives/random_position.directive
 import { Random_colorDirective } from './directives/random_color.directive';
 import { ScrollAnimationDirective } from './directives/scroll-animation.directive';
 import { BoardsModule } from '../boards';
-import { StoreModule } from '@ngrx/store';
-import { APP_THEME_FEATURE, themeReducer } from '../../store/app/theme/theme.reducer';
-import { ThemeEffect } from '../../store/app/theme/theme.effect';
 import { EffectsModule } from '@ngrx/effects';
+import { ThemeEffect } from '../../store/app/theme/theme.effect';
 
 @NgModule({
   declarations: [
@@ -22,13 +20,7 @@ import { EffectsModule } from '@ngrx/effects';
     Random_colorDirective,
     ScrollAnimationDirective,
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    BoardsModule,
-    EffectsModule.forFeature([ThemeEffect]),
-    StoreModule.forFeature(APP_THEME_FEATURE, themeReducer),
-  ],
+  imports: [CommonModule, MaterialModule, BoardsModule, EffectsModule.forFeature([ThemeEffect])],
 
   exports: [
     HeaderComponent,

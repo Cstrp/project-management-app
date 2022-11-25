@@ -1,22 +1,48 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions } from '@ngrx/effects';
 import { ThemeService } from '../../../modules/shared/services/theme.service';
-import { changeTheme } from './theme.action';
-import { concat, of, switchMap } from 'rxjs';
 
 @Injectable()
 export class ThemeEffect {
   constructor(private actions$: Actions, private themeService: ThemeService) {}
 
-  toggleTheme$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(changeTheme),
-      switchMap((action) => {
-        return concat(of(changeTheme({ change: action.change })));
-      }),
-    );
-  });
+  // toggleTheme$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(changeTheme),
+  //     switchMap((effect) => {
+  //       return of(changeTheme({ change: effect.change }));
+  //       // map((change) => {
+  //       //   return of(changeTheme({ change: change }));
+  //       // }),
+  //     }),
+  //   );
+  // });
+
+  // @ts-ignore
+  //   toggleTheme$ = createEffect(() => {
+  //     return this.actions$.pipe(
+  //       ofType(changeTheme),
+  //       // switchMap(async (effect) => console.log(effect)),
+  //     );
+  //   });
+  // }
 }
+
+// switchMap((effect) =>
+//   this.themeService.getTheme(effect.change).pipe(
+//     map((change) => {
+//       return changeTheme({ change: change });
+//     }),
+//   ),
+// ),
+// toggleTheme$ = createEffect(() => {
+//   return this.actions$.pipe(
+//     ofType(changeTheme),
+//     switchMap((action) => {
+//       return concat(of(changeTheme({ change: action.change })));
+//     }),
+//   );
+// });
 //   toggleTheme$ = createEffect(() => {
 //     return this.actions$.pipe(
 //       ofType(changeTheme),
