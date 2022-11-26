@@ -2,92 +2,9 @@
   <mat-toolbar>
     <nav class="w-full border-gray-200 p-4 sm:px-4 py-2.5 rounded bg-gray-400 bg-opacity-25">
       <div class="container flex flex-wrap items-center justify-between mx-auto">
-        <div class="flex items-center gap-4">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M20.9653 0.633824C21.4371 1.14867 21.5205 1.91006 21.1713 2.51485L17.1713 9.44305L22.7139 12.6431C23.2306 12.9414 23.5384 13.5023 23.5124 14.0984C23.4864 14.6944 23.131 15.2265 22.5903 15.4787L4.89081 23.7351C4.25793 24.0303 3.50669 23.881 3.03485 23.3661C2.56301 22.8513 2.4796 22.0899 2.82878 21.4851L6.82878 14.5569L1.28621 11.3569C0.769541 11.0586 0.461749 10.4976 0.487731 9.90158C0.513713 9.30554 0.869153 8.77347 1.40982 8.52126L19.1093 0.264853C19.7422 -0.0303719 20.4934 0.118978 20.9653 0.633824Z"
-              fill="url(#paint0_linear_104_16)"
-            />
-            <defs>
-              <linearGradient
-                id="paint0_linear_104_16"
-                x1="19.2001"
-                y1="-0.47089"
-                x2="4.8"
-                y2="24.4708"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#6F47EB" offset="1" />
-                <stop offset="1" stop-color="#F68BFF" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="text-black self-center text-xl font-semibold whitespace-nowrap">{{
-            'Project management app' | titlecase
-          }}</span>
-          <button mat-icon-button (click)="toggleSidenav()">
-            <mat-icon *ngIf="!sidenavService.active">menu</mat-icon>
-            <mat-icon *ngIf="sidenavService.active">close</mat-icon>
-          </button>
-        </div>
-
+        <app-header-title></app-header-title>
         <app-boards-navigate></app-boards-navigate>
-        <!-- Dropdown menu -->
-        <div class="flex flex-row gap-4 items-center md:order-2">
-          <div class="relative hidden md:block">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                class="w-5 h-5 text-gray-500"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <span class="sr-only">Search icon</span>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              class="block w-full p-2 pl-10 text-sm text-black border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:focus:ring-blue-500"
-              placeholder="Search..."
-            />
-          </div>
-          <button
-            type="button"
-            class="flex mr-3 text-sm rounded-full md:mr-00"
-            [matMenuTriggerFor]="menu"
-            aria-expanded="false"
-            data-dropdown-toggle="user-dropdown"
-            data-dropdown-placement="bottom"
-          >
-            <mat-icon class="w-8 h-8 rounded-full">account_box</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <ng-template matMenuContent>
-              <a mat-menu-item>
-                <mat-icon>settings</mat-icon>
-                <span>Settings</span>
-              </a>
-              <a mat-menu-item>
-                <mat-icon>logout</mat-icon>
-                <span>Sign out</span>
-              </a>
-            </ng-template>
-          </mat-menu>
-          <mat-slide-toggle
-            [checked]="themeService._darkTheme$$ | async"
-            (change)="toggleTheme($event.checked)"
-          ></mat-slide-toggle>
-          <p>{{ themeService._darkTheme$$ | async }}</p>
-        </div>
+        <app-dropdown-menu></app-dropdown-menu>
       </div>
     </nav>
   </mat-toolbar>

@@ -3,7 +3,6 @@ import { catchError, delay, mergeMap, Observable, of, throwError } from 'rxjs';
 import { ThemeService } from './modules/shared/services/theme.service';
 import { LoadingService } from './services';
 import { Store } from '@ngrx/store';
-import { selectChanges } from './store/app/theme/theme.selector';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +12,7 @@ import { selectChanges } from './store/app/theme/theme.selector';
 export class AppComponent implements OnInit, OnChanges, AfterContentChecked, AfterViewInit {
   public loading$: Observable<boolean>;
 
-  public darkTheme: Observable<boolean> = this.store.select(selectChanges);
+  public darkTheme: Observable<boolean> = this.themeService.updSuccess;
 
   constructor(
     public loader: LoadingService,

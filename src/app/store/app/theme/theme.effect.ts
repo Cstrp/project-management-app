@@ -1,90 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Actions } from '@ngrx/effects';
-import { ThemeService } from '../../../modules/shared/services/theme.service';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { loadSuccess, loadTheme, updateTheme, updateThemeSuccess } from './theme.action';
+import { of, switchMap } from 'rxjs';
 
 @Injectable()
 export class ThemeEffect {
-  constructor(private actions$: Actions, private themeService: ThemeService) {}
+  private init: boolean = false;
 
-  // toggleTheme$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(changeTheme),
-  //     switchMap((effect) => {
-  //       return of(changeTheme({ change: effect.change }));
-  //       // map((change) => {
-  //       //   return of(changeTheme({ change: change }));
-  //       // }),
-  //     }),
-  //   );
-  // });
+  constructor(private actions$: Actions) {}
 
-  // @ts-ignore
-  //   toggleTheme$ = createEffect(() => {
-  //     return this.actions$.pipe(
-  //       ofType(changeTheme),
-  //       // switchMap(async (effect) => console.log(effect)),
-  //     );
-  //   });
-  // }
+  loadTheme$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(loadTheme),
+      switchMap(({ change }) => {
+        return of(loadSuccess({ change }));
+      }),
+    );
+  }); // bread!
+
+  updateTheme$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(updateTheme),
+      switchMap(({ change }) => {
+        return of(updateThemeSuccess({ change }));
+      }),
+    );
+  }); // bread x2
 }
-
-// switchMap((effect) =>
-//   this.themeService.getTheme(effect.change).pipe(
-//     map((change) => {
-//       return changeTheme({ change: change });
-//     }),
-//   ),
-// ),
-// toggleTheme$ = createEffect(() => {
-//   return this.actions$.pipe(
-//     ofType(changeTheme),
-//     switchMap((action) => {
-//       return concat(of(changeTheme({ change: action.change })));
-//     }),
-//   );
-// });
-//   toggleTheme$ = createEffect(() => {
-//     return this.actions$.pipe(
-//       ofType(changeTheme),
-//       switchMap(() => this.themeService.getTheme().pipe(map((theme) => of(changeTheme({ change: !theme }))))),
-//     );
-//   });
-// }
-
-//   toggleTheme$ = createEffect(() => {
-//     return this.actions$.pipe(
-//       ofType(changeTheme),
-//       switchMap(() => {
-//         return this.themeService.getTheme().pipe(
-//           map((change: boolean) => {
-//             return of(changeTheme({ change }));
-//           }),
-//         );
-//       }),
-//     );
-//   });
-// }
-
-// toggleTheme$ = createEffect(() => {
-//   return this.actions$.pipe(
-//     ofType(changeTheme),
-//     switchMap(()=> this.themeService.getTheme().pipe((map((change)=>{
-//     return of(changeTheme({change: change}))}{}{|}{|}{}|
-// );
-
-// togsgleTsheme$ = createEffect(() => {
-//   return this.actions$.pipe(
-//     ofType(changeTheme),
-//     switchMap((action) => {
-//       return this.themeService.getTheme().pipe(map((change) => action));
-//     }),
-//   );
-// });
-// toggleTheme$ = createEffect(() => {
-//   return this.actions$.pipe(
-//     ofType(changeTheme),
-//     switchMap((action) => {
-//       return of(changeTheme({ change: action.change }));
-//     }),
-//   );
-// });
