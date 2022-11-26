@@ -3,7 +3,7 @@ import { Actions } from '@ngrx/effects';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../modules/auth-page/services/authentication.service';
 import { Store } from '@ngrx/store';
-import { LocalStorageService } from '../../services/local-storage.service';
+import { LocalStorageService } from '../../services';
 
 @Injectable()
 export class AuthEffects {

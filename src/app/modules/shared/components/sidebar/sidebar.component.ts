@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { NavigationEnd, Router } from '@angular/router';
-import { SidenavService } from '../../../shared/services/sidenav.service';
+import { SidenavService } from '../../services/sidenav.service';
 import { delay, filter } from 'rxjs';
 
 @Component({

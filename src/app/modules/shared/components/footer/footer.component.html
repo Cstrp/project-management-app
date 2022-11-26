@@ -1,9 +1,11 @@
 <footer class="flex-grow-0 flex-shrink-0">
   <mat-toolbar>
-    <nav class="w-full flex flex-col gap-3 border-gray-200 p-4 sm:px-4 py-2.5 rounded bg-gray-400 bg-opacity-25">
+    <mat-nav-list
+      class="w-full flex flex-col gap-3 border-gray-200 p-4 sm:px-4 py-2.5 rounded bg-gray-400 bg-opacity-25"
+    >
       <div class="container flex flex-wrap items-center justify-center mx-auto">
         <div class="w-full flex flex-row flex-wrap justify-center gap-4 pt-2">
-          <a mat-list-item href="https://github.com/Cstrp" class="text-gray-800 flex flex-row gap-3 items-center">
+          <a href="https://github.com/Cstrp" class="text-gray-800 flex flex-row gap-3 items-center">
             <svg
               aria-hidden="true"
               focusable="false"
@@ -77,12 +79,10 @@
           </a>
         </div>
       </div>
-      <div class="text-center text-gray-700">
-        © 2022 Copyright:
-        <a class="text-gray-800 transition ease-linear hover:text-opacity-80" href="https://rollingscopes.com/"
-          >Rolling scopes school</a
-        >
-      </div>
-    </nav>
+    </mat-nav-list>
   </mat-toolbar>
+  <div class="container flex flex-wrap items-center justify-center mx-auto">
+    © 2022 Copyright:
+    <a class="text-gray-800 transition-all hover:opacity-60" href="https://rollingscopes.com/">Rolling scopes school</a>
+  </div>
 </footer>

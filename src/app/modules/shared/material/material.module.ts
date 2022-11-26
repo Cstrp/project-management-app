@@ -45,7 +45,7 @@ import { CdkMenuModule } from '@angular/cdk/menu';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { A11yModule } from '@angular/cdk/a11y';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
 

@@ -12,16 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthPageModule } from './modules/auth-page/auth-page.module';
 import { HomeModule } from './modules/home/home.module';
-import { MaterialModule } from './modules/material/material.module';
-import { SharedModule } from './modules/shared/shared.module';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { BoardsModule } from './modules';
 import { NetworkInterceptor } from './modules/shared/interceptors/network.interceptor';
 import { appReducer } from './store';
 import { CustomSerializer } from './store/app/router/custom-serializer';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,10 +29,12 @@ import { CustomSerializer } from './store/app/router/custom-serializer';
     BrowserAnimationsModule,
     FormsModule,
     DragDropModule,
-    StoreModule.forRoot(appReducer),
     HomeModule,
     AuthPageModule,
+    BoardsModule,
+    HttpClientModule,
     SharedModule,
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer,
@@ -43,10 +43,6 @@ import { CustomSerializer } from './store/app/router/custom-serializer';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    BoardsModule,
-    MatButtonModule,
-    MaterialModule,
-    HttpClientModule,
   ],
   providers: [
     {
