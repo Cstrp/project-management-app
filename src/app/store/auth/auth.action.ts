@@ -1,42 +1,18 @@
 import { createAction, props } from '@ngrx/store';
-import { Usr } from './models/usr';
-import { SignUp } from './models/signUp';
-import { SignIn } from './models/signIn';
+import { _auth } from '../../enums';
 
-const LOGIN_START: string = '[auth page] login start';
-const LOGIN_SUCCESS: string = '[auth page] login Success';
-const LOGIN_FAIL: string = '[auth page] login Fail';
+export const loginStart = createAction(_auth.LOGIN_START, props<{ login: string; password: string }>());
+export const loginSuccess = createAction(_auth.LOGIN_SUCCESS, props<{ token: string }>());
+export const loginFailed = createAction(_auth.LOGIN_FAIL, props<{ error: string }>());
 
-const SIGNUP_START = '[auth page] signup start';
-const SIGNUP_SUCCESS = '[auth page] signup success';
-const AUTO_LOGIN_ACTION = '[auth page] auto login';
-const LOGOUT_ACTION = '[auth page] logout';
+export const updateUserStart = createAction(_auth.UPDATE_START, props<{ id: string; name: string; login: string }>);
+export const updateUserSuccess = createAction(_auth.UPDATE_SUCCESS, props<{ name: string; login: string }>);
+export const updateUserFailed = createAction(_auth.UPDATE_FAILED);
 
-const loginStart = createAction(LOGIN_START, props<{ user: SignIn }>());
+export const signUpStart = createAction(_auth.SIGNUP_START, props<{ name: string; login: string; password: string }>());
+export const signUpSuccess = createAction(_auth.SIGNUP_SUCCESS, props<{ id: string; name: string; login: string }>());
+export const signUpFailed = createAction(_auth.SIGNUP_FAIL, props<{ error: string }>());
 
-const loginSuccess = createAction(LOGIN_SUCCESS, props<{ user: Usr; redirect: boolean }>());
+export const logout = createAction(_auth.LOGOUT_ACTION);
 
-const signUpStart = createAction(SIGNUP_START, props<{ user: SignUp }>());
-
-const signUpSuccess = createAction(SIGNUP_SUCCESS, props<{ user: Usr; redirect: boolean }>());
-
-const autoLogin = createAction(AUTO_LOGIN_ACTION);
-const autoLogout = createAction(LOGOUT_ACTION);
-const dummyAction = createAction('[Source] [dummy action]');
-
-export {
-  loginStart,
-  LOGIN_START,
-  loginSuccess,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  signUpStart,
-  SIGNUP_START,
-  signUpSuccess,
-  SIGNUP_SUCCESS,
-  autoLogin,
-  AUTO_LOGIN_ACTION,
-  autoLogout,
-  LOGOUT_ACTION,
-  dummyAction,
-};
+export const dummyAction = createAction('[Source] [dummy action]');

@@ -4,6 +4,8 @@ import { boardsReducer, IBoardsState } from './boards';
 import { ITasksState, tasksReducer } from './tasks';
 import { AppTheme } from './app/theme/models/appTheme';
 import { themeReducer } from './app/theme/theme.reducer';
+import { authReducer } from './auth/auth.reducer';
+import { AuthState } from './auth/models';
 
 export interface IAppState {
   boards: IBoardsState;
@@ -11,6 +13,7 @@ export interface IAppState {
   columns: IColumnsState;
   tasks: ITasksState;
   theme: AppTheme;
+  auth: AuthState;
 }
 
 export const appReducer = {
@@ -19,4 +22,5 @@ export const appReducer = {
   columns: columnsReducer,
   tasks: tasksReducer,
   theme: themeReducer,
+  auth: authReducer,
 };

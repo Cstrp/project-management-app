@@ -3,7 +3,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { signUpStart } from '../../../../store/auth/auth.action';
-import { LocalStorageService } from '../../../../services/local-storage.service';
+import { LocalStorageService } from '../../../../services';
 
 @Component({
   selector: 'app-sign-up',
@@ -62,7 +62,7 @@ export class SignUpComponent implements OnInit {
       next: (value) => {
         console.log(value);
         this.localService.saveData('USER', JSON.stringify(value));
-        this.store.dispatch(signUpStart({ user: this.form.value }));
+        this.store.dispatch(signUpStart(this.form.value));
       },
       error: (err) => {
         this.errorMessage = err.error.message;

@@ -1,16 +1,17 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AuthState } from './auth.state';
+import { AUTH_FEATURE_NAME } from './auth.reducer';
+import { AuthState } from './models';
 
-const AUTH_STATE_NAME = 'auth';
+const selectAuth = createFeatureSelector<AuthState>(AUTH_FEATURE_NAME);
 
-const selectAuthState = createFeatureSelector<AuthState>(AUTH_STATE_NAME);
+export const selectLoading = createSelector(selectAuth, (state) => state.loading);
 
-const selectIsAuthenticated = createSelector(selectAuthState, (state) => {
-  return !!state.user;
-});
+export const selectLoaded = createSelector(selectAuth, (state) => state.loaded);
 
-const selectId = createSelector(selectAuthState, (state) => {
-  return state.user ? state.user.id : null;
-});
+export const selectError = createSelector(selectAuth, (state) => state.error);
 
-export { AUTH_STATE_NAME, selectIsAuthenticated, selectId };
+export const selectAuthData = createSelector(selectAuth, (state) => state.token);
+
+export const selectToken = createSelector(selectAuthData, (state) => state && state.token);
+
+export const selectIsAuth = createSelector(selectToken, (state) => !!state);

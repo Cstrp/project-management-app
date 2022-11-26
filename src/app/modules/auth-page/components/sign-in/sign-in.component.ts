@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { loginStart } from '../../../../store/auth/auth.action';
-import { LocalStorageService } from '../../../../services/local-storage.service';
+import { LocalStorageService } from '../../../../services';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,9 +17,9 @@ export class SignInComponent implements OnInit {
 
   public errorMessage: string = '';
 
-  public showPassword: boolean = false;
-
   public str: string = '';
+
+  public showPassword: boolean = false;
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
@@ -50,7 +50,7 @@ export class SignInComponent implements OnInit {
       next: (value) => {
         console.log(value);
         this.localService.saveData('token', JSON.stringify(value));
-        this.store.dispatch(loginStart({ user: this.form.value }));
+        this.store.dispatch(loginStart(this.form.value));
         this.form.reset();
       },
       error: (err) => {

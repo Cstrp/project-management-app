@@ -15,7 +15,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (err.error instanceof ErrorEvent) {
           this.errorMessage = err.error.message;
         } else {
-          this.errorMessage = `Status: ${err.error.message},\nMessage: ${err.error.message}`;
+          this.errorMessage = `Status: ${err.error.status},\nMessage: ${err.error.message}`;
         }
 
         return throwError(this.errorMessage);

@@ -1,14 +1,36 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { AuthState, initialState } from './auth.state';
-import { autoLogout, loginSuccess, signUpSuccess } from './auth.action';
+import { AuthState, Token } from './models';
+import { createReducer, on } from '@ngrx/store';
+import {
+  loginFailed,
+  loginStart,
+  loginSuccess,
+  signUpFailed,
+  signUpStart,
+  signUpSuccess,
+  updateUserFailed,
+  updateUserStart,
+  updateUserSuccess,
+} from './auth.action';
 
-const _authReducer = createReducer(
+export const AUTH_FEATURE_NAME = 'auth';
+
+const initialState: AuthState = {
+  loaded: true,
+  loading: false,
+  error: '',
+};
+
+export const authReducer = createReducer(
   initialState,
-  on(loginSuccess, (state, action) => ({ ...state, user: action.user })),
-  on(signUpSuccess, (state, action) => ({ ...state, user: action.user })),
-  on(autoLogout, (state) => ({ ...state, user: null })),
+  on(loginStart, (state) => ({ ...state, loading: true })),
+  on(loginSuccess, (state, token: Token) => ({ ...state, token, loaded: true, loading: false, error: '' })),
+  on(loginFailed, (state, { error }) => ({ ...state, token: undefined, loaded: true, loading: false, error })),
+
+  on(signUpStart, (state) => ({ ...state, loading: true })),
+  on(signUpSuccess, (state) => ({ ...state, loaded: true, loading: false, error: '' })),
+  on(signUpFailed, (state, { error }) => ({ ...state, token: undefined, loaded: true, loading: false, error })),
+
+  on(updateUserStart, (state) => ({ ...state, loading: true })),
+  on(updateUserSuccess, (state) => ({ ...state, loaded: true, loading: false, error: '' })),
+  on(updateUserFailed, (state, { type }) => ({ ...state, token: undefined, loaded: true, loading: false, type })),
 );
-
-const AuthReducer = (state: AuthState | undefined, action: Action) => _authReducer(state, action);
-
-export { AuthReducer, _authReducer };
