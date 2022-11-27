@@ -3,7 +3,6 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { signUpStart } from '../../../../store/auth/auth.action';
-import { LocalStorageService } from '../../../../services';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,18 +21,9 @@ export class SignUpComponent implements OnInit {
     return this.form.controls;
   }
 
-  errorMessage: string = '';
-
-  isLoginFailed: boolean = false;
-
   public str: string = '';
 
-  constructor(
-    private authService: AuthenticationService,
-    private localService: LocalStorageService,
-    private fb: FormBuilder,
-    private store: Store,
-  ) {}
+  constructor(private authService: AuthenticationService, private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -49,8 +39,6 @@ export class SignUpComponent implements OnInit {
         ],
       ],
     });
-
-    this.str = this.localService.getData('USER');
   }
 
   onSubmit(): void {
@@ -58,16 +46,7 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.authService.signUp(this.form.value).subscribe({
-      next: (value) => {
-        console.log(value);
-        this.localService.saveData('USER', JSON.stringify(value));
-        this.store.dispatch(signUpStart(this.form.value));
-      },
-      error: (err) => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      },
-    });
+    this.store.dispatch(signUpStart(this.form.value));
+    this.form.reset();
   }
 }

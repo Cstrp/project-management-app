@@ -10,7 +10,7 @@ export const updateUserSuccess = createAction(_auth.UPDATE_SUCCESS, props<{ name
 export const updateUserFailed = createAction(_auth.UPDATE_FAILED);
 
 export const signUpStart = createAction(_auth.SIGNUP_START, props<{ name: string; login: string; password: string }>());
-export const signUpSuccess = createAction(_auth.SIGNUP_SUCCESS, props<{ id: string; name: string; login: string }>());
+export const signUpSuccess = createAction(_auth.SIGNUP_SUCCESS, props<{ id?: string; name: string; login: string }>());
 export const signUpFailed = createAction(_auth.SIGNUP_FAIL, props<{ error: string }>());
 
 export const logout = createAction(_auth.LOGOUT_ACTION);

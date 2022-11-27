@@ -1,4 +1,4 @@
-import { AuthState, Token } from './models';
+import { Token } from './models';
 import { createReducer, on } from '@ngrx/store';
 import {
   loginFailed,
@@ -11,14 +11,7 @@ import {
   updateUserStart,
   updateUserSuccess,
 } from './auth.action';
-
-export const AUTH_FEATURE_NAME = 'auth';
-
-const initialState: AuthState = {
-  loaded: true,
-  loading: false,
-  error: '',
-};
+import { initialState } from './auth.state';
 
 export const authReducer = createReducer(
   initialState,

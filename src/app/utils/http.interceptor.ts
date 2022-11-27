@@ -2,10 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { LocalStorageService } from '../services';
+import { Store } from '@ngrx/store';
+import { selectToken } from '../store/auth/auth.selector';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
-  constructor(private localService: LocalStorageService) {}
+  private token$: Observable<string | undefined> = this.store.select(selectToken);
+
+  private token: string;
+
+  constructor(private localService: LocalStorageService, private store: Store) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<string>> {
     request = request.clone({

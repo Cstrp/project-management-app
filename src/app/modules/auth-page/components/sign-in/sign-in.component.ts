@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { selectError, selectLoaded, selectLoading } from '../../../../store/auth/auth.selector';
 import { loginStart } from '../../../../store/auth/auth.action';
-import { LocalStorageService } from '../../../../services';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,28 +18,25 @@ export class SignInComponent implements OnInit {
 
   public errorMessage: string = '';
 
-  public str: string = '';
-
   public showPassword: boolean = false;
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
 
-  constructor(
-    private authService: AuthenticationService,
-    private localService: LocalStorageService,
-    private fb: FormBuilder,
-    private store: Store,
-  ) {}
+  loading$: Observable<boolean> = this.store.select(selectLoading);
+
+  loaded$: Observable<boolean> = this.store.select(selectLoaded);
+
+  err$: Observable<string> = this.store.select(selectError);
+
+  constructor(private authService: AuthenticationService, private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
       password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
     });
-
-    this.str = this.localService.getData('token');
   }
 
   onSubmit() {
@@ -46,16 +44,7 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    this.authService.signIn(this.form.value).subscribe({
-      next: (value) => {
-        console.log(value);
-        this.localService.saveData('token', JSON.stringify(value));
-        this.store.dispatch(loginStart(this.form.value));
-        this.form.reset();
-      },
-      error: (err) => {
-        this.errorMessage = err.error.message;
-      },
-    });
+    this.store.dispatch(loginStart(this.form.value));
+    this.form.reset();
   }
 }

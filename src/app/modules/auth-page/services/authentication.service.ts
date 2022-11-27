@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Store } from '@ngrx/store';
+import { SignIn, SignUp, Token } from '../../../store/auth/models';
 import { _httpOptions, SIGN_IN, SIGN_UP } from '../../../constants';
-import { catchError, throwError } from 'rxjs';
-import { SignIn, SignUp } from '../../../store/auth/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient, private store: Store) {}
-
-  signUp(usr: SignUp) {
-    return this.http.post(SIGN_UP, usr, _httpOptions).pipe(
-      catchError((err) => {
-        console.error(err);
-
-        return throwError(err);
-      }),
-    );
-  }
+  constructor(private http: HttpClient) {}
 
   signIn(usr: SignIn) {
-    return this.http.post(SIGN_IN, usr, _httpOptions);
+    return this.http.post<Token>(SIGN_IN, usr, _httpOptions);
   }
+
+  signUp(usr: SignUp) {
+    return this.http.post<SignUp>(SIGN_UP, usr, _httpOptions);
+  }
+
+  // signUp(usr: SignUp) {
+  //   return this.http.post(SIGN_UP, usr, _httpOptions).pipe(
+  //     catchError((err) => {
+  //       console.error(err);
+  //
+  //       return throwError(err);
+  //     }),
+  //   );
+  // }
+  //
+  // signIn(usr: SignIn) {
+  //   return this.http.post(SIGN_IN, usr, _httpOptions);
+  // }
 }
