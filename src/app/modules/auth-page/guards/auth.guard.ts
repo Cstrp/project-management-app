@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
       map((ok) => {
         const copy = this.localStorageService.getData('isAuth');
 
-        ok = JSON.parse(copy);
+        ok = !!copy;
 
         if (!ok) {
           this.router.navigate(['/']);
