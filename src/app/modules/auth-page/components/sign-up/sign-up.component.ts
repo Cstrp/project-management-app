@@ -3,7 +3,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { signUpStart } from '../../../../store/auth/auth.action';
-import { LocalStorageService } from '../../../../services/local-storage.service';
+import { SnackBarService } from '../../../shared/material/services/snack-bar.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,17 +22,13 @@ export class SignUpComponent implements OnInit {
     return this.form.controls;
   }
 
-  errorMessage: string = '';
-
-  isLoginFailed: boolean = false;
-
-  public str: string = '';
+  private err: string = '';
 
   constructor(
     private authService: AuthenticationService,
-    private localService: LocalStorageService,
     private fb: FormBuilder,
     private store: Store,
+    private snackBarService: SnackBarService,
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +46,7 @@ export class SignUpComponent implements OnInit {
       ],
     });
 
-    this.str = this.localService.getData('USER');
+    this.authService.err$.subscribe((i) => (this.err = i));
   }
 
   onSubmit(): void {
@@ -58,16 +54,13 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.authService.signUp(this.form.value).subscribe({
-      next: (value) => {
-        console.log(value);
-        this.localService.saveData('USER', JSON.stringify(value));
-        this.store.dispatch(signUpStart({ user: this.form.value }));
-      },
-      error: (err) => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      },
-    });
+    if (this.err) {
+      this.snackBarService.openSnackBar(this.err, 'Dismiss');
+    } else {
+      this.snackBarService.openSnackBar('Done', 'Dismiss');
+    }
+
+    this.store.dispatch(signUpStart(this.form.value));
+    this.form.reset();
   }
 }

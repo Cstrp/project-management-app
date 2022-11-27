@@ -5,8 +5,6 @@ import { of, switchMap } from 'rxjs';
 
 @Injectable()
 export class ThemeEffect {
-  private init: boolean = false;
-
   constructor(private actions$: Actions) {}
 
   loadTheme$ = createEffect(() => {
@@ -16,7 +14,7 @@ export class ThemeEffect {
         return of(loadSuccess({ change }));
       }),
     );
-  }); // bread!
+  });
 
   updateTheme$ = createEffect(() => {
     return this.actions$.pipe(
@@ -25,5 +23,5 @@ export class ThemeEffect {
         return of(updateThemeSuccess({ change }));
       }),
     );
-  }); // bread x2
+  });
 }

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LocalStorageService } from '../../../services/local-storage.service';
 import { GET_BOARDS } from '../../../constants/_boards';
-import { BASE_URL, _httpOptions } from '../../../constants';
-import { Observable, map, catchError, of, throwError } from 'rxjs';
+import { _httpOptions, BASE_URL } from '../../../constants';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { IBoard, IColumn, ITask } from '../components';
 import { IRequestUpdateBoard, IRequestUpdateTask } from 'src/app/store';
 import { IRequestUpdateColumn } from 'src/app/store/columns';
@@ -19,6 +18,7 @@ export class BoardsService {
     return this.http.get<Array<IBoard>>(GET_BOARDS, _httpOptions).pipe(
       map((data) => {
         const boards: Array<IBoard> = data;
+
         return boards;
       }),
       catchError((errResp) => {
@@ -49,6 +49,7 @@ export class BoardsService {
     return this.http.get<Array<IColumn>>(`${GET_BOARDS}/${boardId}/columns`, _httpOptions).pipe(
       map((data) => {
         const columns: Array<IColumn> = data;
+
         return columns;
       }),
       catchError((errResp) => {
@@ -63,6 +64,7 @@ export class BoardsService {
 
   public updateColumn(boardId: string, column: IColumn, columnId: string): Observable<IColumn> {
     const requestUpdateColumn: IRequestUpdateColumn = { title: column.title, order: column.order };
+
     return this.http.put<IColumn>(`${GET_BOARDS}/${boardId}/columns/${columnId}`, requestUpdateColumn);
   }
 
@@ -82,6 +84,7 @@ export class BoardsService {
     return this.http.get<Array<ITask>>(`${GET_BOARDS}/${boardId}/columns/${columnId}/tasks`, _httpOptions).pipe(
       map((data) => {
         const tasks: Array<ITask> = data;
+
         return tasks;
       }),
       catchError((errResp) => {
@@ -103,6 +106,7 @@ export class BoardsService {
       boardId: task.boardId as string,
       columnId: task.columnId as string,
     };
+
     return this.http.put<ITask>(
       `${GET_BOARDS}/${task.boardId}/columns/${task.columnId}/tasks/${taskId}`,
       requestUpdateTask,

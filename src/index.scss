@@ -7,12 +7,27 @@
   $dark-warn: mat.mat-palette(mat.$mat-red);
   $dark-theme: mat.mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
-  p,
+
   a,
   span,
   div,
   h2 {
     color: #dfe6e9;
+  }
+
+  .board-list {
+    color: #2ee536 !important;
+  }
+
+  .text {
+    color: white;
+    &:hover {
+      color: rgb(0, 0, 0);
+    }
+  }
+
+  .board-list__title {
+    color: white;
   }
 
   input {

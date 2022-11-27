@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { loginStart } from '../../../../store/auth/auth.action';
-import { LocalStorageService } from '../../../../services/local-storage.service';
+import { SnackBarService } from '../../../shared/material/services/snack-bar.service';
+import { LocalStorageService } from '../../../shared/services';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,17 +20,16 @@ export class SignInComponent implements OnInit {
 
   public showPassword: boolean = false;
 
-  public str: string = '';
-
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
 
   constructor(
-    private authService: AuthenticationService,
-    private localService: LocalStorageService,
+    public authService: AuthenticationService,
     private fb: FormBuilder,
     private store: Store,
+    private snackBarService: SnackBarService,
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class SignInComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
     });
 
-    this.str = this.localService.getData('token');
+    this.authService.err$.subscribe((i) => (this.errorMessage = i));
   }
 
   onSubmit() {
@@ -46,16 +46,20 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    this.authService.signIn(this.form.value).subscribe({
-      next: (value) => {
-        console.log(value);
-        this.localService.saveData('token', JSON.stringify(value));
-        this.store.dispatch(loginStart({ user: this.form.value }));
-        this.form.reset();
-      },
-      error: (err) => {
-        this.errorMessage = err.error.message;
-      },
-    });
+    if (this.errorMessage) {
+      this.snackBarService.openSnackBar(this.errorMessage, 'Dismiss');
+    } else {
+      this.snackBarService.openSnackBar('Done', 'Dismiss');
+    }
+
+    const login = this.form.value.login;
+    const password = this.form.value.password;
+
+    this.authService.isAuth = true;
+
+    this.localStorageService.saveData('isAuth', JSON.stringify(this.authService.isAuth));
+
+    this.store.dispatch(loginStart({ login: login, password: password, auth: true }));
+    this.form.reset();
   }
 }

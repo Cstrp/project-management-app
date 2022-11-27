@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErrorInterceptor } from '../utils/error.interceptor';
+import { ErrorInterceptor } from '../modules/shared/interceptors/error.interceptor';
 import { Provider } from '@angular/core';
 
 const _errInterceptorProvider: Provider = {

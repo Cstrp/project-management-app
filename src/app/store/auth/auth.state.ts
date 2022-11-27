@@ -1,9 +1,10 @@
-import { Usr } from './models/usr';
+import { AuthState } from './models';
 
-interface AuthState {
-  user: Usr | null;
-}
+export const AUTH_FEATURE_NAME = 'auth';
 
-const initialState: AuthState = { user: null };
-
-export { initialState, AuthState };
+export const initialState: AuthState = {
+  login: '',
+  loaded: true,
+  loading: false,
+  error: '',
+};

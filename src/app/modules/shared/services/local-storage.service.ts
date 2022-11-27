@@ -21,10 +21,4 @@ export class LocalStorageService {
   public removeItem(key: string): void {
     localStorage.removeItem(key);
   }
-
-  public isSignIn(): boolean {
-    const usr = this.getData('token');
-
-    return !!usr;
-  }
 }

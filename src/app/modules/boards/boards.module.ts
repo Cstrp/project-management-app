@@ -26,6 +26,7 @@ import { _httpInterceptorProvider } from '../../constants';
 import { ColumnsEffects } from 'src/app/store/columns';
 import { TasksEffects } from 'src/app/store/tasks/tasks.effects';
 import { MaterialModule } from '../shared/material/material.module';
+import { SortByTitlePipe } from './pipe/sort-by-title.pipe';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MaterialModule } from '../shared/material/material.module';
     AddTaskModalComponent,
     DeleteTaskModalComponent,
     EditTaskModalComponent,
+    SortByTitlePipe,
   ],
   exports: [
     BoardListComponent,
