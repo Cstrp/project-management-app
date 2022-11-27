@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SnackBarService } from '../../material/services/snack-bar.service';
 import { LocalStorageService, SortService, ThemeService } from '../../services';
 import { AuthenticationService } from '../../../auth-page/services/authentication.service';
-import { Observable } from 'rxjs';
+import { distinctUntilChanged, Observable, Subject, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectLogin } from '../../../../store/auth/auth.selector';
 
@@ -14,6 +14,8 @@ export class DropdownMenuComponent implements OnInit {
   @Output() public filterInput: EventEmitter<Event> = new EventEmitter<Event>();
 
   public login$: Observable<string> = this.store.select(selectLogin);
+
+  private _unsubscribe$: Subject<void> = new Subject<void>();
 
   public login: string = '';
 
@@ -27,7 +29,10 @@ export class DropdownMenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.login$.subscribe((i) => console.log(i));
+    this.authService
+      .getLogin()
+      .pipe(takeUntil(this._unsubscribe$), distinctUntilChanged())
+      .subscribe((login) => (this.login = login));
   }
 
   public toggleTheme(theme: boolean): void {

@@ -28,10 +28,7 @@
   <div
     class="font-semibold bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-500 to-indigo-500 animate-text"
   >
-    <span *ngIf="!login; else name">Unauthorized</span>
-    <ng-template #name>
-      <span>{{ login }}</span>
-    </ng-template>
+    <span>{{ login }}</span>
   </div>
 
   <button

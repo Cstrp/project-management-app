@@ -8,7 +8,7 @@
       />
     </div>
     <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()">
         <!-- Login input -->
         <div class="mb-6">
           <input

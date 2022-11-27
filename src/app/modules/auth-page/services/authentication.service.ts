@@ -1,29 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SignIn, SignUp, Token } from '../../../store/auth/models';
-import { _httpOptions, _userKey, SIGN_IN, SIGN_UP } from '../../../constants';
+import { _httpOptions, SIGN_IN, SIGN_UP } from '../../../constants';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { selectError, selectIsAuth, selectLoaded, selectLoading, selectToken } from '../../../store/auth/auth.selector';
 import { Store } from '@ngrx/store';
 import { LocalStorageService } from '../../shared/services';
 import { Router } from '@angular/router';
-import { getTokenSuccess } from '../../../store/auth/auth.action';
+import { selectError } from '../../../store/auth/auth.selector';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  loading$: Observable<boolean> = this.store.select(selectLoading);
+  public err$: Observable<string> = this.store.select(selectError);
 
-  loaded$: Observable<boolean> = this.store.select(selectLoaded);
+  public isAuth: boolean = false;
 
-  err$: Observable<string> = this.store.select(selectError);
+  public isRegistered: Observable<boolean> = new Observable<boolean>((obs) => {
+    obs.next(this.isAuth);
+  });
 
-  token$: Observable<string | undefined> = this.store.select(selectToken);
-
-  isAuth: Observable<boolean> = this.store.select(selectIsAuth);
-
-  private login: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public login: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
     private http: HttpClient,
@@ -41,15 +38,18 @@ export class AuthenticationService {
   }
 
   public logOut(): void {
-    this.localStorageService.removeItem(_userKey);
+    this.localStorageService.removeData();
     this.router.navigate(['/']);
+    this.isAuth = false;
+    window.location.reload();
   }
 
-  loadToken() {
-    const token = this.localStorageService.getData('token');
+  getLogin() {
+    const login = this.localStorageService.getData('login');
 
-    if (token) {
-      this.store.dispatch(getTokenSuccess({ token: JSON.parse(token) }));
-    }
+    if (login) this.login.next(login);
+    else this.login.next('Unauthorized');
+
+    return this.login;
   }
 }

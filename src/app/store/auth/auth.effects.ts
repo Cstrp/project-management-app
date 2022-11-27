@@ -30,6 +30,7 @@ export class AuthEffects {
       switchMap((action) =>
         this.authService.signIn({ login: action.login, password: action.password }).pipe(
           map((success) => {
+            this.localStorageService.saveData('login', action.login);
             this.localStorageService.saveData('token', success.token);
 
             return loginSuccess({ token: success.token, auth: true });

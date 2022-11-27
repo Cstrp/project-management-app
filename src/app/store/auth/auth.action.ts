@@ -9,6 +9,8 @@ export const updateUserStart = createAction(_auth.UPDATE_START, props<{ id: stri
 export const updateUserSuccess = createAction(_auth.UPDATE_SUCCESS, props<{ name: string; login: string }>());
 export const updateUserFailed = createAction(_auth.UPDATE_FAILED);
 
+export const isAuth = createAction('[auth page] is auth', props<{ auth: boolean }>());
+
 export const getTokenStart = createAction(_auth.GET_TOKEN_START, props<{ token: string }>());
 export const getTokenSuccess = createAction(_auth.GET_TOKEN_SUCCESS, props<{ token: string }>());
 export const getTokenFailed = createAction(_auth.GET_TOKEN_FAIL, props<{ error: string }>());

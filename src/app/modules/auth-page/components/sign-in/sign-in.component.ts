@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { loginStart } from '../../../../store/auth/auth.action';
 import { SnackBarService } from '../../../shared/material/services/snack-bar.service';
+import { LocalStorageService } from '../../../shared/services';
 
 @Component({
   selector: 'app-sign-in',
@@ -28,6 +29,7 @@ export class SignInComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store,
     private snackBarService: SnackBarService,
+    private localStorageService: LocalStorageService,
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,10 @@ export class SignInComponent implements OnInit {
 
     const login = this.form.value.login;
     const password = this.form.value.password;
+
+    this.authService.isAuth = true;
+
+    this.localStorageService.saveData('isAuth', JSON.stringify(this.authService.isAuth));
 
     this.store.dispatch(loginStart({ login: login, password: password, auth: true }));
     this.form.reset();

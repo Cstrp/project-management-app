@@ -1,17 +1,18 @@
-<div (click)="openEditTaskModal()" class="task__info-container">
+<div (click)="openEditTaskModal()" class="task__info-container bg-teal-200 bg-opacity-50 rounded-sm">
   <ng-content></ng-content>
   <div class="task__top-container">
-    <p class="task__title">{{task.title}}</p>
+    <p class="task__title text-black">{{ task.title }}</p>
   </div>
-  <p class="task__desc">{{task.description}}</p>
+  <p class="task__desc text-black">{{ task.description }}</p>
   <div class="task__user-container">
     <mat-icon class="task__user-icon">account_circle</mat-icon>
-    <ng-container *ngIf="(taskUserInfo$ | async) as taskUserInfo">
-      <p class="task__user">{{taskUserInfo.name}}</p>
+    <ng-container *ngIf="taskUserInfo$ | async as taskUserInfo">
+      <p class="task__user">{{ taskUserInfo.name }}</p>
     </ng-container>
   </div>
 </div>
 
-<button (click)="openDeleteTaskModal()" class="column-delete-btn">delete
+<button (click)="openDeleteTaskModal()" class="column-delete-btn">
+  delete
   <mat-icon class="column-tool-icon">delete</mat-icon>
 </button>
