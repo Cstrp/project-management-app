@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectLoadSuccess } from '../../../store/app/theme/theme.selector';
-import { LocalStorageService } from '../../../services';
+import { LocalStorageService } from './index';
 import { loadSuccess, updateThemeSuccess } from '../../../store/app/theme/theme.action';
 
 @Injectable({
@@ -35,11 +35,6 @@ export class ThemeService {
     this.initial = true;
 
     this.loadFromStorage();
-
-    // this.store
-    //   .select(selectUpdateSuccess)
-    //   .pipe(filter((change) => change))
-    //   .subscribe((changes) => this.localStorage.saveData(this.theme, JSON.stringify(changes)));  // bread x3
   }
 
   public loadFromStorage() {

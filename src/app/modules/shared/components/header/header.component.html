@@ -4,7 +4,7 @@
       <div class="container flex flex-wrap items-center justify-between mx-auto">
         <app-header-title></app-header-title>
         <app-boards-navigate></app-boards-navigate>
-        <app-dropdown-menu></app-dropdown-menu>
+        <app-dropdown-menu (filterInput)="filterValue($event)"></app-dropdown-menu>
       </div>
     </nav>
   </mat-toolbar>

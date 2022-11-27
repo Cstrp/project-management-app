@@ -11,5 +11,11 @@ export enum _auth {
   SIGNUP_SUCCESS = '[auth page] signup success',
   SIGNUP_FAIL = '[auth page] signup fail',
 
-  LOGOUT_ACTION = '[auth page] logout',
+  GET_TOKEN_START = '[auth page] signup start',
+  GET_TOKEN_SUCCESS = '[auth page] signup success',
+  GET_TOKEN_FAIL = '[auth page] signup fail',
+
+  AUTO_LOGIN = '[auth page] auto login',
+  LOGOUT_START = '[auth page] logout start',
+  LOGOUT_SUCCESS = '[auth page] logout success',
 }

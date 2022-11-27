@@ -4,6 +4,8 @@ import { AUTH_FEATURE_NAME } from './auth.state';
 
 const selectAuth = createFeatureSelector<AuthState>(AUTH_FEATURE_NAME);
 
+export const selectLogin = createSelector(selectAuth, (state) => state.login);
+
 export const selectLoading = createSelector(selectAuth, (state) => state.loading);
 
 export const selectLoaded = createSelector(selectAuth, (state) => state.loaded);

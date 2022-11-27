@@ -4,7 +4,6 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { _httpInterceptorProvider } from '../../constants';
 import { MaterialModule } from '../shared/material/material.module';
 import { SupPannelComponent } from './components/sign-in/sup-pannel/sup-pannel.component';
 import { PasswordInputComponent } from './components/sign-in/password-input/password-input.component';
@@ -31,7 +30,6 @@ import { AuthEffects } from '../../store/auth/auth.effects';
     MaterialModule,
     EffectsModule.forFeature([AuthEffects]),
   ],
-  providers: [_httpInterceptorProvider],
   exports: [AuthRoutingModule],
 })
 export class AuthPageModule {}

@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpRequestInterceptor } from '../utils/http.interceptor';
+import { HttpRequestInterceptor } from '../modules/shared/interceptors/token.interceptor';
 import { Provider } from '@angular/core';
 
 const _httpInterceptorProvider: Provider = {

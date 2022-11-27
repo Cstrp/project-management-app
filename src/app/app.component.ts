@@ -1,7 +1,7 @@
 import { AfterContentChecked, AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
 import { catchError, delay, mergeMap, Observable, of, throwError } from 'rxjs';
 import { ThemeService } from './modules/shared/services/theme.service';
-import { LoadingService } from './services';
+import { LoadingService } from './modules/shared/services';
 import { Store } from '@ngrx/store';
 
 @Component({

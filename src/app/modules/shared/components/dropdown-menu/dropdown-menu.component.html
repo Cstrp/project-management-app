@@ -19,10 +19,21 @@
     <input
       type="text"
       id="search-navbar"
+      (input)="filterInput.emit($event)"
       class="block w-full p-2 pl-10 text-sm text-black border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400 dark:focus:ring-blue-500"
       placeholder="Search..."
     />
   </div>
+
+  <div
+    class="font-semibold bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-500 to-indigo-500 animate-text"
+  >
+    <span *ngIf="!login; else name">Unauthorized</span>
+    <ng-template #name>
+      <span>{{ login }}</span>
+    </ng-template>
+  </div>
+
   <button
     type="button"
     class="flex mr-3 text-sm rounded-full md:mr-00"
@@ -39,12 +50,13 @@
         <mat-icon>settings</mat-icon>
         <span>Settings</span>
       </a>
-      <a mat-menu-item>
+      <a mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Sign out</span>
       </a>
     </ng-template>
   </mat-menu>
+
   <mat-slide-toggle
     color="primary"
     [checked]="themeService.updSuccess | async"

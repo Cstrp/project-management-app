@@ -70,6 +70,7 @@ import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatSnackBarModule,
     MatStepperModule,
     MatDatepickerModule,
     MatDialogModule,

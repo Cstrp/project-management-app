@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { selectError, selectLoaded, selectLoading } from '../../../../store/auth/auth.selector';
 import { loginStart } from '../../../../store/auth/auth.action';
+import { SnackBarService } from '../../../shared/material/services/snack-bar.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -24,19 +23,20 @@ export class SignInComponent implements OnInit {
     return this.form.controls;
   }
 
-  loading$: Observable<boolean> = this.store.select(selectLoading);
-
-  loaded$: Observable<boolean> = this.store.select(selectLoaded);
-
-  err$: Observable<string> = this.store.select(selectError);
-
-  constructor(private authService: AuthenticationService, private fb: FormBuilder, private store: Store) {}
+  constructor(
+    public authService: AuthenticationService,
+    private fb: FormBuilder,
+    private store: Store,
+    private snackBarService: SnackBarService,
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
       password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
     });
+
+    this.authService.err$.subscribe((i) => (this.errorMessage = i));
   }
 
   onSubmit() {
@@ -44,7 +44,16 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    this.store.dispatch(loginStart(this.form.value));
+    if (this.errorMessage) {
+      this.snackBarService.openSnackBar(this.errorMessage, 'Dismiss');
+    } else {
+      this.snackBarService.openSnackBar('Done', 'Dismiss');
+    }
+
+    const login = this.form.value.login;
+    const password = this.form.value.password;
+
+    this.store.dispatch(loginStart({ login: login, password: password, auth: true }));
     this.form.reset();
   }
 }

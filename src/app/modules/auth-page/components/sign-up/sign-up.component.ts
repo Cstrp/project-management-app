@@ -3,6 +3,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { signUpStart } from '../../../../store/auth/auth.action';
+import { SnackBarService } from '../../../shared/material/services/snack-bar.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,9 +22,14 @@ export class SignUpComponent implements OnInit {
     return this.form.controls;
   }
 
-  public str: string = '';
+  private err: string = '';
 
-  constructor(private authService: AuthenticationService, private fb: FormBuilder, private store: Store) {}
+  constructor(
+    private authService: AuthenticationService,
+    private fb: FormBuilder,
+    private store: Store,
+    private snackBarService: SnackBarService,
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -39,11 +45,19 @@ export class SignUpComponent implements OnInit {
         ],
       ],
     });
+
+    this.authService.err$.subscribe((i) => (this.err = i));
   }
 
   onSubmit(): void {
     if (!this.form.valid) {
       return;
+    }
+
+    if (this.err) {
+      this.snackBarService.openSnackBar(this.err, 'Dismiss');
+    } else {
+      this.snackBarService.openSnackBar('Done', 'Dismiss');
     }
 
     this.store.dispatch(signUpStart(this.form.value));
