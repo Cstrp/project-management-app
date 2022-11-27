@@ -11,6 +11,9 @@ import { ThemeEffect } from '../../store/app/theme/theme.effect';
 import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
 import { HeaderTitleComponent } from './components/header-title/header-title.component';
 import { BoardsModule } from '../boards';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
+import { RouterLinkWithHref } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,16 @@ import { BoardsModule } from '../boards';
     Random_colorDirective,
     DropdownMenuComponent,
     HeaderTitleComponent,
+    ComingSoonComponent,
   ],
-  imports: [CommonModule, BoardsModule, MaterialModule, EffectsModule.forFeature([ThemeEffect])],
+  imports: [
+    CommonModule,
+    BoardsModule,
+    MaterialModule,
+    EffectsModule.forFeature([ThemeEffect]),
+    RouterLinkWithHref,
+    ReactiveFormsModule,
+  ],
 
   exports: [HeaderComponent, FooterComponent, Random_positionDirective, Random_colorDirective, MaterialModule],
 })

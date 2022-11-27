@@ -1,6 +1,9 @@
-<div class="eleven">
-  <h3 class="board-list__title">{{ title }}</h3>
-</div>
+<mat-toolbar color="primary" style="background: none; color: black">
+  <div class="w-full flex flex-col justify-center items-center gap-2">
+    <span class="text-3xl">{{ title }}</span>
+    <mat-icon> grid_view </mat-icon>
+  </div>
+</mat-toolbar>
 
 <div class="board-list" *ngIf="boards$ | async as boards">
   <app-board *ngFor="let board of boards | sortByTitle: getFilterByInputValue()" [board]="board"></app-board>
